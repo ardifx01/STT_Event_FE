@@ -2,6 +2,10 @@
 
 Aplikasi frontend untuk STT Event yang dibangun menggunakan Ionic Framework dengan Vue.js dan TypeScript.
 
+## Diagram Sistem
+
+![Diagram Sistem](./public/img/docs/image004.png)
+
 ## Fitur Sistem
 
 ### 1. Registration
@@ -16,9 +20,11 @@ Aplikasi frontend untuk STT Event yang dibangun menggunakan Ionic Framework deng
 - Form feedback internal untuk pengumpulan feedback dari peserta
 
 ### 4. Spin Wheel
-- Dapat diakses melalui: https://wheelofnames.com/
+- Komponen roda putar custom untuk pemilihan pemenang
 
 ## Alur Registrasi Event
+
+![Alur Registrasi](./public/img/docs/image010.jpg)
 
 1. **Invitation EDM Blast**
    - Pengiriman undangan melalui email
