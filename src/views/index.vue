@@ -1,5 +1,5 @@
 <script lang="ts">
-import Home from './components/Home.vue'
+import Beranda from './components/Home.vue'
   import {
     IonTabs,
     IonTab,
@@ -12,13 +12,14 @@ import Home from './components/Home.vue'
     IonIcon,
   } from '@ionic/vue';
 
-  import { playCircle, radio, library, search } from 'ionicons/icons';
+  import { home,personAdd, radio, library, search } from 'ionicons/icons';
 
   export default {
-    components: { Home, IonTabs, IonTab, IonToolbar, IonTabBar, IonTabButton, IonContent, IonHeader, IonTitle, IonIcon },
+    components: { Beranda, IonTabs, IonTab, IonToolbar, IonTabBar, IonTabButton, IonContent, IonHeader, IonTitle, IonIcon },
     data() {
       return {
-        playCircle,
+        home,
+        personAdd,
         radio,
         library,
         search,
@@ -30,11 +31,11 @@ import Home from './components/Home.vue'
   <ion-tabs>
     <ion-tab tab="home">
       <div id="home-page">
-        <Home />
+        <Beranda />
       </div>
     </ion-tab>
-    <ion-tab tab="radio">
-      <div id="radio-page">
+    <ion-tab tab="registerPage">
+      <div id="register-page">
         <ion-header>
           <ion-toolbar>
             <ion-title>Radio</ion-title>
@@ -48,12 +49,12 @@ import Home from './components/Home.vue'
 
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home">
-        <ion-icon :icon="playCircle" />
-        Home
+        <ion-icon :icon="home" />
+        Beranda
       </ion-tab-button>
-      <ion-tab-button tab="radio">
-        <ion-icon :icon="radio" />
-        Radio
+      <ion-tab-button tab="registerPage">
+        <ion-icon :icon="personAdd" />
+        Register
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
