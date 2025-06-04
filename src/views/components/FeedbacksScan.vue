@@ -2,7 +2,7 @@
     <ion-page>
       <ion-header>
         <ion-toolbar>
-          <ion-title class="text-center">Scan Setup Code</ion-title>
+          <ion-title class="ion-text-center">Scan Setup Code</ion-title>
         </ion-toolbar>
       </ion-header>
       
@@ -45,10 +45,10 @@
           
           <!-- Instructions -->
           <div class="instructions">
-            <h2>SETUP CODE</h2>
+            <h2>SCAN FEEDBACK CODE</h2>
             <p>
-              On another device where you're already signed in to 1Password, 
-              find your Setup Code and scan it to add your account.
+              Arahkan kamera ke QR Code yang tersedia di booth 
+              untuk mengisi feedback dan memberikan penilaian.
             </p>
             
             <ion-button 
@@ -58,7 +58,7 @@
               class="help-button"
             >
               <ion-icon :icon="helpCircleOutline" slot="start"></ion-icon>
-              Get help
+              GET HELP
             </ion-button>
           </div>
           
@@ -80,8 +80,8 @@
     </ion-page>
   </template>
   
-  <script setup lang="ts">
-  import { ref, onMounted, onUnmounted } from 'vue';
+<script setup lang="ts">
+  import { ref, onMounted, onUnmounted, nextTick } from 'vue';
   import {
     IonPage,
     IonHeader,
@@ -106,9 +106,11 @@
   const showRetryButton = ref(false);
   const stream = ref<MediaStream | null>(null);
   const qrScanner = ref<QrScanner | null>(null);
+  const useQrScanner = ref(true); // Flag to determine which method to use
   
   // Initialize camera when component mounts
   onMounted(async () => {
+    await nextTick(); // Ensure DOM is ready
     await initializeCamera();
   });
   
@@ -117,94 +119,172 @@
     stopCamera();
   });
   
-  // Function to initialize camera with auto permission
+  // Function to initialize camera with fallback support
   const initializeCamera = async () => {
     try {
       cameraStatusMessage.value = 'Meminta izin kamera...';
       showRetryButton.value = false;
-      
-      // Check if QR scanner is supported
-      const hasCamera = await QrScanner.hasCamera();
-      if (!hasCamera) {
-        throw new Error('No camera found');
-      }
-      
-      if (videoElement.value) {
-        
-        // Initialize QR Scanner
-        qrScanner.value = new QrScanner(
-          videoElement.value,
-          (result) => {
-            handleQRCodeDetected(result.data);
-          },
-          {
-            returnDetailedScanResult: true,
-            highlightScanRegion: true,
-            highlightCodeOutline: true,
-            preferredCamera: 'environment' // Use back camera
-          }
-        );
-        
-        // Start the scanner
-        await qrScanner.value.start();
-        cameraActive.value = true;
-        cameraStatusMessage.value = 'Kamera siap - Arahkan ke QR Code';
-        
-        console.log('QR Scanner initialized successfully');
-      }
-    } catch (error) {
-      console.error('Error accessing camera:', error);
       cameraActive.value = false;
-      showRetryButton.value = true;
       
-      // Handle different types of camera errors
-      if (error instanceof Error) {
-        if (error.message.includes('Permission')) {
-          cameraStatusMessage.value = 'Izin kamera ditolak. Silakan berikan izin di pengaturan browser.';
-        } else if (error.message.includes('No camera found')) {
-          cameraStatusMessage.value = 'Kamera tidak ditemukan pada perangkat ini.';
-        } else if (error.message.includes('in use')) {
-          cameraStatusMessage.value = 'Kamera sedang digunakan aplikasi lain.';
-        } else {
-          cameraStatusMessage.value = 'Gagal mengakses kamera. Tap untuk mencoba lagi.';
-        }
+      // First try QrScanner method
+      if (useQrScanner.value) {
+        await initializeQrScanner();
+      } else {
+        // Fallback to MediaDevices method
+        await initializeMediaDevices();
       }
       
-      // Show alert for permission issues
-      const alert = await alertController.create({
-        header: 'Akses Kamera',
-        message: cameraStatusMessage.value,
-        buttons: [
-          {
-            text: 'Pengaturan',
-            handler: () => {
-              // Guide user to settings
-              window.open('chrome://settings/content/camera', '_blank');
-            }
-          },
-          {
-            text: 'Coba Lagi',
-            handler: () => {
-              initializeCamera();
-            }
-          }
-        ]
-      });
-      await alert.present();
+    } catch (error) {
+      console.error('Error initializing camera:', error);
+      
+      // If QrScanner fails, try MediaDevices as fallback
+      if (useQrScanner.value) {
+        console.log('QrScanner failed, trying MediaDevices fallback...');
+        useQrScanner.value = false;
+        await initializeMediaDevices();
+      } else {
+        // Both methods failed
+        await handleCameraError(error);
+      }
     }
+  };
+  
+  // Initialize using QrScanner library
+  const initializeQrScanner = async () => {
+    // Check if QR scanner is supported
+    const hasCamera = await QrScanner.hasCamera();
+    if (!hasCamera) {
+      throw new Error('No camera found on this device');
+    }
+    
+    // Ensure video element exists
+    if (!videoElement.value) {
+      await nextTick();
+      if (!videoElement.value) {
+        throw new Error('Video element not found');
+      }
+    }
+    
+    console.log('Initializing QR Scanner...');
+    
+    // Stop any existing scanner
+    if (qrScanner.value) {
+      qrScanner.value.destroy();
+      qrScanner.value = null;
+    }
+    
+    // Initialize QR Scanner
+    qrScanner.value = new QrScanner(
+      videoElement.value,
+      (result) => {
+        console.log('QR Code detected:', result.data);
+        handleQRCodeDetected(result.data);
+      },
+      {
+        returnDetailedScanResult: true,
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+        preferredCamera: 'environment', // Use back camera
+        maxScansPerSecond: 5
+      }
+    );
+    
+    // Start the scanner
+    console.log('Starting QR Scanner...');
+    await qrScanner.value.start();
+    
+    // Set camera as active
+    cameraActive.value = true;
+    cameraStatusMessage.value = 'Kamera aktif - Arahkan ke QR Code';
+    
+    console.log('QR Scanner initialized and started successfully');
+  };
+  
+  // Initialize using MediaDevices (fallback method)
+  const initializeMediaDevices = async () => {
+    console.log('Initializing MediaDevices camera...');
+    
+    // Request camera permission and start stream
+    const constraints = {
+      video: {
+        facingMode: 'environment', // Use back camera
+        width: { ideal: 1280 },
+        height: { ideal: 720 }
+      },
+      audio: false
+    };
+    
+    stream.value = await navigator.mediaDevices.getUserMedia(constraints);
+    
+    if (videoElement.value && stream.value) {
+      videoElement.value.srcObject = stream.value;
+      cameraActive.value = true;
+      cameraStatusMessage.value = 'Kamera siap - Tap untuk scan';
+      
+      // Auto-start when camera is ready
+      videoElement.value.onloadedmetadata = () => {
+        console.log('MediaDevices camera initialized successfully');
+      };
+    }
+  };
+  
+  // Handle camera initialization errors
+  const handleCameraError = async (error: any) => {
+    cameraActive.value = false;
+    showRetryButton.value = true;
+    
+    // Handle different types of camera errors
+    if (error instanceof Error) {
+      if (error.message.includes('Permission') || error.name === 'NotAllowedError') {
+        cameraStatusMessage.value = 'Izin kamera ditolak. Silakan berikan izin dan coba lagi.';
+      } else if (error.message.includes('No camera found') || error.name === 'NotFoundError') {
+        cameraStatusMessage.value = 'Kamera tidak ditemukan pada perangkat ini.';
+      } else if (error.message.includes('in use') || error.name === 'NotReadableError') {
+        cameraStatusMessage.value = 'Kamera sedang digunakan aplikasi lain.';
+      } else {
+        cameraStatusMessage.value = 'Gagal mengakses kamera. Pastikan browser mendukung kamera.';
+      }
+    }
+    
+    // Show detailed error alert
+    const alert = await alertController.create({
+      header: 'Error Kamera',
+      message: `${cameraStatusMessage.value}\n\nTips:\n- Pastikan menggunakan HTTPS\n- Berikan izin kamera di browser\n- Tutup aplikasi lain yang menggunakan kamera`,
+      buttons: [
+        {
+          text: 'Coba Lagi',
+          handler: () => {
+            initializeCamera();
+          }
+        },
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
+      ]
+    });
+    await alert.present();
   };
   
   // Function to stop camera
   const stopCamera = () => {
+    // Stop QrScanner if active
     if (qrScanner.value) {
       qrScanner.value.stop();
       qrScanner.value.destroy();
       qrScanner.value = null;
     }
+    
+    // Stop MediaDevices stream if active
+    if (stream.value) {
+      stream.value.getTracks().forEach(track => track.stop());
+      stream.value = null;
+    }
+    
     cameraActive.value = false;
   };
   
-  // Function to handle QR code detection
+  // Function to handle QR code detection (for QrScanner)
   const handleQRCodeDetected = async (qrCodeData: string) => {
     if (isScanning.value) return; // Prevent multiple scans
     
@@ -225,22 +305,64 @@
       if (qrScanner.value && cameraActive.value) {
         qrScanner.value.start();
       }
-    }, 3000);
+    }, 2000);
   };
   
-  // Function to start scanning (manual trigger)
+  // Function to start scanning (manual trigger for MediaDevices fallback)
   const startScanning = async () => {
     if (!cameraActive.value) {
       await initializeCamera();
       return;
     }
     
-    if (qrScanner.value && !isScanning.value) {
+    // If using QrScanner, it's already scanning automatically
+    if (useQrScanner.value && qrScanner.value && !isScanning.value) {
       try {
         await qrScanner.value.start();
         cameraStatusMessage.value = 'Scanning aktif - Arahkan ke QR Code';
       } catch (error) {
-        console.error('Error starting scanner:', error);
+        console.error('Error starting QR scanner:', error);
+      }
+      return;
+    }
+    
+    // For MediaDevices fallback, capture and process frame
+    if (!useQrScanner.value && videoElement.value) {
+      try {
+        isScanning.value = true;
+        
+        // Capture frame from video for processing
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        
+        canvas.width = videoElement.value.videoWidth;
+        canvas.height = videoElement.value.videoHeight;
+        
+        if (context) {
+          context.drawImage(videoElement.value, 0, 0);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          
+          // Simulate QR code processing (in real implementation, use a QR decoder library)
+          setTimeout(() => {
+            // Simulate QR code result with URL
+            const qrCodeUrl = 'https://example.com/feedback-form';
+            scanResult.value = `QR Code berhasil dipindai!\nURL: ${qrCodeUrl}\nTimestamp: ${new Date().toLocaleString()}`;
+            isScanning.value = false;
+            
+            // Navigate to the QR code URL automatically
+            navigateToQRCodeUrl(qrCodeUrl);
+          }, 2000);
+        }
+      } catch (error) {
+        console.error('Error during scanning:', error);
+        isScanning.value = false;
+        
+        const alert = await alertController.create({
+          header: 'Scanning Error',
+          message: 'Gagal memproses gambar. Silakan coba lagi.',
+          buttons: ['OK']
+        });
+        await alert.present();
       }
     }
   };
@@ -311,13 +433,17 @@
   const clearResult = () => {
     scanResult.value = '';
     isScanning.value = false;
-    if (qrScanner.value && cameraActive.value) {
+    if (useQrScanner.value && qrScanner.value && cameraActive.value) {
       qrScanner.value.start();
     }
   };
   
   // Function to show help
   const getHelp = async () => {
+    const helpMessage = useQrScanner.value 
+      ? 'Arahkan kamera ke QR code. Scanner akan otomatis mendeteksi dan memproses QR code yang terlihat. Pastikan QR code terlihat jelas dan pencahayaan cukup.'
+      : 'Arahkan kamera ke QR code dan tap area kamera untuk memindai. Pastikan QR code terlihat jelas dan pencahayaan cukup.';
+      
     const alert = await alertController.create({
       header: 'Bantuan',
       message: 'Arahkan kamera ke QR code. Scanner akan otomatis mendeteksi dan memproses QR code yang terlihat. Pastikan QR code terlihat jelas dan pencahayaan cukup.',

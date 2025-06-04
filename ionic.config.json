@@ -1,7 +1,10 @@
 {
-  "name": "myApp",
+  "name": "STT_Event_FE",
   "integrations": {
     "capacitor": {}
   },
-  "type": "vue-vite"
+  "type": "vue",
+  "serve": {
+    "ssl": true
+  }
 }
