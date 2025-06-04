@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 
 import {
@@ -22,7 +22,9 @@ import {
   IonButton,
   IonIcon,
   IonFab,
-  IonFabButton
+  IonFabButton,
+  IonText,
+  IonImg
 } from '@ionic/vue';
 import { locationOutline, calendarOutline, add } from 'ionicons/icons';
 
@@ -49,7 +51,9 @@ export default defineComponent({
     IonButton,
     IonIcon,
     IonFab,
-    IonFabButton
+    IonFabButton,
+    IonText,
+    IonImg
   },
  
 });
