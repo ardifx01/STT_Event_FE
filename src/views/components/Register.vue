@@ -99,13 +99,17 @@ export default defineComponent({
               </ion-card-header>
               
               <ion-card-content class="registration-form">
-                <ion-list>
-                  <ion-item class="form-item">
+                <ion-list lines="none">
+                  <ion-item class="form-item ion-margin-top">
                     <ion-input
                       v-model="formData.firstName"
                       placeholder="First Name"
                       class="custom-input"
                       fill="outline"
+                      label="First Name"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="given-name"
                     ></ion-input>
                   </ion-item>
                   
@@ -115,6 +119,10 @@ export default defineComponent({
                       placeholder="Last Name"
                       class="custom-input"
                       fill="outline"
+                      label="Last Name"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="family-name"
                     ></ion-input>
                   </ion-item>
                   
@@ -124,6 +132,10 @@ export default defineComponent({
                       placeholder="Company"
                       class="custom-input"
                       fill="outline"
+                      label="Company"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="organization"
                     ></ion-input>
                   </ion-item>
                   
@@ -133,6 +145,10 @@ export default defineComponent({
                       placeholder="Job Title"
                       class="custom-input"
                       fill="outline"
+                      label="Job Title"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="organization-title"
                     ></ion-input>
                   </ion-item>
                   
@@ -143,6 +159,10 @@ export default defineComponent({
                       placeholder="Company Email"
                       class="custom-input"
                       fill="outline"
+                      label="Company Email"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="email"
                     ></ion-input>
                   </ion-item>
                   
@@ -153,6 +173,10 @@ export default defineComponent({
                       placeholder="Mobile Phone"
                       class="custom-input"
                       fill="outline"
+                      label="Mobile Phone"
+                      label-placement="stacked"
+                      clear-input
+                      autocomplete="tel"
                     ></ion-input>
                   </ion-item>
                 </ion-list>

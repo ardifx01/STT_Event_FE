@@ -37,7 +37,7 @@
             <div v-if="!cameraActive && !isScanning" class="camera-status">
               <ion-icon :icon="cameraOutline" class="camera-icon"></ion-icon>
               <p>{{ cameraStatusMessage }}</p>
-              <ion-button v-if="showRetryButton" @click="initializeCamera" size="small">
+              <ion-button style="color: white;" v-if="showRetryButton" @click="initializeCamera" size="small">
                 Coba Lagi
               </ion-button>
             </div>
