@@ -542,7 +542,7 @@ ion-tab-button ion-label {
 }
 @media (max-width:768px) {
   ion-tab-button ion-icon {
-  font-size: 1.2rem;
+  font-size: 2.2rem;
 }
 ion-tab-button ion-label {
   font-size: .7rem;

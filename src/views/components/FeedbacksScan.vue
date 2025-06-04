@@ -249,7 +249,7 @@
     // Show detailed error alert
     const alert = await alertController.create({
       header: 'Error Kamera',
-      message: `${cameraStatusMessage.value}\n\nTips:\n- Pastikan menggunakan HTTPS\n- Berikan izin kamera di browser\n- Tutup aplikasi lain yang menggunakan kamera`,
+      message: `${cameraStatusMessage.value}`,
       buttons: [
         {
           text: 'Coba Lagi',
