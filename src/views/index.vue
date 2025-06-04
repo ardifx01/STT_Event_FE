@@ -1,5 +1,6 @@
 <script lang="ts">
 import Beranda from './components/Home.vue'
+import Register from './components/Register.vue';
   import {
     IonTabs,
     IonTab,
@@ -15,7 +16,18 @@ import Beranda from './components/Home.vue'
   import { home,personAdd, radio, library, search } from 'ionicons/icons';
 
   export default {
-    components: { Beranda, IonTabs, IonTab, IonToolbar, IonTabBar, IonTabButton, IonContent, IonHeader, IonTitle, IonIcon },
+    components: { 
+      Beranda,
+      Register, 
+      IonTabs, 
+      IonTab, 
+      IonToolbar, 
+      IonTabBar, 
+      IonTabButton, 
+      IonContent, 
+      IonHeader, 
+      IonTitle, 
+      IonIcon },
     data() {
       return {
         home,
@@ -36,17 +48,9 @@ import Beranda from './components/Home.vue'
     </ion-tab>
     <ion-tab tab="registerPage">
       <div id="register-page">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Radio</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content>
-          <div class="example-content">Radio content</div>
-        </ion-content>
+        <Register />
       </div>
-    </ion-tab>
-
+    </ion-tab>          
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home">
         <ion-icon :icon="home" />
