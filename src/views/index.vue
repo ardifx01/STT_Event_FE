@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import Beranda from './components/Home.vue'
 import Register from './components/Register.vue';
 import FeedbacksScan from './components/FeedbacksScan.vue';

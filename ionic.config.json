@@ -3,8 +3,5 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "vue",
-  "serve": {
-    "ssl": true
-  }
+  "type": "vue-vite"
 }
