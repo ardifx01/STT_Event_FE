@@ -1,87 +1,80 @@
 <template>
-    <ion-page>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title class="ion-text-center">Scan Feedback QR Code</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ion-content>
-        <div class="scanner-view">
-          <!-- Camera Preview Area -->
-          <div class="camera-preview" @click="startScanning">
-            <!-- Live Camera Video -->
-            <video 
-              ref="videoElement" 
-              v-show="cameraActive"
-              autoplay 
-              playsinline 
-              muted
-              class="camera-video"
-            ></video>
-            
-            <!-- Scanning Frame -->
-            <div class="scanning-frame" v-show="cameraActive">
-              <div class="corner top-left"></div>
-              <div class="corner top-right"></div>
-              <div class="corner bottom-left"></div>
-              <div class="corner bottom-right"></div>
-            </div>
-            
-            <!-- Scanning indicator -->
-            <div v-if="isScanning" class="scanning-indicator">
-              <div class="scan-line"></div>
-            </div>
-            
-            <!-- Camera Status Messages -->
-            <div v-if="!cameraActive && !isScanning" class="camera-status">
-              <ion-icon :icon="cameraOutline" class="camera-icon"></ion-icon>
-              <p>{{ cameraStatusMessage }}</p>
-              <ion-button style="color: white;" v-if="showRetryButton" @click="initializeCamera" size="small">
-                Coba Lagi
-              </ion-button>
-            </div>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center">Scan Feedback QR Code</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content>
+      <div class="scanner-view">
+        <!-- Camera Preview Area -->
+        <div class="camera-preview" @click="startScanning">
+          <!-- Live Camera Video -->
+          <video 
+            ref="videoElement" 
+            v-show="cameraActive"
+            autoplay 
+            playsinline 
+            muted
+            class="camera-video"
+          ></video>
+          
+          <!-- Scanning Frame -->
+          <div class="scanning-frame" v-show="cameraActive">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
           </div>
           
-          <!-- Instructions -->
-          <div class="instructions">
-            <h2>SCAN FEEDBACK CODE</h2>
-            <p>
-              Arahkan kamera ke QR Code yang tersedia di booth 
-              untuk mengisi feedback dan memberikan penilaian.
-            </p>
-            
+          <!-- Scanning indicator -->
+          <div v-if="isScanning" class="scanning-indicator">
+            <div class="scan-line"></div>
+          </div>
+          
+          <!-- Camera Status Messages -->
+          <div v-if="!cameraActive && !isScanning" class="camera-status">
+            <ion-icon :icon="cameraOutline" class="camera-icon"></ion-icon>
+            <p>{{ cameraStatusMessage }}</p>
             <ion-button 
-              @click="getHelp" 
-              fill="clear" 
-              color="primary" 
-              class="help-button"
+              style="color: white;" 
+              v-if="showRetryButton" 
+              @click="initializeCamera" 
+              size="small"
             >
-              <ion-icon :icon="helpCircleOutline" slot="start"></ion-icon>
-              GET HELP
+              {{ cameraInitialized ? 'Coba Lagi' : 'Aktifkan Kamera' }}
             </ion-button>
           </div>
-          
-          <!-- Scan Result -->
-          <!-- <div v-if="scanResult" class="scan-result">
-            <ion-card>
-              <ion-card-content>
-                <h3>Hasil Scan:</h3>
-                <p>{{ scanResult }}</p>
-                <ion-button @click="clearResult" size="small" fill="outline">
-                  Scan Lagi
-                </ion-button>
-              </ion-card-content>
-            </ion-card>
-          </div> -->
-          
         </div>
-      </ion-content>
-    </ion-page>
-  </template>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+          <h2>SCAN FEEDBACK CODE</h2>
+          <p>
+            {{ cameraInitialized 
+              ? 'Arahkan kamera ke QR Code yang tersedia di booth untuk mengisi feedback dan memberikan penilaian.' 
+              : 'Tap tombol "Aktifkan Kamera" untuk memulai scanning QR Code feedback.' 
+            }}
+          </p>
+          
+          <ion-button 
+            @click="getHelp" 
+            fill="clear" 
+            color="primary" 
+            class="help-button"
+          >
+            <ion-icon :icon="helpCircleOutline" slot="start"></ion-icon>
+            GET HELP
+          </ion-button>
+        </div>
+      </div>
+    </ion-content>
+  </ion-page>
+</template>
   
 <script setup lang="ts">
-  import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+  import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
   import {
     IonPage,
     IonHeader,
@@ -98,20 +91,41 @@
   import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   import QrScanner from 'qr-scanner';
   
+  // Add props to control camera activation
+  const props = defineProps<{
+    isActive?: boolean;
+  }>();
+  
   const videoElement = ref<HTMLVideoElement | null>(null);
   const isScanning = ref(false);
   const scanResult = ref('');
   const cameraActive = ref(false);
-  const cameraStatusMessage = ref('Memuat kamera...');
+  const cameraStatusMessage = ref('Tap untuk mengaktifkan kamera...');
   const showRetryButton = ref(false);
   const stream = ref<MediaStream | null>(null);
   const qrScanner = ref<QrScanner | null>(null);
-  const useQrScanner = ref(true); // Flag to determine which method to use
+  const useQrScanner = ref(true);
+  const cameraInitialized = ref(false);
   
-  // Initialize camera when component mounts
+  // Watch for tab activation
+  watch(() => props.isActive, (newValue) => {
+    if (newValue && !cameraInitialized.value) {
+      // Tab became active and camera not initialized yet
+      initializeCamera();
+    } else if (!newValue && cameraInitialized.value) {
+      // Tab became inactive, stop camera to save resources
+      stopCamera();
+      cameraInitialized.value = false;
+    }
+  });
+  
+  // Remove automatic initialization on mount
   onMounted(async () => {
     await nextTick(); // Ensure DOM is ready
-    await initializeCamera();
+    // Don't initialize camera automatically
+    // Only show instruction to activate
+    cameraStatusMessage.value = 'Tap untuk mengaktifkan kamera';
+    showRetryButton.value = true;
   });
   
   // Clean up when component unmounts
@@ -121,6 +135,8 @@
   
   // Function to initialize camera with fallback support
   const initializeCamera = async () => {
+    if (cameraInitialized.value) return; // Prevent double initialization
+    
     try {
       cameraStatusMessage.value = 'Meminta izin kamera...';
       showRetryButton.value = false;
@@ -134,6 +150,8 @@
         await initializeMediaDevices();
       }
       
+      cameraInitialized.value = true;
+      
     } catch (error) {
       console.error('Error initializing camera:', error);
       
@@ -142,6 +160,7 @@
         console.log('QrScanner failed, trying MediaDevices fallback...');
         useQrScanner.value = false;
         await initializeMediaDevices();
+        cameraInitialized.value = true;
       } else {
         // Both methods failed
         await handleCameraError(error);
@@ -282,6 +301,7 @@
     }
     
     cameraActive.value = false;
+    cameraInitialized.value = false;
   };
   
   // Function to handle QR code detection (for QrScanner)

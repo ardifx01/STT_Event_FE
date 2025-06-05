@@ -2,48 +2,60 @@
 import Beranda from './components/Home.vue'
 import Register from './components/Register.vue';
 import FeedbacksScan from './components/FeedbacksScan.vue';
-  import {
-    IonTabs,
-    IonTab,
-    IonToolbar,
-    IonTabBar,
-    IonTabButton,
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonIcon,
-  } from '@ionic/vue';
+import {
+  IonTabs,
+  IonTab,
+  IonToolbar,
+  IonTabBar,
+  IonTabButton,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonIcon,
+} from '@ionic/vue';
+import { home, personAdd, helpCircle, radio, library, search } from 'ionicons/icons';
+import { ref } from 'vue';
 
-  import { home,personAdd,helpCircle, radio, library, search } from 'ionicons/icons';
-
-  export default {
-    components: { 
-      Beranda,
-      Register,
-      FeedbacksScan, 
-      IonTabs, 
-      IonTab, 
-      IonToolbar, 
-      IonTabBar, 
-      IonTabButton, 
-      IonContent, 
-      IonHeader, 
-      IonTitle, 
-      IonIcon },
-    data() {
-      return {
-        home,
-        personAdd,
-        helpCircle,
-        radio,
-        library,
-        search,
-      };
-    },
-  };
+export default {
+  components: { 
+    Beranda,
+    Register,
+    FeedbacksScan, 
+    IonTabs, 
+    IonTab, 
+    IonToolbar, 
+    IonTabBar, 
+    IonTabButton, 
+    IonContent, 
+    IonHeader, 
+    IonTitle, 
+    IonIcon 
+  },
+  setup() {
+    const activeTab = ref('home');
+    
+    const onTabChange = (event) => {
+      if (event && event.detail && event.detail.tab) {
+        activeTab.value = event.detail.tab;
+      }
+    };
+    
+    return {
+      home,
+      personAdd,
+      helpCircle,
+      radio,
+      library,
+      search,
+      activeTab,
+      onTabChange
+    };
+  },
+};
 </script>
+
 <template>
-  <ion-tabs>
+  <ion-tabs @ionTabsDidChange="onTabChange">
     <ion-tab tab="home">
       <div id="home-page">
         <Beranda />
@@ -56,7 +68,7 @@ import FeedbacksScan from './components/FeedbacksScan.vue';
     </ion-tab>  
     <ion-tab tab="cameraParticipatPage">
       <div id="camera-Participant-Page">
-       <FeedbacksScan />
+        <FeedbacksScan :is-active="activeTab === 'cameraParticipatPage'" />
       </div>
     </ion-tab>        
     <ion-tab-bar slot="bottom">
