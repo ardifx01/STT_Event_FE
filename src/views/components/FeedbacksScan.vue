@@ -2,7 +2,7 @@
     <ion-page>
       <ion-header>
         <ion-toolbar>
-          <ion-title class="ion-text-center">Scan Setup Code</ion-title>
+          <ion-title class="ion-text-center">Scan Feedback QR Code</ion-title>
         </ion-toolbar>
       </ion-header>
       
@@ -124,7 +124,7 @@
     try {
       cameraStatusMessage.value = 'Meminta izin kamera...';
       showRetryButton.value = false;
-      cameraActive.value = false;
+      cameraActive.value = true;
       
       // First try QrScanner method
       if (useQrScanner.value) {
