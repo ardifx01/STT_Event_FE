@@ -26,14 +26,14 @@
       </fieldset>
       
       <!-- Winner Modal -->
-      <ion-modal :is-open="!!winner" @did-dismiss="resetWheel">
+      <ion-modal :is-open="!!winner">
         <ion-content class="ion-padding">
           <div class="winner-content">
             <div class="winner-icon">
               🏆
             </div>
             <h1>🎉 Congratulations! 🎉</h1>
-            <h1 class="winner-name">{{ typeof winner === 'object' ? winner.name : winner }}</h1>
+            <h1 class="winner-name">{{ winner && typeof winner === 'object' ? winner.name : winner }}</h1>
             <div v-if="winner && typeof winner === 'object'" class="winner-details">
               <p v-if="winner.email" class="winner-email">
                 {{ winner.email }}
@@ -43,9 +43,18 @@
               </p>
             </div>
             <div class="winner-actions">
-              <ion-button @click="resetWheel" expand="block" size="large" class="submit-btn">
-                SUBMIT
-              </ion-button>
+              <ion-row>
+                  <ion-col size="6">
+                    <ion-button @click="dismissModal()" expand="block" size="large" fill="outline" class="close-btn">
+                      CLOSE
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button @click="submitWinner" expand="block" size="large" class="submit-btn">
+                      SUBMIT
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
               <!-- tekan submit, tombol ini akan reset dan yang menang akan masuk ke dalam database -->
             </div>
           </div>
@@ -229,6 +238,10 @@ export default defineComponent({
       });
     },
     
+    dismissModal() {
+      this.winner = null;
+    },
+    
     detectWinner(finalDegree) {
       if (this.participants.length === 0) return;
       
@@ -363,6 +376,17 @@ export default defineComponent({
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+.close-btn {
+  --background: transparent;
+  --background-activated: #f0f0f0;
+  --background-hover: #f0f0f0;
+  --color: #666;
+  --border-color: #ccc;
+  font-size: 1rem;
+  height: 50px;
+  letter-spacing: 0.5px;
+  }
 
 @keyframes bounceIn {
   0% {
