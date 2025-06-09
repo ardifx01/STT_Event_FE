@@ -509,7 +509,7 @@ export default defineComponent({
     width: 80%;
     
     ul li {
-      font-size: 3cqi;
+      font-size: 12px;
     }
     
     button {
