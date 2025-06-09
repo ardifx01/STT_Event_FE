@@ -25,22 +25,32 @@
         </button>
       </fieldset>
       
-      <!-- Winner Display -->
-      <div v-if="winner" class="winner-display">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>🎉 Winner! 🎉</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <h2>{{ typeof winner === 'object' ? winner.name : winner }}</h2>
-            <p v-if="winner.email">{{ winner.email }}</p>
-            <p v-if="winner.company">{{ winner.company }}</p>
-          </ion-card-content>
-        </ion-card>
-        <ion-button @click="resetWheel" expand="block" fill="outline" class="ion-margin-top">
-          Spin Again
-        </ion-button>
-      </div>
+      <!-- Winner Modal -->
+      <ion-modal :is-open="!!winner" @did-dismiss="resetWheel">
+        <ion-content class="ion-padding">
+          <div class="winner-content">
+            <div class="winner-icon">
+              🏆
+            </div>
+            <h1>🎉 Congratulations! 🎉</h1>
+            <h1 class="winner-name">{{ typeof winner === 'object' ? winner.name : winner }}</h1>
+            <div v-if="winner && typeof winner === 'object'" class="winner-details">
+              <p v-if="winner.email" class="winner-email">
+                {{ winner.email }}
+              </p>
+              <p v-if="winner.company" class="winner-company">
+                {{ winner.company }}
+              </p>
+            </div>
+            <div class="winner-actions">
+              <ion-button @click="resetWheel" expand="block" size="large" class="submit-btn">
+                SUBMIT
+              </ion-button>
+              <!-- tekan submit, tombol ini akan reset dan yang menang akan masuk ke dalam database -->
+            </div>
+          </div>
+        </ion-content>
+      </ion-modal>
       
       <!-- Participants Info -->
       <div class="participants-info">
@@ -63,8 +73,12 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent
+  IonCardContent,
+  IonModal,
+  IonButtons,
+  IonIcon
 } from '@ionic/vue';
+import { close } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'PrizeDrawEntries',
@@ -79,7 +93,10 @@ export default defineComponent({
     IonCard,
     IonCardHeader,
     IonCardTitle,
-    IonCardContent
+    IonCardContent,
+    IonModal,
+    IonButtons,
+    IonIcon
   },
   data() {
     return {
@@ -89,7 +106,8 @@ export default defineComponent({
       isSpinning: false,
       winner: null,
       animation: null,
-      previousEndDegree: 0
+      previousEndDegree: 0,
+      close
     };
   },
   computed: {
@@ -274,16 +292,6 @@ export default defineComponent({
       }
     },
     
-    resetWheel() {
-      this.winner = null;
-      this.isSpinning = false;
-      
-      const wheel = document.querySelector('.ui-wheel-of-fortune ul');
-      if (wheel && this.animation) {
-        this.animation.cancel();
-        wheel.style.transform = `rotate(${this.previousEndDegree}deg)`;
-      }
-    }
   }
 });
 </script>
@@ -306,9 +314,54 @@ export default defineComponent({
   color: #666;
 }
 
-.winner-display {
-  margin-top: 20px;
-  animation: bounceIn 0.6s ease-out;
+/* Winner Modal Styles */
+.winner-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.winner-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: bounceIn 0.8s ease-out;
+}
+
+.winner-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2dd36f;
+  margin: 20px 0;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.winner-details {
+  margin: 30px 0;
+  animation: slideInUp 0.6s ease-out 0.4s both;
+}
+
+.winner-email,
+.winner-company {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+}
+
+.winner-actions {
+  margin-top: 40px;
+  animation: slideInUp 0.6s ease-out 0.6s both;
+}
+
+.submit-btn {
+  --background: #4285f4;
+  --background-activated: #3367d6;
+  --background-hover: #3367d6;
+  --color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 @keyframes bounceIn {
@@ -318,7 +371,7 @@ export default defineComponent({
   }
   50% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   70% {
     transform: scale(0.9);
@@ -329,6 +382,17 @@ export default defineComponent({
   }
 }
 
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 :where(.ui-wheel-of-fortune) {
   all: unset;
   aspect-ratio: 1 / 1;
@@ -336,8 +400,21 @@ export default defineComponent({
   direction: ltr;
   display: grid;
   position: relative;
-  width: 50%;
+  width: min(9vw, 500px);
+  max-width: 900px;
   margin: 0 auto;
+  
+  @media (min-width: 768px) {
+    width: min(60vw, 450px);
+  }
+  
+  @media (min-width: 1024px) {
+    width: min(40vw, 900px);
+  }
+  
+  @media (max-width: 480px) {
+    width: min(95vw, 300px);
+  }
   
   &::after {
     content: "";
@@ -410,7 +487,7 @@ export default defineComponent({
       background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
       clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
       display: grid;
-      font-size: 30px;
+      font-size: 25px;
       grid-area: 1 / -1;
       padding-left: 1ch;
       rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
