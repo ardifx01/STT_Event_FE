@@ -220,29 +220,37 @@ export default defineComponent({
       // Calculate segment angle
       const segmentAngle = 360 / this.participants.length;
       
-      // Since the arrow points to the top and segments start from the right (0 degrees),
-      // we need to adjust the calculation. The arrow points at 270 degrees (top).
-      // We need to find which segment the arrow is pointing to.
-      const arrowPosition = 270; // Arrow points to top (270 degrees)
-      const adjustedDegree = (normalizedDegree + arrowPosition) % 360;
+      // Arrow is at the top (270°), pointing downward into the wheel
+      // Segments are arranged clockwise starting from 0° (right side)
+      // We need to find which segment is currently under the arrow
       
-      // Calculate winning segment index
-      // Since segments are arranged clockwise starting from 0 degrees (right),
-      // we need to reverse the calculation
-      const winningSegmentIndex = Math.floor(adjustedDegree / segmentAngle) % this.participants.length;
+      // Calculate the offset from the arrow position
+      // Since arrow is at 270° and wheel rotates, we need to find what's under the arrow
+      const arrowPosition = 465; // Arrow is at the top
       
-      // Get the correct winner by reversing the index since the wheel spins clockwise
-      // but we want the segment that the arrow is pointing to
-      const correctedIndex = (this.participants.length - winningSegmentIndex) % this.participants.length;
+      // Calculate which segment is currently under the arrow
+      // We subtract the wheel rotation from the arrow position
+      const segmentUnderArrow = (arrowPosition - normalizedDegree + 360) % 360;
       
-      this.winner = this.participants[correctedIndex];
+      // Find the segment index
+      let winningSegmentIndex = Math.floor(segmentUnderArrow / segmentAngle);
       
-      console.log('Final degree:', finalDegree);
-      console.log('Normalized degree:', normalizedDegree);
-      console.log('Adjusted degree:', adjustedDegree);
-      console.log('Winning segment index:', winningSegmentIndex);
-      console.log('Corrected index:', correctedIndex);
-      console.log('Winner:', this.winner);
+      // Ensure the index is within bounds
+      winningSegmentIndex = winningSegmentIndex % this.participants.length;
+      
+      // Get the winner
+      this.winner = this.participants[winningSegmentIndex];
+      
+      // console.log('=== Winner Detection Debug ===');
+      // console.log('Final degree:', finalDegree);
+      // console.log('Normalized degree:', normalizedDegree);
+      // console.log('Arrow position:', arrowPosition);
+      // console.log('Segment under arrow:', segmentUnderArrow);
+      // console.log('Segment angle:', segmentAngle);
+      // console.log('Winning segment index:', winningSegmentIndex);
+      // console.log('Participants:', this.participants.map((p, i) => `${i}: ${p.name}`));
+      // console.log('Winner:', this.winner);
+      // console.log('==============================');
       
       // Optional: Send winner data to backend
       this.recordWinner(this.winner);
@@ -332,15 +340,32 @@ export default defineComponent({
   margin: 0 auto;
   
   &::after {
-    aspect-ratio: 1/cos(30deg);
-    background-color: crimson;
-    clip-path: polygon(50% 100%,100% 0,0 0);
     content: "";
-    height: 4cqi;
     position: absolute;
-    place-self: start center;
-    scale: 1.4;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 25px solid #dc143c;
     z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 15px;
+    background-color: #dc143c;
+    border-radius: 2px;
+    z-index: 9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
   & > * { position: absolute; }
