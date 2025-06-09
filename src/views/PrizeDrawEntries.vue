@@ -220,14 +220,28 @@ export default defineComponent({
       // Calculate segment angle
       const segmentAngle = 360 / this.participants.length;
       
-      // Adjust for pointer position (top center)
-      const adjustedDegree = (360 - normalizedDegree + (segmentAngle / 2)) % 360;
+      // Since the arrow points to the top and segments start from the right (0 degrees),
+      // we need to adjust the calculation. The arrow points at 270 degrees (top).
+      // We need to find which segment the arrow is pointing to.
+      const arrowPosition = 270; // Arrow points to top (270 degrees)
+      const adjustedDegree = (normalizedDegree + arrowPosition) % 360;
       
-      // Calculate winning segment
-      const winningSegmentIndex = Math.floor(adjustedDegree / segmentAngle);
+      // Calculate winning segment index
+      // Since segments are arranged clockwise starting from 0 degrees (right),
+      // we need to reverse the calculation
+      const winningSegmentIndex = Math.floor(adjustedDegree / segmentAngle) % this.participants.length;
       
-      this.winner = this.participants[winningSegmentIndex];
+      // Get the correct winner by reversing the index since the wheel spins clockwise
+      // but we want the segment that the arrow is pointing to
+      const correctedIndex = (this.participants.length - winningSegmentIndex) % this.participants.length;
       
+      this.winner = this.participants[correctedIndex];
+      
+      console.log('Final degree:', finalDegree);
+      console.log('Normalized degree:', normalizedDegree);
+      console.log('Adjusted degree:', adjustedDegree);
+      console.log('Winning segment index:', winningSegmentIndex);
+      console.log('Corrected index:', correctedIndex);
       console.log('Winner:', this.winner);
       
       // Optional: Send winner data to backend
