@@ -330,7 +330,8 @@ export default defineComponent({
 /* Winner Modal Styles */
 .winner-content {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+ 
 }
 
 .winner-icon {
