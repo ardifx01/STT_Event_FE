@@ -1,259 +1,404 @@
 <template>
-    <ion-page>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Prize Draw</ion-title>
-        </ion-toolbar>
-      </ion-header>
+  <ion-page>
+    <ion-content class="ion-padding">
+      <!-- Loading State -->
+      <div v-if="isLoading" class="loading-container">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading participants...</p>
+      </div>
       
-      <ion-content class="ion-padding">
-        <div class="wheel-container">
-          <!-- Canvas untuk wheel -->
-          <canvas id="canvas" width="500" height="500"></canvas>
-          
-          <!-- Tombol spin -->
-          <div class="spin-controls">
-            <ion-button 
-              @click="startSpin" 
-              :disabled="isSpinning"
-              expand="block"
-              color="primary"
-            >
-              {{ isSpinning ? 'Spinning...' : 'SPIN THE WHEEL!' }}
-            </ion-button>
-          </div>
-          
-          <!-- Hasil -->
-          <div v-if="winner" class="winner-display">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>🎉 Congratulations! 🎉</ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <h2>{{ winner }}</h2>
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </div>
-      </ion-content>
-    </ion-page>
-  </template>
-  
-  <script>
-  import { defineComponent } from 'vue';
-  import {
+      <!-- Error State -->
+      <div v-else-if="error" class="error-container">
+        <p>{{ error }}</p>
+        <ion-button @click="loadParticipants" fill="outline" size="small">Retry</ion-button>
+      </div>
+      
+      <!-- Wheel -->
+      <fieldset v-else class="ui-wheel-of-fortune" :style="wheelStyle">
+        <ul>
+          <li v-for="(participant, index) in participants" :key="participant.id || index" :style="getSegmentStyle(index)">
+            {{ participant.name || participant }}
+          </li>
+        </ul>
+        <button type="button" :disabled="isSpinning">
+          {{ isSpinning ? 'SPINNING...' : 'SPIN' }}
+        </button>
+      </fieldset>
+      
+      <!-- Winner Display -->
+      <div v-if="winner" class="winner-display">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>🎉 Winner! 🎉</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{ typeof winner === 'object' ? winner.name : winner }}</h2>
+            <p v-if="winner.email">{{ winner.email }}</p>
+            <p v-if="winner.company">{{ winner.company }}</p>
+          </ion-card-content>
+        </ion-card>
+        <ion-button @click="resetWheel" expand="block" fill="outline" class="ion-margin-top">
+          Spin Again
+        </ion-button>
+      </div>
+      
+      <!-- Participants Info -->
+      <div class="participants-info">
+        <p>Total Participants: {{ participants.length }}</p>
+      </div>
+    </ion-content>
+  </ion-page>
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonSpinner,
+  IonButton,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent
+} from '@ionic/vue';
+
+export default defineComponent({
+  name: 'PrizeDrawEntries',
+  components: {
     IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
+    IonSpinner,
     IonButton,
     IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardContent
-  } from '@ionic/vue';
-  
-  // Import winwheel.js (pastikan sudah diinstall)
-  import { Winwheel } from 'winwheel';
-  
-  export default defineComponent({
-    name: 'PrizeDrawEntries',
-    components: {
-      IonPage,
-      IonHeader,
-      IonToolbar,
-      IonTitle,
-      IonContent,
-      IonButton,
-      IonCard,
-      IonCardHeader,
-      IonCardTitle,
-      IonCardContent
-    },
-    data() {
+  },
+  data() {
+    return {
+      participants: [],
+      isLoading: true,
+      error: null,
+      isSpinning: false,
+      winner: null,
+      animation: null,
+      previousEndDegree: 0
+    };
+  },
+  computed: {
+    wheelStyle() {
       return {
-        wheel: null,
-        isSpinning: false,
-        winner: null,
-        prizes: [
-          { text: 'iPhone 15 Pro', fillStyle: '#ff6b6b' },
-          { text: 'MacBook Air', fillStyle: '#4ecdc4' },
-          { text: 'iPad Pro', fillStyle: '#45b7d1' },
-          { text: 'AirPods Pro', fillStyle: '#f9ca24' },
-          { text: 'Apple Watch', fillStyle: '#6c5ce7' },
-          { text: 'Gift Card $500', fillStyle: '#a29bfe' },
-          { text: 'Wireless Charger', fillStyle: '#fd79a8' },
-          { text: 'Bluetooth Speaker', fillStyle: '#00b894' }
-        ]
+        '--_items': this.participants.length
+      };
+    }
+  },
+  async mounted() {
+    await this.loadParticipants();
+    this.$nextTick(() => {
+      this.initWheelOfFortune();
+    });
+  },
+  methods: {
+    async loadParticipants() {
+      this.isLoading = true;
+      this.error = null;
+      
+      try {
+        // TODO: Replace with actual API call
+        const response = await this.fetchParticipantsFromAPI();
+        this.participants = response.data;
+        
+        if (this.participants.length === 0) {
+          this.error = 'No participants found';
+        }
+      } catch (err) {
+        this.error = 'Failed to load participants. Please try again.';
+        console.error('Error loading participants:', err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    
+    async fetchParticipantsFromAPI() {
+      // Simulasi API call - ganti dengan endpoint yang sebenarnya
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          // Mock data - ganti dengan actual API call
+          resolve({
+            data: [
+              { id: 1, name: 'John Doe', email: 'john@example.com', company: 'Tech Corp' },
+              { id: 2, name: 'Jane Smith', email: 'jane@example.com', company: 'Innovation Ltd' },
+              { id: 3, name: 'Bob Johnson', email: 'bob@example.com', company: 'StartupXYZ' },
+              { id: 4, name: 'Alice Brown', email: 'alice@example.com', company: 'Digital Solutions' },
+              { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', company: 'Future Tech' },
+              { id: 6, name: 'Diana Davis', email: 'diana@example.com', company: 'Smart Systems' },
+              { id: 7, name: 'Eva Martinez', email: 'eva@example.com', company: 'Cloud Nine' },
+              { id: 8, name: 'Frank Miller', email: 'frank@example.com', company: 'Data Dynamics' },
+              { id: 9, name: 'Grace Lee', email: 'grace@example.com', company: 'AI Solutions' },
+              { id: 10, name: 'Henry Wang', email: 'henry@example.com', company: 'BlockTech' },
+              { id: 11, name: 'Ivy Chen', email: 'ivy@example.com', company: 'CyberSafe' },
+              { id: 12, name: 'Jack Taylor', email: 'jack@example.com', company: 'DevOps Pro' }
+            ]
+          });
+        }, 1000);
+      });
+      
+      // Actual API call example:
+      // const response = await fetch('/api/participants');
+      // if (!response.ok) throw new Error('Failed to fetch participants');
+      // return await response.json();
+    },
+    
+    getSegmentStyle(index) {
+      return {
+        '--_idx': index + 1
       };
     },
-    mounted() {
-      this.initWheel();
+    
+    initWheelOfFortune() {
+      const node = document.querySelector('.ui-wheel-of-fortune');
+      if (!node) return;
+
+      const spin = node.querySelector('button');
+      const wheel = node.querySelector('ul');
+      
+      if (!spin || !wheel) return;
+
+      // Remove existing event listeners
+      spin.removeEventListener('click', this.handleSpinClick);
+      spin.addEventListener('click', this.handleSpinClick);
     },
-    methods: {
-      initWheel() {
-        this.wheel = new Winwheel({
-          canvasId: 'canvas',
-          numSegments: this.prizes.length,
-          outerRadius: 200,
-          innerRadius: 30,
-          textFontSize: 16,
-          textOrientation: 'vertical',
-          textAlignment: 'outer',
-          textDirection: 'reversed',
-          textMargin: 5,
-          lineWidth: 3,
-          strokeStyle: '#ffffff',
-          segments: this.prizes,
-          animation: {
-            type: 'spinToStop',
-            duration: 4,
-            spins: 8,
-            callbackFinished: this.onSpinFinished,
-            callbackSound: this.playTickSound,
-            soundTrigger: 'pin'
-          },
-          pins: {
-            number: this.prizes.length,
-            fillStyle: 'silver',
-            outerRadius: 4
-          },
-          pointerAngle: 0,
-          responsive: true
-        });
-      },
+    
+    handleSpinClick() {
+      if (this.isSpinning || this.participants.length === 0) return;
       
-      startSpin() {
-        if (this.isSpinning) return;
-        
-        this.isSpinning = true;
-        this.winner = null;
-        
-        // Reset wheel rotation
-        this.wheel.stopAnimation(false);
-        this.wheel.rotationAngle = 0;
-        this.wheel.draw();
-        
-        // Start spinning
-        this.wheel.startAnimation();
-      },
+      this.isSpinning = true;
+      this.winner = null;
       
-      onSpinFinished(indicatedSegment) {
+      const wheel = document.querySelector('.ui-wheel-of-fortune ul');
+      if (!wheel) return;
+      
+      if (this.animation) {
+        this.animation.cancel();
+      }
+
+      const randomAdditionalDegrees = Math.random() * 360 + 1800;
+      const newEndDegree = this.previousEndDegree + randomAdditionalDegrees;
+
+      this.animation = wheel.animate([
+        { transform: `rotate(${this.previousEndDegree}deg)` },
+        { transform: `rotate(${newEndDegree}deg)` }
+      ], {
+        duration: 4000,
+        direction: 'normal',
+        easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
+        fill: 'forwards',
+        iterations: 1
+      });
+
+      this.previousEndDegree = newEndDegree;
+      
+      this.animation.addEventListener('finish', () => {
+        this.detectWinner(newEndDegree);
         this.isSpinning = false;
-        this.winner = indicatedSegment.text;
+      });
+    },
+    
+    detectWinner(finalDegree) {
+      if (this.participants.length === 0) return;
+      
+      // Normalize degree to 0-360 range
+      const normalizedDegree = ((finalDegree % 360) + 360) % 360;
+      
+      // Calculate segment angle
+      const segmentAngle = 360 / this.participants.length;
+      
+      // Adjust for pointer position (top center)
+      const adjustedDegree = (360 - normalizedDegree + (segmentAngle / 2)) % 360;
+      
+      // Calculate winning segment
+      const winningSegmentIndex = Math.floor(adjustedDegree / segmentAngle);
+      
+      this.winner = this.participants[winningSegmentIndex];
+      
+      console.log('Winner:', this.winner);
+      
+      // Optional: Send winner data to backend
+      this.recordWinner(this.winner);
+    },
+    
+    async recordWinner(winner) {
+      try {
+        // TODO: Send winner data to backend
+        // await fetch('/api/winners', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ 
+        //     participantId: winner.id, 
+        //     timestamp: new Date().toISOString() 
+        //   })
+        // });
         
-        // Tambahkan efek suara atau animasi tambahan di sini
-        this.showWinnerAnimation();
-      },
+        console.log('Winner recorded:', winner);
+      } catch (error) {
+        console.error('Failed to record winner:', error);
+      }
+    },
+    
+    resetWheel() {
+      this.winner = null;
+      this.isSpinning = false;
       
-      showWinnerAnimation() {
-        // Tambahkan animasi atau efek visual untuk pemenang
-        setTimeout(() => {
-          // Bisa tambahkan confetti atau animasi lainnya
-          console.log('Winner:', this.winner);
-        }, 500);
-      },
-      
-      playTickSound() {
-        // Tambahkan suara tick jika diperlukan
-        // const audio = new Audio('/sounds/tick.mp3');
-        // audio.play();
-      },
-      
-      resetWheel() {
-        this.winner = null;
-        this.isSpinning = false;
-        this.wheel.stopAnimation(false);
-        this.wheel.rotationAngle = 0;
-        this.wheel.draw();
+      const wheel = document.querySelector('.ui-wheel-of-fortune ul');
+      if (wheel && this.animation) {
+        this.animation.cancel();
+        wheel.style.transform = `rotate(${this.previousEndDegree}deg)`;
       }
     }
-  });
-  </script>
-  
-  <style scoped>
-  .wheel-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
+});
+</script>
+
+<style scoped>
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: 16px;
+}
+
+.participants-info {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.winner-display {
+  margin-top: 20px;
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+:where(.ui-wheel-of-fortune) {
+  all: unset;
+  aspect-ratio: 1 / 1;
+  container-type: inline-size;
+  direction: ltr;
+  display: grid;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
   
-  #canvas {
+  &::after {
+    aspect-ratio: 1/cos(30deg);
+    background-color: crimson;
+    clip-path: polygon(50% 100%,100% 0,0 0);
+    content: "";
+    height: 4cqi;
+    position: absolute;
+    place-self: start center;
+    scale: 1.4;
+    z-index: 10;
+  }
+
+  & > * { position: absolute; }
+
+  button {
+    aspect-ratio: 1 / 1;
+    background: hsla(220, 95%, 42%, 0.8);
+    border: 0;
     border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-    max-width: 90vw;
-    height: auto;
-  }
-  
-  .spin-controls {
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 20px;
-  }
-  
-  .winner-display {
-    width: 100%;
-    max-width: 400px;
-    animation: bounceIn 0.6s ease-out;
-  }
-  
-  @keyframes bounceIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.3);
-    }
-    50% {
-      opacity: 1;
+    cursor: pointer;
+    font-size: 5cqi;
+    place-self: center;
+    width: 20cqi;
+    z-index: 5;
+    transition: transform 0.1s ease;
+    font-weight: bold;
+    
+    &:hover:not(:disabled) {
       transform: scale(1.05);
     }
-    70% {
-      transform: scale(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  ion-card {
-    text-align: center;
-    background: linear-gradient(45deg, #FFD700, #FFA500);
-    color: #333;
-  }
-  
-  ion-card-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  ion-card-content h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-    color: #2c3e50;
-  }
-  
-  ion-button {
-    --border-radius: 25px;
-    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    #canvas {
-      width: 300px;
-      height: 300px;
+    
+    &:active:not(:disabled) {
+      transform: scale(0.95);
     }
     
-    .wheel-container {
-      padding: 10px;
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
-  </style>
+
+  ul {
+    all: unset;
+    clip-path: inset(0 0 0 0 round 50%);
+    display: grid;
+    inset: 0;
+    place-content: center start;
+
+    li {
+      align-content: center;
+      aspect-ratio: 1 / calc(2 * tan(180deg / var(--_items)));
+      background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
+      clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+      display: grid;
+      font-size: 30px;
+      grid-area: 1 / -1;
+      padding-left: 1ch;
+      rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
+      transform-origin: center right;
+      user-select: none;
+      width: 50cqi;
+      font-weight: bold;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :where(.ui-wheel-of-fortune) {
+    width: 80%;
+    
+    ul li {
+      font-size: 3cqi;
+    }
+    
+    button {
+      font-size: 4cqi;
+    }
+  }
+}
+</style>
