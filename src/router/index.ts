@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import Index from '../views/index.vue'
-import PrizwDrawEntries from '../views/PrizeDrawEntries.vue'
+import PrizeDrawEntries from '../views/PrizeDrawEntries.vue'
+import StaffScanQR from '../views/StaffScanQR.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,8 +13,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin/spinwheel',
     name: 'PrizeDrawEntries',
-    component: PrizwDrawEntries
-  }
+    component: PrizeDrawEntries
+  },
+  {
+    path:'/admin/staff/register',
+    name:'StaffScanQR',
+    component:StaffScanQR
+  },
 ]
 
 const router = createRouter({
