@@ -190,3 +190,13 @@ ion-button {
   z-index: 1;
   pointer-events: none;
 }
+
+.choose-booth.full-screen-center {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white; /* atau sesuai tema */
+  text-align: center;
+}

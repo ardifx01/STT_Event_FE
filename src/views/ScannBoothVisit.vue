@@ -2,12 +2,25 @@
     <ion-page>
       <ion-header>
         <ion-toolbar>
-          <ion-title class="ion-text-center">Registration Scanner</ion-title>
+          <ion-title class="ion-text-center">Scan Booth Visit</ion-title>
         </ion-toolbar>
       </ion-header>
       
       <ion-content>
-        <div class="scanner-view">
+        <!-- Pilih Booth - tampilkan jika booth belum dipilih -->
+        <div v-if="!boothSelected"  class="choose-booth full-screen-center">
+            <h2>Pilih Booth Anda</h2>
+            <ion-button 
+            v-for="(booth, index) in allBoothVisit"
+            :key="index" 
+            @click="selectBooth(booth.id)"
+            >
+            {{ booth.name }}
+        </ion-button>
+            <!-- Tambah lebih banyak booth sesuai kebutuhan -->
+        </div>
+
+        <div v-else class="scanner-view">
           <!-- Camera Preview Area -->
           <div class="camera-preview" @click="startScanning">
             <!-- Live Camera Video -->
@@ -108,6 +121,8 @@
     const qrScanner = ref<QrScanner | null>(null);
     const useQrScanner = ref(true);
     const cameraInitialized = ref(false);
+    const allBoothVisit = ref<any[]>([]); // Store all booth visit data
+    const boothSelected = ref(false)
     
     // Watch for tab activation
     watch(() => props.isActive, (newValue) => {
@@ -128,12 +143,34 @@
       // Only show instruction to activate
       cameraStatusMessage.value = 'Tap untuk mengaktifkan kamera';
       showRetryButton.value = true;
+
+        // Fetch booth visit data
+        await getBoothVisitData();
     });
     
     // Clean up when component unmounts
     onUnmounted(() => {
       stopCamera();
     });
+
+    // Function mengambil data booth visit
+    const getBoothVisitData = async () => {
+        try {
+            const res = await axios.get('http://127.0.0.1:8000/api/booth/');
+
+            console.log('Booth visit data:', res.data);
+            allBoothVisit.value = res.data.data;
+        } catch (error) {
+            console.error('Error fetching booth visit data:', error);
+        }
+    };
+
+    const selectBooth = (bootID: number) => {
+        console.log('Selected Booth ID:', bootID);
+        boothSelected.value = true;
+        // You can store the selected booth ID or perform any action needed
+        // For example, you might want to store it in a state management solution
+    }
     
     // Function to initialize camera with fallback support
     const initializeCamera = async () => {
@@ -327,7 +364,7 @@
           throw new Error('Format QR tidak valid');
         }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/kehadiran/', {
+        const response = await axios.post('http://127.0.0.1:8000/api/booth-visit/', {
           registration_id: data.registration_id,
           qr_token: data.qr_token
         });

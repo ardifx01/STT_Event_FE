@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import Index from '../views/index.vue'
 import PrizeDrawEntries from '../views/PrizeDrawEntries.vue'
 import StaffScanQR from '../views/StaffScanQR.vue'
+import BoothVisit from '../views/ScannBoothVisit.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path:'/admin/staff/register',
     name:'StaffScanQR',
     component:StaffScanQR
+  },
+  {
+    path:'/admin/staff/booth_visit',
+    name:'BoothVisit',
+    component:BoothVisit
   },
 ]
 
