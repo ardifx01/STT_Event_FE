@@ -1,5 +1,6 @@
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 import {
   IonPage,
@@ -54,8 +55,7 @@ export default defineComponent({
   data() {
     return {
       formData: {
-        firstName: '',
-        lastName: '',
+        fullName: '',
         company: '',
         jobTitle: '',
         email: '',
@@ -64,9 +64,41 @@ export default defineComponent({
     }
   },
   methods: {
-    submitForm() {
+    async submitForm()  {
       console.log('Form submitted:', this.formData);
       // Handle form submission logic here
+
+      const data = {
+        full_name: this.formData.fullName,
+        job_title: this.formData.jobTitle,
+        company_name: this.formData.company,
+        email: this.formData.email,
+        mobile_number: this.formData.phone
+      }
+
+      await axios.post('http://127.0.0.1:8000/api/registration/', data)
+      .then(function (response) {
+        alert('Registration successful!');
+        console.log('Response:', response.data);
+        // Optionally, handle success response
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+        // Optionally, handle error response
+      })
+      .finally(() => {
+        this.clearForm(); // Clear the form after submission
+      })
+    },
+
+    clearForm() {
+      this.formData = {
+        fullName: '',
+        company: '',
+        jobTitle: '',
+        email: '',
+        phone: ''
+      };
     }
   }
 });
@@ -102,27 +134,14 @@ export default defineComponent({
                 <ion-list lines="none">
                   <ion-item class="form-item ion-margin-top">
                     <ion-input
-                      v-model="formData.firstName"
-                      placeholder="First Name"
+                      v-model="formData.fullName"
+                      placeholder="Full Name"
                       class="custom-input"
                       fill="outline"
                       label="First Name"
                       label-placement="stacked"
                       clear-input
                       autocomplete="given-name"
-                    ></ion-input>
-                  </ion-item>
-                  
-                  <ion-item class="form-item">
-                    <ion-input
-                      v-model="formData.lastName"
-                      placeholder="Last Name"
-                      class="custom-input"
-                      fill="outline"
-                      label="Last Name"
-                      label-placement="stacked"
-                      clear-input
-                      autocomplete="family-name"
                     ></ion-input>
                   </ion-item>
                   
