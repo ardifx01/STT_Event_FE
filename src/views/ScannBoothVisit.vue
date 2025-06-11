@@ -1,8 +1,8 @@
 <template>
     <ion-page>
-      <ion-header>
+      <ion-header v-if="boothSelected">
         <ion-toolbar>
-          <ion-title class="ion-text-center">Scan Booth Visit</ion-title>
+          <ion-title class="ion-text-center">Scan Visit {{ boothName }} </ion-title>
         </ion-toolbar>
       </ion-header>
       
@@ -10,13 +10,15 @@
         <!-- Pilih Booth - tampilkan jika booth belum dipilih -->
         <div v-if="!boothSelected"  class="choose-booth full-screen-center">
             <h2>Pilih Booth Anda</h2>
-            <ion-button 
-            v-for="(booth, index) in allBoothVisit"
-            :key="index" 
-            @click="selectBooth(booth.id)"
-            >
-            {{ booth.name }}
-        </ion-button>
+            <div class="">
+              <ion-button 
+                  v-for="(booth, index) in allBoothVisit"
+                  :key="index" 
+                  @click="selectBooth(booth.id, booth.name)"
+                  class="submit-btn booth-btn">
+                  {{ booth.name }}
+              </ion-button>
+            </div>
             <!-- Tambah lebih banyak booth sesuai kebutuhan -->
         </div>
 
@@ -71,6 +73,12 @@
                   : 'Tekan tombol "Aktifkan Kamera" untuk memulai proses pemindaian QR Code peserta.' 
               }}
             </p>
+
+          <div class="refresh-btn-container">
+            <ion-button @click="backChooseBooth()" expand="block" size="large" class="submit-btn">
+              Back To Choose Booth
+            </ion-button>
+          </div>
             
             <ion-button 
               @click="getHelp" 
@@ -124,6 +132,7 @@
     const allBoothVisit = ref<any[]>([]); // Store all booth visit data
     const boothSelected = ref(false)
     const boothID = ref<number | null>(null);
+    const boothName = ref<string | null>(null);
     
     // Watch for tab activation
     watch(() => props.isActive, (newValue) => {
@@ -166,10 +175,24 @@
         }
     };
 
-    const selectBooth = (bootID: number) => {
+    const selectBooth = (bootID: number, boothNameArgu : string) => {
         console.log('Selected Booth ID:', bootID);
         boothSelected.value = true;
         boothID.value = bootID;
+        boothName.value = boothNameArgu;
+    }
+
+    const backChooseBooth = () => {
+        boothSelected.value = false;
+        boothID.value = null;
+        boothName.value = null;
+        scanResult.value = '';
+        cameraActive.value = false;
+        cameraInitialized.value = false;
+        showRetryButton.value = true;
+        
+        // Stop camera and reset scanner
+        stopCamera();
     }
     
     // Function to initialize camera with fallback support
@@ -544,4 +567,27 @@
       await alert.present();
     };
     </script>
+
+<style scoped>
+  .refresh-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .submit-btn {
+  --background: #4285f4;
+  --background-activated: #3367d6;
+  --background-hover: #3367d6;
+  --color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+</style>
 
