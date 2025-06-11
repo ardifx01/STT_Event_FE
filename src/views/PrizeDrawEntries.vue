@@ -17,7 +17,7 @@
       <fieldset v-else class="ui-wheel-of-fortune" :style="wheelStyle">
         <ul>
           <li v-for="(participant, index) in participants" :key="participant.id || index" :style="getSegmentStyle(index)">
-            {{ participant.name || participant }}
+            {{ participant.registration?.full_name }}
           </li>
         </ul>
         <button type="button" :disabled="isSpinning">
@@ -33,13 +33,13 @@
               🏆
             </div>
             <h1>🎉 Congratulations! 🎉</h1>
-            <h1 class="winner-name">{{ winner && typeof winner === 'object' ? winner.name : winner }}</h1>
+            <h1 class="winner-name">{{ winner && typeof winner === 'object' ? winner.registration?.full_name : winner }}</h1>
             <div v-if="winner && typeof winner === 'object'" class="winner-details">
-              <p v-if="winner.email" class="winner-email">
-                {{ winner.email }}
+              <p v-if="winner.registration?.email" class="winner-email">
+                {{ winner.registration?.email  }}
               </p>
-              <p v-if="winner.company" class="winner-company">
-                {{ winner.company }}
+              <p v-if="winner.registration?.company_name" class="winner-company">
+                {{ winner.registration?.company_name }}
               </p>
             </div>
             <div class="winner-actions">
@@ -50,7 +50,7 @@
                     </ion-button>
                   </ion-col>
                   <ion-col size="6">
-                    <ion-button @click="submitWinner" expand="block" size="large" class="submit-btn">
+                    <ion-button @click="submitWinner()" expand="block" size="large" class="submit-btn">
                       SUBMIT
                     </ion-button>
                   </ion-col>
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { defineComponent } from 'vue';
 import {
   IonPage,
@@ -116,7 +117,7 @@ export default defineComponent({
       winner: null,
       animation: null,
       previousEndDegree: 0,
-      close
+      close,
     };
   },
   computed: {
@@ -131,16 +132,48 @@ export default defineComponent({
     this.$nextTick(() => {
       this.initWheelOfFortune();
     });
+
   },
   methods: {
+    async submitWinner() {
+      if (!this.winner) return;
+
+      try {
+        const res = await axios.put(`http://127.0.0.1:8000/api/prize-winner/${this.winner.registration.id}` , {
+          winner_spinn_number: 1
+        });
+        console.log('Winner submitted successfully:', res.data);
+        this.loadParticipants(); // Reload participants after submission
+        this.winner = null; // Reset winner after submission
+        alert('Winner submitted successfully!');
+      } catch (error) {
+        console.error('Error submitting winner:', error);
+        this.error = 'Failed to submit winner. Please try again.';
+      } finally {
+        // this.isSpinning = false;
+      }
+    },
+
+    async getAllParticipants() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/prize-draw');
+        console.log('Participants fetched successfully:', response.data.data);
+        return response.data.data;
+      } catch (error) {
+        console.error('Error fetching participants:', error);
+        throw error;
+      } finally {
+        this.isLoading = false;
+      }
+    },
     async loadParticipants() {
       this.isLoading = true;
       this.error = null;
       
       try {
         // TODO: Replace with actual API call
-        const response = await this.fetchParticipantsFromAPI();
-        this.participants = response.data;
+        const response = await this.getAllParticipants();
+        this.participants = response;
         
         if (this.participants.length === 0) {
           this.error = 'No participants found';
@@ -271,6 +304,7 @@ export default defineComponent({
       
       // Get the winner
       this.winner = this.participants[winningSegmentIndex];
+      console.log('Winner detected:', this.winner );
       
       // console.log('=== Winner Detection Debug ===');
       // console.log('Final degree:', finalDegree);
@@ -512,7 +546,7 @@ export default defineComponent({
       background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
       clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
       display: grid;
-      font-size: 25px;
+      font-size: 18px;
       grid-area: 1 / -1;
       padding-left: 1ch;
       rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
