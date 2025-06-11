@@ -123,6 +123,7 @@
     const cameraInitialized = ref(false);
     const allBoothVisit = ref<any[]>([]); // Store all booth visit data
     const boothSelected = ref(false)
+    const boothID = ref<number | null>(null);
     
     // Watch for tab activation
     watch(() => props.isActive, (newValue) => {
@@ -168,8 +169,7 @@
     const selectBooth = (bootID: number) => {
         console.log('Selected Booth ID:', bootID);
         boothSelected.value = true;
-        // You can store the selected booth ID or perform any action needed
-        // For example, you might want to store it in a state management solution
+        boothID.value = bootID;
     }
     
     // Function to initialize camera with fallback support
@@ -364,15 +364,15 @@
           throw new Error('Format QR tidak valid');
         }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/booth-visit/', {
+        const response = await axios.post('http://127.0.0.1:8000/api/booth-visit', {
           registration_id: data.registration_id,
-          qr_token: data.qr_token
+          booth_id: boothID.value,
         });
 
         const resData = response.data;
 
         const alert = await alertController.create({
-          header: 'Berhasil',
+          header: 'Berhasil Check-in Booth',
           message: resData.message,
           buttons: ['OK']
         });
