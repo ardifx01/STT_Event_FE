@@ -64,6 +64,12 @@
       <!-- Participants Info -->
       <div class="participants-info">
         <p>Total Participants: {{ participants.length }}</p>
+
+        <div class="refresh-btn-container">
+          <ion-button @click="loadParticipants()" expand="block" size="large" class="submit-btn">
+            REFRESH PARTICIPANTS
+          </ion-button>
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -138,9 +144,11 @@ export default defineComponent({
     async submitWinner() {
       if (!this.winner) return;
 
+      const sesiSpin = localStorage.getItem('sesiSpin');
+
       try {
         const res = await axios.put(`http://127.0.0.1:8000/api/prize-winner/${this.winner.registration.id}` , {
-          winner_spinn_number: 1
+          winner_spinn_number: sesiSpin,
         });
         console.log('Winner submitted successfully:', res.data);
         this.loadParticipants(); // Reload participants after submission
@@ -186,35 +194,6 @@ export default defineComponent({
       }
     },
     
-    async fetchParticipantsFromAPI() {
-      // Simulasi API call - ganti dengan endpoint yang sebenarnya
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          // Mock data - ganti dengan actual API call
-          resolve({
-            data: [
-              { id: 1, name: 'John Doe', email: 'john@example.com', company: 'Tech Corp' },
-              { id: 2, name: 'Jane Smith', email: 'jane@example.com', company: 'Innovation Ltd' },
-              { id: 3, name: 'Bob Johnson', email: 'bob@example.com', company: 'StartupXYZ' },
-              { id: 4, name: 'Alice Brown', email: 'alice@example.com', company: 'Digital Solutions' },
-              { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', company: 'Future Tech' },
-              { id: 6, name: 'Diana Davis', email: 'diana@example.com', company: 'Smart Systems' },
-              { id: 7, name: 'Eva Martinez', email: 'eva@example.com', company: 'Cloud Nine' },
-              { id: 8, name: 'Frank Miller', email: 'frank@example.com', company: 'Data Dynamics' },
-              { id: 9, name: 'Grace Lee', email: 'grace@example.com', company: 'AI Solutions' },
-              { id: 10, name: 'Henry Wang', email: 'henry@example.com', company: 'BlockTech' },
-              { id: 11, name: 'Ivy Chen', email: 'ivy@example.com', company: 'CyberSafe' },
-              { id: 12, name: 'Jack Taylor', email: 'jack@example.com', company: 'DevOps Pro' }
-            ]
-          });
-        }, 1000);
-      });
-      
-      // Actual API call example:
-      // const response = await fetch('/api/participants');
-      // if (!response.ok) throw new Error('Failed to fetch participants');
-      // return await response.json();
-    },
     
     getSegmentStyle(index) {
       return {
@@ -273,6 +252,11 @@ export default defineComponent({
     
     dismissModal() {
       this.winner = null;
+
+      const sesiSpin = localStorage.getItem('sesiSpin');
+      const resetSesiSpin = parseInt(sesiSpin) - 1;
+      localStorage.setItem('sesiSpin', resetSesiSpin);
+      console.log('Sesi Spin reset to:', resetSesiSpin);
     },
     
     detectWinner(finalDegree) {
@@ -304,40 +288,21 @@ export default defineComponent({
       
       // Get the winner
       this.winner = this.participants[winningSegmentIndex];
+      this.storeSesiSpin();
       console.log('Winner detected:', this.winner );
       
-      // console.log('=== Winner Detection Debug ===');
-      // console.log('Final degree:', finalDegree);
-      // console.log('Normalized degree:', normalizedDegree);
-      // console.log('Arrow position:', arrowPosition);
-      // console.log('Segment under arrow:', segmentUnderArrow);
-      // console.log('Segment angle:', segmentAngle);
-      // console.log('Winning segment index:', winningSegmentIndex);
-      // console.log('Participants:', this.participants.map((p, i) => `${i}: ${p.name}`));
-      // console.log('Winner:', this.winner);
-      // console.log('==============================');
-      
       // Optional: Send winner data to backend
-      this.recordWinner(this.winner);
+      // this.recordWinner(this.winner);
     },
-    
-    async recordWinner(winner) {
-      try {
-        // TODO: Send winner data to backend
-        // await fetch('/api/winners', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ 
-        //     participantId: winner.id, 
-        //     timestamp: new Date().toISOString() 
-        //   })
-        // });
-        
-        console.log('Winner recorded:', winner);
-      } catch (error) {
-        console.error('Failed to record winner:', error);
-      }
-    },
+
+    storeSesiSpin() {
+      const sesiSpin = localStorage.getItem('sesiSpin') || 0;
+      console.log('Sesi Spin:', sesiSpin);
+
+      const newSesiSpin = parseInt(sesiSpin) + 1;
+      localStorage.setItem('sesiSpin', newSesiSpin);
+      console.log('New Sesi Spin:', newSesiSpin);
+    }
     
   }
 });
@@ -560,6 +525,26 @@ export default defineComponent({
       white-space: nowrap;
     }
   }
+}
+
+.participants-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px; /* Atur sesuai kebutuhan */
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.refresh-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
 }
 
 /* Responsive adjustments */
