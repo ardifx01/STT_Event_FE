@@ -66,7 +66,7 @@
         <p>Total Participants: {{ participants.length }}</p>
 
         <div class="refresh-btn-container">
-          <ion-button @click="loadParticipants()" expand="block" size="large" class="submit-btn">
+          <ion-button @click="refreshParticipant()" expand="block" size="large" class="submit-btn">
             REFRESH PARTICIPANTS
           </ion-button>
         </div>
@@ -141,6 +141,13 @@ export default defineComponent({
 
   },
   methods: {
+    async refreshParticipant() {
+      await this.loadParticipants();
+      this.$nextTick(() => {
+        this.initWheelOfFortune();
+      });
+    },
+
     async submitWinner() {
       if (!this.winner) return;
 
@@ -158,7 +165,9 @@ export default defineComponent({
         console.error('Error submitting winner:', error);
         this.error = 'Failed to submit winner. Please try again.';
       } finally {
-        // this.isSpinning = false;
+        this.$nextTick(() => {
+          this.initWheelOfFortune();
+        });
       }
     },
 
@@ -235,7 +244,7 @@ export default defineComponent({
         { transform: `rotate(${this.previousEndDegree}deg)` },
         { transform: `rotate(${newEndDegree}deg)` }
       ], {
-        duration: 4000,
+        duration: 10000,
         direction: 'normal',
         easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
         fill: 'forwards',
@@ -252,11 +261,13 @@ export default defineComponent({
     
     dismissModal() {
       this.winner = null;
+      this.isSpinning = false;
 
       const sesiSpin = localStorage.getItem('sesiSpin');
-      const resetSesiSpin = parseInt(sesiSpin) - 1;
-      localStorage.setItem('sesiSpin', resetSesiSpin);
-      console.log('Sesi Spin reset to:', resetSesiSpin);
+      if (sesiSpin > 0) {
+        const resetSesiSpin = parseInt(sesiSpin) - 1;
+        localStorage.setItem('sesiSpin', resetSesiSpin);
+      }
     },
     
     detectWinner(finalDegree) {
@@ -289,7 +300,6 @@ export default defineComponent({
       // Get the winner
       this.winner = this.participants[winningSegmentIndex];
       this.storeSesiSpin();
-      console.log('Winner detected:', this.winner );
       
       // Optional: Send winner data to backend
       // this.recordWinner(this.winner);
@@ -297,11 +307,11 @@ export default defineComponent({
 
     storeSesiSpin() {
       const sesiSpin = localStorage.getItem('sesiSpin') || 0;
-      console.log('Sesi Spin:', sesiSpin);
 
-      const newSesiSpin = parseInt(sesiSpin) + 1;
-      localStorage.setItem('sesiSpin', newSesiSpin);
-      console.log('New Sesi Spin:', newSesiSpin);
+      if (sesiSpin >= 0) {
+        const newSesiSpin = parseInt(sesiSpin) + 1;
+        localStorage.setItem('sesiSpin', newSesiSpin);
+      }
     }
     
   }
