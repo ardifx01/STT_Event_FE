@@ -404,11 +404,11 @@
 
       } catch (err: any) {
         // Fallback: jika bukan format JSON, coba buka sebagai URL atau tampilkan konten
-        await navigateToQRCodeUrl(qrCodeData);
+        // await navigateToQRCodeUrl(qrCodeData);
 
         const alert = await alertController.create({
           header: 'Gagal',
-          message: err.message || 'Gagal memproses QR code',
+          message: err.response.data.message || 'Gagal memproses QR code',
           buttons: ['OK']
         });
         await alert.present();
