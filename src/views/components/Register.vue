@@ -78,8 +78,8 @@ export default defineComponent({
 
       await axios.post('http://127.0.0.1:8000/api/registration/', data)
       .then(function (response) {
-        alert('Registration successful!');
-        console.log('Response:', response.data);
+        alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
+        // console.log('Response:', response.data);
         // Optionally, handle success response
       })
       .catch(function (error) {
