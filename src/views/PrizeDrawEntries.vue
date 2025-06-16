@@ -24,6 +24,13 @@
           {{ isSpinning ? 'SPINNING...' : 'SPIN' }}
         </button>
       </fieldset>
+
+      <!-- loading -->
+      <div v-if="isLoadingSubmitWinner" class="loading-overlay">
+        <div class="loader"></div>
+        <div class="loading-text">Loading...</div>
+      </div>
+      <!-- loading -->
       
       <!-- Winner Modal -->
       <ion-modal :is-open="!!winner">
@@ -77,6 +84,7 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { defineComponent } from 'vue';
 import {
   IonPage,
@@ -124,6 +132,7 @@ export default defineComponent({
       animation: null,
       previousEndDegree: 0,
       close,
+      isLoadingSubmitWinner: false,
     };
   },
   computed: {
@@ -149,31 +158,55 @@ export default defineComponent({
     },
 
     async submitWinner() {
+      this.isLoadingSubmitWinner = true;
       if (!this.winner) return;
 
       const sesiSpin = localStorage.getItem('sesiSpin');
 
       try {
-        const res = await axios.put(`http://127.0.0.1:8000/api/prize-winner/${this.winner.registration.id}` , {
+        const res = await axios.put(`${import.meta.env.VITE_SPIN_WHEEL_SUBMIT_WINNER_API}/${this.winner.registration.id}` , {
           winner_spinn_number: sesiSpin,
         });
-        console.log('Winner submitted successfully:', res.data);
+        // console.log('Winner submitted successfully:', res.data);
         this.loadParticipants(); // Reload participants after submission
         this.winner = null; // Reset winner after submission
-        alert('Winner submitted successfully!');
+        // alert('Winner submitted successfully!');
+
+        this.isLoadingSubmitWinner = false;
+        Swal.fire({
+          title: "Successfully Submit!",
+          text: response.data.message || "Thank you for registering!",
+          icon: "success",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
       } catch (error) {
-        console.error('Error submitting winner:', error);
+        // console.error('Error submitting winner:', error);
         this.error = 'Failed to submit winner. Please try again.';
+
+        this.isLoadingSubmitWinner = false;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message || "Something went wrong!",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
       } finally {
         this.$nextTick(() => {
           this.initWheelOfFortune();
+          this.isLoadingSubmitWinner = false;
         });
       }
     },
 
     async getAllParticipants() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/prize-draw');
+        const response = await axios.get(`${import.meta.env.VITE_SPIN_WHEEL_API}`);
         console.log('Participants fetched successfully:', response.data.data);
         return response.data.data;
       } catch (error) {

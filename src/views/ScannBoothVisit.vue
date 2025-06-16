@@ -166,7 +166,7 @@
     // Function mengambil data booth visit
     const getBoothVisitData = async () => {
         try {
-            const res = await axios.get('http://127.0.0.1:8000/api/booth/');
+            const res = await axios.get(`${import.meta.env.VITE_API_GET_ALL_BOOTH}`);
 
             console.log('Booth visit data:', res.data);
             allBoothVisit.value = res.data.data;
@@ -387,7 +387,7 @@
           throw new Error('Format QR tidak valid');
         }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/booth-visit', {
+        const response = await axios.post(`${import.meta.env.VITE_CHECK_IN_BOOTH_API}`, {
           registration_id: data.registration_id,
           booth_id: boothID.value,
         });

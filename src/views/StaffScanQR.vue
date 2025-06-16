@@ -327,7 +327,7 @@
           throw new Error('Format QR tidak valid');
         }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/kehadiran/', {
+        const response = await axios.post(`${import.meta.env.VITE_EVENT_STT_PRESENCE_API}`, {
           registration_id: data.registration_id,
           qr_token: data.qr_token
         });

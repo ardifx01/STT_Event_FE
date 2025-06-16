@@ -55,6 +55,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isLoading: false,
       errorMessage: null,
       formData: {
         fullName: '',
@@ -67,8 +68,10 @@ export default defineComponent({
   },
   methods: {
     async submitForm()  {
-      console.log('Form submitted:', this.formData);
+      // console.log('Form submitted:', this.formData);
       // Handle form submission logic here
+      this.isLoading = true; // Show loading overlay
+
 
       const data = {
         full_name: this.formData.fullName,
@@ -78,11 +81,12 @@ export default defineComponent({
         mobile_number: this.formData.phone
       }
 
-      await axios.post('http://127.0.0.1:8000/api/registration/', data)
-      .then(function (response) {
+      await axios.post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
+      .then((response) => {
         // alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
-        // console.log('Response:', response.data);
         // Optionally, handle success response
+        // console.log('Response:', response.data);
+        this.isLoading = false; // Hide loading overlay
         Swal.fire({
           title: "Registration Successfully!",
           text: response.data.message || "Thank you for registering!",
@@ -93,10 +97,11 @@ export default defineComponent({
           },
         });
       })
-      .catch(function (error) {
-        // console.error('Error:', error);
+      .catch((error) => {
+        console.error('Error:', error);
         // Optionally, handle error response
         // this.errorMessage = error.response.data.message || "Something went wrong!";
+        this.isLoading = false; // Hide loading overlay
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -109,6 +114,7 @@ export default defineComponent({
       })
       .finally(() => {
         this.clearForm(); // Clear the form after submission
+        this.isLoading = false; // Ensure loading overlay is hidden
       })
     },
 
@@ -127,10 +133,14 @@ export default defineComponent({
 
 <template>
   <ion-page>
-    <ion-content class="registration-page-content">
+    <!-- loading -->
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="loader"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+    <!-- loading -->
 
-      <!-- sweet alert -->
-      <!-- sweet alert -->
+    <ion-content class="registration-page-content">
 
       <div class="hero-section">
         <img src="/img/prizes.png" alt="Win The Prize" />
@@ -242,15 +252,43 @@ export default defineComponent({
 </template>
 
 
-<style scoped>
-.my-fullscreen-modal {
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: 100vw !important;
-  max-height: 100vh !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-</style>
+<style>
+   /* Overlay full screen */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 18, 18, 0.8); /* putih transparan */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    /* Spinner */
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Text */
+    .loading-text {
+      margin-top: 16px;
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Animasi */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
