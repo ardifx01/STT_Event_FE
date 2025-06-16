@@ -1,6 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 import {
   IonPage,
@@ -54,6 +55,7 @@ export default defineComponent({
   },
   data() {
     return {
+      errorMessage: null,
       formData: {
         fullName: '',
         company: '',
@@ -78,13 +80,32 @@ export default defineComponent({
 
       await axios.post('http://127.0.0.1:8000/api/registration/', data)
       .then(function (response) {
-        alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
+        // alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
         // console.log('Response:', response.data);
         // Optionally, handle success response
+        Swal.fire({
+          title: "Registration Successfully!",
+          text: response.data.message || "Thank you for registering!",
+          icon: "success",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
       })
       .catch(function (error) {
-        console.error('Error:', error);
+        // console.error('Error:', error);
         // Optionally, handle error response
+        // this.errorMessage = error.response.data.message || "Something went wrong!";
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message || "Something went wrong!",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
       })
       .finally(() => {
         this.clearForm(); // Clear the form after submission
@@ -107,6 +128,10 @@ export default defineComponent({
 <template>
   <ion-page>
     <ion-content class="registration-page-content">
+
+      <!-- sweet alert -->
+      <!-- sweet alert -->
+
       <div class="hero-section">
         <img src="/img/prizes.png" alt="Win The Prize" />
       </div>
@@ -215,3 +240,17 @@ export default defineComponent({
     </ion-content>
   </ion-page>
 </template>
+
+
+<style scoped>
+.my-fullscreen-modal {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+</style>
