@@ -58,6 +58,7 @@ Sebelum menjalankan aplikasi ini, pastikan Anda telah menginstal:
 
 - Node.js (versi LTS terbaru)
 - npm (Node Package Manager)
+- configurasi .env (Pasang env yang telah di sediakan)
 
 ## Instalasi
 
