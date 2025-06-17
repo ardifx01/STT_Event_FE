@@ -25,16 +25,18 @@
         </button>
       </fieldset>
 
-      <!-- loading -->
-      <div v-if="isLoadingSubmitWinner" class="loading-overlay">
-        <div class="loader"></div>
-        <div class="loading-text">Loading...</div>
-      </div>
-      <!-- loading -->
       
       <!-- Winner Modal -->
       <ion-modal :is-open="!!winner">
         <ion-content class="ion-padding">
+          <!-- loading -->
+          <div v-if="isLoadingSubmitWinner" class="loading-overlay">
+            <div class="loader"></div>
+            <div class="loading-text">Loading...</div>
+          </div>
+          <!-- loading -->
+          
+
           <div class="winner-content">
             <div class="winner-icon">
               🏆
@@ -160,32 +162,27 @@ export default defineComponent({
     async submitWinner() {
       this.isLoadingSubmitWinner = true;
       if (!this.winner) return;
-
       const sesiSpin = localStorage.getItem('sesiSpin');
 
       try {
         const res = await axios.put(`${import.meta.env.VITE_SPIN_WHEEL_SUBMIT_WINNER_API}/${this.winner.registration.id}` , {
           winner_spinn_number: sesiSpin,
         });
-        // console.log('Winner submitted successfully:', res.data);
-        this.loadParticipants(); // Reload participants after submission
-        this.winner = null; // Reset winner after submission
-        // alert('Winner submitted successfully!');
-
+        
         this.isLoadingSubmitWinner = false;
         Swal.fire({
           title: "Successfully Submit!",
-          text: response.data.message || "Thank you for registering!",
+          text: res.data.message || "Thank you for registering!",
           icon: "success",
           heightAuto: false, // ini bisa membantu
           customClass: {
             popup: 'my-fullscreen-modal'
           },
         });
+        this.winner = null; // Reset winner after submission
       } catch (error) {
-        // console.error('Error submitting winner:', error);
         this.error = 'Failed to submit winner. Please try again.';
-
+        console.log('Error submitting winner:', error);
         this.isLoadingSubmitWinner = false;
         Swal.fire({
           icon: "error",
@@ -197,10 +194,8 @@ export default defineComponent({
           },
         });
       } finally {
-        this.$nextTick(() => {
-          this.initWheelOfFortune();
-          this.isLoadingSubmitWinner = false;
-        });
+        this.refreshParticipant();
+        this.isLoadingSubmitWinner = false;
       }
     },
 
@@ -604,4 +599,43 @@ export default defineComponent({
     }
   }
 }
+
+   /* Overlay full screen */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 18, 18, 0.8); /* putih transparan */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999 !important;
+      flex-direction: column;
+    }
+
+    /* Spinner */
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Text */
+    .loading-text {
+      margin-top: 16px;
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #555;
+    }
+
+        /* Animasi */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 </style>
