@@ -5,21 +5,41 @@
           <ion-title class="ion-text-center">Scan Visit {{ boothName }} </ion-title>
         </ion-toolbar>
       </ion-header>
+
+      <ion-header v-if="!boothSelected">
+        <ion-toolbar>
+          <ion-title class="ion-text-center">Pilih Booth Anda</ion-title>
+        </ion-toolbar>
+      </ion-header>
       
       <ion-content>
         <!-- Pilih Booth - tampilkan jika booth belum dipilih -->
-        <div v-if="!boothSelected"  class="choose-booth full-screen-center">
-            <h2>Pilih Booth Anda</h2>
-            <div class="">
-              <ion-button 
-                  v-for="(booth, index) in allBoothVisit"
-                  :key="index" 
-                  @click="selectBooth(booth.id, booth.name)"
-                  class="submit-btn booth-btn">
-                  {{ booth.name }}
-              </ion-button>
-            </div>
-            <!-- Tambah lebih banyak booth sesuai kebutuhan -->
+        <div v-if="!boothSelected" class="choose-booth">
+          <ion-grid>
+            <ion-row>
+              <ion-col 
+                v-for="(booth, index) in allBoothVisit"
+                :key="index" 
+                size="12" 
+                size-sm="6" 
+                size-md="4" 
+                size-lg="3"
+              >
+                <div class="booth-card" @click="selectBooth(booth.id, booth.name)">
+                  <div class="booth-icon">
+                    <ion-icon :icon="businessOutline" class="booth-icon-svg"></ion-icon>
+                  </div>
+                  <div class="booth-info">
+                    <h3 class="booth-name">{{ booth.name }}</h3>
+                    <p class="booth-description">Tap to scan visitors</p>
+                  </div>
+                  <div class="booth-arrow">
+                    <ion-icon :icon="chevronForwardOutline"></ion-icon>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </div>
 
         <div v-else class="scanner-view">
@@ -95,7 +115,7 @@
     </ion-page>
   </template>
     
-  <script setup lang="ts">
+    <script setup lang="ts">
     import axios from 'axios';
     import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
     import {
@@ -108,9 +128,20 @@
       IonIcon,
       IonCard,
       IonCardContent,
+      IonGrid,
+      IonRow,
+      IonCol,
       alertController
     } from '@ionic/vue';
-    import { helpCircleOutline, cameraOutline } from 'ionicons/icons';
+    import { 
+      helpCircleOutline, 
+      cameraOutline, 
+      businessOutline, 
+      chevronForwardOutline,
+      peopleOutline,
+      qrCodeOutline,
+      checkmarkCircleOutline
+    } from 'ionicons/icons';
     import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
     import QrScanner from 'qr-scanner';
     
@@ -133,6 +164,8 @@
     const boothSelected = ref(false)
     const boothID = ref<number | null>(null);
     const boothName = ref<string | null>(null);
+    const totalVisitors = ref(0);
+    const scansToday = ref(0);
     
     // Watch for tab activation
     watch(() => props.isActive, (newValue) => {
@@ -156,6 +189,10 @@
 
         // Fetch booth visit data
         await getBoothVisitData();
+        
+        // Simulate stats data
+        totalVisitors.value = Math.floor(Math.random() * 500) + 100;
+        scansToday.value = Math.floor(Math.random() * 50) + 10;
     });
     
     // Clean up when component unmounts
@@ -486,7 +523,7 @@
     const navigateToQRCodeUrl = async (data: string) => {
       try {
         // Validate URL format
-        const urlPattern = /^(https?:\/\/)[\w\.-]+\.[a-z]{2,}([\w\.-]*)*\/?.*$/i;
+        const urlPattern = /^(https?:\/\/)[\/\.-]+\.[a-z]{2,}([\w\.-]*)*\/?.*$/i;
         
         if (urlPattern.test(data)) {
           // Show confirmation dialog for URLs
@@ -578,16 +615,118 @@
   }
 
   .submit-btn {
-  --background: #4285f4;
-  --background-activated: #3367d6;
-  --background-hover: #3367d6;
-  --color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  height: 50px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+    --background: #4285f4;
+    --background-activated: #3367d6;
+    --background-hover: #3367d6;
+    --color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    height: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Choose Booth Section */
+  .choose-booth {
+    padding: 16px;
+    min-height: 100vh;
+  }
+
+  /* Booth Card Styling */
+  .booth-card {
+    background: var(--neutral-white, #ffffff);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    margin-bottom: 8px;
+    min-height: 80px;
+  }
+
+  .booth-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(43, 133, 193, 0.2);
+    border-color: var(--primary-blue, #4285f4);
+  }
+
+  .booth-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary, linear-gradient(135deg, #4285f4, #34a853));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .booth-icon-svg {
+    font-size: 24px;
+    color: var(--neutral-white, #ffffff);
+  }
+
+  .booth-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .booth-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--neutral-text-dark, #333333);
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .booth-description {
+    font-size: 0.85rem;
+    color: var(--neutral-text-light, #666666);
+    margin: 0;
+  }
+
+  .booth-arrow {
+    color: var(--primary-blue, #4285f4);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 576px) {
+    .choose-booth {
+      padding: 12px;
+    }
+    
+    .booth-card {
+      padding: 12px;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    
+    .booth-icon {
+      width: 45px;
+      height: 45px;
+    }
+    
+    .booth-icon-svg {
+      font-size: 22px;
+    }
+    
+    .booth-name {
+      font-size: 1rem;
+    }
+    
+    .booth-description {
+      font-size: 0.8rem;
+    }
+  }
+
 
 </style>
 
