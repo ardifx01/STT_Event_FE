@@ -7,7 +7,7 @@ Dokumentasi ini menjelaskan setiap endpoint (URL path) dalam aplikasi **Event-ST
 ### `/` – **Index**
 
 - **Nama Rute:** `Index`
-- **Deskripsi:** Halaman utama aplikasi (landing page). Biasanya berisi informasi umum atau pengantar aplikasi.
+- **Deskripsi:** Halaman utama aplikasi (landing page). Berisi informasi umum dan informasi event-stt.
 - **Akses:** Semua pengguna
 
 ---
@@ -54,37 +54,36 @@ Dokumentasi ini menjelaskan setiap endpoint (URL path) dalam aplikasi **Event-ST
 
 # 📘 Application Flow Documentation
 
-Dokumentasi ini menjelaskan alur utama dari aplikasi **MyApp** agar developer dan actors memahami proses bisnis serta interaksi antar komponen di dalamnya.
+Dokumentasi ini menjelaskan alur utama dari aplikasi **Event-STT** agar developer dan actors memahami proses bisnis serta interaksi antar komponen di dalamnya.
 
 ---
 
 ## 🏁 1. Alur Registrations
 
-Actors = Participant event yang telah registrasi
 1. Actors(participant) melakukan registrasi membuka di page registration (`/admin/staff/registerogin`)
 2. Ketika actors telah berhasil melakukan registrasi maka actors akan mendapatkan thanks email dari email Event-STT karena telah melakukan registrasi namun actors masih di tahap pending status
-3. Ketika actors telah di confirm oleh admin dari Event-STT maka actors akan mendapakan email confirmation registrations dan qr-code/barcode (e-tiket kehadiran)
+3. Ketika actors telah di confirm oleh actors(admin) dari Event-STT maka actors(participant) akan mendapakan email confirmation registrations dan qr-code/barcode (e-tiket kehadiran)
 
 ## 🏁 2. Alur Absensi
 
-1. actors harus datang di hari-h event dan jika mau masuk kedalam event harus menunjukkan qr-code/barcode yang telah diberikan di email masing - masing actors
-2. Admin Event-STT akan melakukan scan barcode untuk masing masing actors yang menentukan apakah actors benar sudah terdaftar dalam system/registrasi
+1. Actors(participant) harus datang di hari-h event dan jika mau masuk kedalam event harus menunjukkan qr-code/barcode yang telah diberikan di email masing - masing actors
+2. Actors(admin) Event-STT akan melakukan scan barcode untuk masing masing actors(participant) yang menentukan apakah actors(participant) benar sudah terdaftar dalam system/registrasi
 3. System akan mengubah status kehadiran menjadi hadir
 
 
 ## 🏁 3. Alur Booth
 
-1. actors sudah diberikan qr-code/barcode masing masing di email registration, ini harus digunakan untuk melakukan check-in untuk setiap booth yang ada
+1. Actors(participants) sudah diberikan qr-code/barcode masing masing di email registration, ini harus digunakan untuk melakukan check-in untuk setiap booth yang ada
 2. Ketika sudah check-in maka data actors akan di simpan kedalam system event-ss
 
 ## 🏁 4. Alur Review/Feedback
 
-1. Setiap booth akan menyedian qr-code masing masing untuk para participant(actors)event jika ingin melakukan feedback terhadap booth bisa melalui feedback ini
-2. Ketika actors melakukan scan ke qr-code ini akan di arahkan ke link event-stt
+1. Setiap booth akan menyedian qr-code masing masing untuk para actors(participant)event jika ingin melakukan feedback terhadap booth bisa melalui feedback ini
+2. Ketika actors(participant) melakukan scan ke qr-code ini akan di arahkan ke link event-stt
 
 ## 🏁 5. Alur Spin Wheel
 
-1. Participant yang berhak mengikuti spin wheel atau draw prize ialah participan yang eligible telah mengikuti seluruh aturan yang dibuat oleh event-stt
+1. Actors(participant) yang berhak mengikuti spin wheel atau draw prize ialah participan yang eligible telah mengikuti seluruh aturan yang dibuat oleh event-stt
 2. peraturannya adalah pertama harus berstatus hadir di status kehadiran system, melakukakan check-in disetiap booth yang telah di sediakan oleh event-stt jika sudah memenuhi syarat maka data participant akan otomatis masuk kedalam system event-stt untuk spin wheel/draw prize
 3. jika participant yang telah terpilih mendapatkan hadiah maka data participant akan hilang dati spin wheel/draw prize dengan melakukan refresh data participant 
 
