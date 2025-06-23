@@ -274,7 +274,8 @@ export default defineComponent({
       ], {
         duration: 10000,
         direction: 'normal',
-        easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
+        easing: 'cubic-bezier(0.25, 0.8, 0.5, 1)',
+        // easing : 'ease-out',
         fill: 'forwards',
         iterations: 1
       });
@@ -282,6 +283,7 @@ export default defineComponent({
       this.previousEndDegree = newEndDegree;
       
       this.animation.addEventListener('finish', () => {
+        wheel.style.transform = `rotate(${newEndDegree}deg)`;
         this.detectWinner(newEndDegree);
         this.isSpinning = false;
       });
