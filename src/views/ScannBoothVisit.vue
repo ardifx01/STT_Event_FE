@@ -651,7 +651,7 @@
   .booth-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(43, 133, 193, 0.2);
-    border-color: var(--primary-blue, #4285f4);
+    border-color: var(--primary, #4285f4);
   }
 
   .booth-icon {
@@ -692,7 +692,7 @@
   }
 
   .booth-arrow {
-    color: var(--primary-blue, #4285f4);
+    color: var(--primary, #4285f4);
     font-size: 18px;
     flex-shrink: 0;
   }
