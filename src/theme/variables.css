@@ -1,5 +1,5 @@
 :root {
-  --primary: #2b85c1;
+  --primary: #1d1d51;
   --primary-dark: #196ba0;
   --primary-2: #f39c12;
   --primary-2-dark: #e67e22;
@@ -11,6 +11,7 @@
   --secondary-2-alt: #2a8ecf;
   --neutral-white: #ffffff;
   --neutral-light-gray: #f8f9fa;
+  --neutral-light-blue: #d8e2f8;
   --neutral-gray: #e9ecef;
   --neutral-dark-gray: #dee2e6;
   --neutral-text: #495057;
@@ -26,13 +27,35 @@
   --gradient-2: linear-gradient(135deg,  var(--primary-2),  var(--primary-2-dark));
   --gradient-3: linear-gradient(135deg,  var(--primary-3),  var(--primary-3-dark));
   --gradient-registration: linear-gradient(167deg,  rgba(253,  189,  29,  1) 65%,  rgba(12,  95,  180,  1) 55%);
+--gradient-blue: linear-gradient(to right, #022b61, #294f90);
+
+  /* Font Family */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  /* Font Size */
+  --font-size-xl: 2rem;     /* contoh untuk h1 */
+  --font-size-lg: 1.5rem;   /* contoh untuk h2 */
+  --font-size-md: 1rem;     /* body text */
+  --font-size-sm: 0.875rem; /* small text */
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
 }
 * {
   font-family: Poppins;
 }
 
+.reset-spacing {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .border-head, .event-icon, .table-text {
-  border-radius: 10px;
+  border-radius: 20px;
 }
 ion-tab-bar, ion-tab-button {
   --color: rgba(255,  255,  255,  0.7);
@@ -214,7 +237,7 @@ ion-item ion-icon {
   height: 97%}
 }.schedule-header, .schedule-item {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 3fr 1fr;
   gap: .5rem;
 }
 @media(max-width:425px) {
@@ -224,7 +247,7 @@ ion-item ion-icon {
   margin-bottom: 1rem;
 }
 .schedule-agenda, .schedule-brand, .schedule-solution, .schedule-speaker, .schedule-time, .schedule-topic {
-  background: var(--gradient-2);
+  background: var(--gradient-blue);
   color: var(--neutral-white);
   padding: .8rem;
   border-radius: 8px;
@@ -238,9 +261,17 @@ ion-item ion-icon {
   border-radius: 8px;
   overflow: hidden;
 }
+.schedule-item-blue {
+  background: var(--neutral-light-blue);
+}
+.border-blue {
+  border-left: 4px solid var(--primary);
+}
+.border-gray {
+    border-left: 4px solid var(--neutral-gray);
+}
 .schedule-agenda-content, .schedule-brand-content, .schedule-solution-content, .schedule-speaker-content, .schedule-time-content, .schedule-topic-content {
   padding: .8rem;
-  border-left: 4px solid var(--neutral-gray);
   font-size: .85rem;
   line-height: 1.3;
 }
@@ -254,6 +285,9 @@ ion-item ion-icon {
   align-items: center;
   justify-content: center;
 }
+.schedule-time-content-blue {
+  background: var(--neutral-light-blue);
+}
 .schedule-time-content small {
   color: var(--neutral-text-light);
   font-size: .7rem;
@@ -264,7 +298,7 @@ ion-item ion-icon {
   font-size: .9rem;
 }
 .schedule-section-header {
-  background: linear-gradient(135deg, var(--neutral-text-light), var(--neutral-text));
+  background: var(--gradient-blue);
   color: var(--neutral-white);
   padding: 1rem;
   margin: 1.5rem 0 1rem;
@@ -277,7 +311,7 @@ ion-item ion-icon {
   font-weight: 700;
 }
 .lunch-break {
-  grid-template-columns: 1fr 6.2fr;
+  grid-template-columns: 1fr 5fr;
 }
 .lunch-break .schedule-agenda-content {
   background: var(--bg-warning);
@@ -349,8 +383,8 @@ ion-item ion-icon {
   display: block;
 }
 .lunch-break .schedule-agenda-content {
-  background: var(--bg-warning);
-  border: 2px solid var(--border-warning);
+  background: var(--neutral-light-blue);
+  border: 2px solid var(--primary);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
@@ -358,7 +392,8 @@ ion-item ion-icon {
 }
 .lunch-break .schedule-agenda-content:before {
   content: ""}
-}ion-tab-bar {
+}
+ion-tab-bar {
   --background: var(--gradient-primary);
   border-top: 2px solid var(--primary-2);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, .1);
@@ -700,3 +735,83 @@ ion-tab-button ion-label {
 .swal2-container {
   z-index: 99999 !important; /* Pastikan di atas Ionic modal */
 }
+
+.text-center {
+  text-align: center;
+}
+
+.judul-home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-8 {
+  margin-top: 16px;
+}
+
+.mr-8 {
+  margin-right: 16px;
+}
+
+.ml-8 {
+  margin-left: 16px;
+}
+.ml-4 {
+  margin-left: 8px;
+}
+
+.mb-8 {
+  margin-bottom: 16px;
+}
+
+.font-judul-home {
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  gap: 16px;
+}
+
+.strip {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--neutral-dark-gray);
+  border-radius: 2px;
+  margin-top: 12px;
+}
+
+.left-strip {
+  margin-right: 14px;
+}
+
+.right-strip {
+  margin-left: 14px;
+}
+
+.bg-gradient-blue {
+  background: var(--gradient-blue);
+  border-radius: 10px;
+  padding: 2px;
+  width: 100%;
+  margin: 0 10px;
+  color: var(--neutral-white);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.rounded-icon {
+  border-radius: 30px;
+  overflow: hidden;
+}
+.table-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
