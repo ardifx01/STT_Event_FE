@@ -336,6 +336,15 @@ export default defineComponent({
         </ion-row>
 
       </ion-grid>
+
+      <!-- Footer Section -->
+       <div class="">
+        <div class="footer-section">
+          <img src="/img/asset/win_prize.png" alt="" style="width: 100%;" class="hfull">
+        </div>
+
+        <div class="footer-bg-image"></div>
+       </div>
     </ion-content>
   </ion-page>
 </template>

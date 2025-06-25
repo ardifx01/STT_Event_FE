@@ -1,0 +1,16 @@
+.footer-section {
+    width: 100%;
+}
+
+.footer-section img {
+    display: block;
+}
+
+.footer-bg-image {
+  width: 100%;
+  height: 600px; /* Atur sesuai kebutuhan */
+  background-image: url('/img/asset/asset_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -1,8 +1,8 @@
 :root {
   --primary: #1d1d51;
   --primary-dark: #196ba0;
-  --primary-2: #f39c12;
-  --primary-2-dark: #e67e22;
+  --primary-2: #1d1d51;
+  --primary-2-dark: #196ba0;
   --primary-3: #bc3366;
   --primary-3-dark: #a02952;
   --secondary-1: #fbbc1d;
@@ -217,24 +217,81 @@ ion-item ion-icon {
   font-size: larger;
   padding: 0 5px;
 }
+/* Mobile Responsiveness - Tablet */
 @media(max-width:768px) {
+  /* Reset font size yang terlalu kecil */
   * {
-  font-size: 12px;
-}
-.logo {
-  display: none;
-}
-.event-icon {
-  background: var(--bg-primary);
-  border-radius: 10px;
-  width: 100%;
-  margin-left: 16px;
-}
-.mobile-detail-event {
-  margin-left: 20px;
-}
-.border-table-row-1, .border-table-row-2 {
-  height: 97%}
+    font-size: 14px; /* Increased from 12px for better readability */
+  }
+  
+  .logo {
+    display: none;
+  }
+  
+  /* Event icon improvements */
+  .event-icon {
+    background: var(--bg-primary);
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 0; /* Remove margin causing layout issues */
+    max-width: 60px; /* Add max-width for better proportion */
+  }
+  
+  /* Event details mobile layout */
+  .mobile-detail-event {
+    margin-left: 0; /* Remove problematic margin */
+    padding-left: 8px; /* Add padding instead */
+  }
+  
+  /* Home title adjustments */
+  .font-judul-home {
+    font-size: 1.2rem; /* Better mobile size */
+  }
+  
+  .judul-home {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .strip {
+    width: 60%;
+    margin: 8px auto;
+  }
+  
+  .left-strip, .right-strip {
+    margin: 0;
+  }
+  
+  /* Container padding adjustment */
+  .ion-container {
+    padding: 8px;
+  }
+  
+  /* Event details layout */
+  .event-details {
+    margin-left: 0;
+    font-size: 14px;
+  }
+  
+  .event-details h2 {
+    font-size: 1rem;
+  }
+  
+  .event-details p {
+    font-size: 0.9rem;
+  }
+  
+  /* Border table rows */
+  .border-table-row-1, .border-table-row-2 {
+    height: 97%;
+  }
+  
+  /* Hero section mobile adjustments */
+  .hero-section {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
 }.schedule-header, .schedule-item {
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr;
@@ -675,51 +732,122 @@ ion-tab-button ion-label {
   font-size: .9rem;
 }
 }@media (max-width:480px) {
+  /* Schedule improvements for small screens */
   .schedule-section-header {
-  padding: .75rem;
-  margin: 1rem 0 .75rem;
-}
-.schedule-section-header h3, .submit-button {
-  font-size: 1rem;
-}
-.ion-container {
-  padding: .5rem;
-}
-ion-tab-bar {
-  --background: var(--gradient-primary);
-  padding: .5rem 0;
-}
-ion-tab-button {
-  padding: .5rem .25rem;
-}
-ion-tab-button ion-icon {
-  font-size: 2.0rem;
-}
-ion-tab-button ion-label {
-  font-size: .65rem;
-}
-.bg-circle-1 {
-  width: 80px;
-  height: 80px;
-}
-.bg-circle-2 {
-  width: 70px;
-  height: 70px;
-}
-.bg-circle-3 {
-  width: 60px;
-  height: 60px;
-}
-.bg-wave {
-  height: 40px;
-}
-.registration-card {
-  margin: .5rem;
-  border-radius: 12px;
-}
-.registration-form {
-  padding: 1rem;
-}
+    padding: .75rem;
+    margin: 1rem 0 .75rem;
+  }
+  
+  .schedule-section-header h3, .submit-button {
+    font-size: 1rem;
+  }
+  
+  /* Container improvements */
+  .ion-container {
+    padding: .5rem;
+  }
+  
+  /* Tab bar improvements */
+  ion-tab-bar {
+    --background: var(--gradient-primary);
+    padding: .5rem 0;
+  }
+  
+  ion-tab-button {
+    padding: .5rem .25rem;
+  }
+  
+  ion-tab-button ion-icon {
+    font-size: 2.0rem;
+  }
+  
+  ion-tab-button ion-label {
+    font-size: .65rem;
+  }
+  
+  /* Background elements size adjustment */
+  .bg-circle-1 {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .bg-circle-2 {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .bg-circle-3 {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .bg-wave {
+    height: 40px;
+  }
+  
+  /* Registration card improvements */
+  .registration-card {
+    margin: .5rem;
+    border-radius: 12px;
+  }
+  
+  .registration-form {
+    padding: 1rem;
+  }
+  
+  /* Home page mobile specific improvements */
+  .font-judul-home {
+    font-size: 1rem;
+  }
+  
+  .judul-home {
+    flex-direction: column;
+    gap: 4px;
+    margin: 16px 0;
+  }
+  
+  .strip {
+    width: 50%;
+    margin: 4px auto;
+  }
+  
+  .bg-gradient-blue {
+    margin: 16px 0;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  /* Event details mobile improvements */
+  .event-details {
+    font-size: 12px;
+  }
+  
+  .event-details h2 {
+    font-size: 0.9rem;
+  }
+  
+  .event-details p {
+    font-size: 0.8rem;
+  }
+  
+  .event-icon {
+    max-width: 50px;
+  }
+  
+  /* Paragraph text mobile */
+  .paragraph-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .paragraph-text h5 {
+    font-size: 1rem;
+  }
+  
+  /* Better spacing for mobile */
+  .border-table-row-1, .border-table-row-2 {
+    height: 99%;
+  }
 }
 
 /* sweet alert */
@@ -775,27 +903,27 @@ ion-tab-button ion-label {
 
 .strip {
   display: block;
-  width: 100%;
-  height: 2px;
+  width: 80%;
+  height: 3px;
   background: var(--neutral-dark-gray);
   border-radius: 2px;
-  margin-top: 12px;
+  margin: 12px auto;
 }
 
 .left-strip {
-  margin-right: 14px;
+  margin-right: 16px;
 }
 
 .right-strip {
-  margin-left: 14px;
+  margin-left: 16px;
 }
 
 .bg-gradient-blue {
   background: var(--gradient-blue);
   border-radius: 10px;
-  padding: 2px;
+  padding: 12px;
   width: 100%;
-  margin: 0 10px;
+  margin: 20px 0;
   color: var(--neutral-white);
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -814,4 +942,225 @@ ion-tab-button ion-label {
   height: 100%;
   border-radius: 8px;
 }
+
+/* Additional Mobile Improvements */
+@media (max-width: 375px) {
+  /* Very small screens - iPhone SE, etc */
+  .font-judul-home {
+    font-size: 0.9rem;
+  }
+  
+  .judul-home {
+    gap: 2px;
+    margin: 12px 0;
+  }
+  
+  .strip {
+    width: 40%;
+    margin: 2px auto;
+  }
+  
+  .bg-gradient-blue {
+    margin: 12px 0;
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+  
+  .paragraph-text {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .event-details {
+    font-size: 11px;
+  }
+  
+  .event-details h2 {
+    font-size: 0.8rem;
+  }
+  
+  .event-details p {
+    font-size: 0.7rem;
+  }
+  
+  .event-icon {
+    max-width: 45px;
+  }
+  
+  .ion-container {
+    padding: 4px;
+  }
+}
+
+/* Landscape orientation improvements */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 120px;
+  }
+  
+  .hero-section img {
+    min-height: 120px;
+  }
+  
+  .font-judul-home {
+    font-size: 1rem;
+  }
+  
+  .judul-home {
+    margin: 8px 0;
+  }
+  
+  .bg-gradient-blue {
+    margin: 8px 0;
+    padding: 4px;
+  }
+}
+
+/* Fix for grid layout on mobile */
+@media (max-width: 768px) {
+  ion-row[class*="ml-"] {
+    flex-direction: column;
+  }
+  
+  ion-col[size="8"] {
+    --ion-grid-column-padding: 0;
+  }
+  
+  ion-col[class*="ml-"] {
+    margin-left: 0 !important;
+    padding-left: 0;
+  }
+  
+  /* Better image responsiveness */
+  ion-img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Improve table layout on mobile */
+@media (max-width: 768px) {
+  .table-center {
+    padding: 4px;
+    font-size: 0.85rem;
+  }
+  
+  .schedule-item {
+    margin-bottom: 0.75rem;
+  }
+  
+  .schedule-section-header {
+    margin: 1rem 0 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .schedule-section-header h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Utility Classes */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-center {
+    text-align: center !important;
+  }
+  
+  .mobile-padding {
+    padding: 8px !important;
+  }
+  
+  .mobile-margin {
+    margin: 8px 0 !important;
+  }
+  
+  .mobile-hide {
+    display: none !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+/* Fix for ion-grid and ion-col spacing issues on mobile */
+@media (max-width: 768px) {
+  ion-grid.ion-container {
+    padding: 8px;
+  }
+  
+  ion-row {
+    margin: 0;
+  }
+  
+  ion-col {
+    padding: 4px;
+  }
+  
+  /* Better spacing for cards on mobile */
+  ion-card {
+    margin: 8px 0;
+  }
+  
+  ion-card-content {
+    padding: 12px;
+  }
+  
+  ion-card-header {
+    padding: 12px 12px 0;
+  }
+  
+  ion-card-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  ion-button {
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    min-height: 44px;
+  }
+  
+  .table-center {
+    min-height: 44px;
+    padding: 8px;
+  }
+}
+
+/* Fix layout overflow issues */
+@media (max-width: 480px) {
+  * {
+    box-sizing: border-box;
+  }
+  
+  ion-content {
+    overflow-x: hidden;
+  }
+  
+  ion-grid {
+    overflow-x: hidden;
+  }
+  
+  ion-row {
+    overflow-x: hidden;
+  }
+}
+
 
