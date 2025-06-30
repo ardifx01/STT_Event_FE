@@ -1,5 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import {
   IonPage,
@@ -55,18 +57,91 @@ export default defineComponent({
     IonText,
     IonImg
   },
- 
+  data() {
+    return {
+      isLoading: false,
+      errorMessage: null,
+      formData: {
+        fullName: '',
+        company: '',
+        jobTitle: '',
+        email: '',
+        phone: ''
+      }
+    }
+  },
+  methods: {
+    async submitForm() {
+      this.isLoading = true;
+
+      const data = {
+        full_name: this.formData.fullName,
+        job_title: this.formData.jobTitle,
+        company_name: this.formData.company,
+        email: this.formData.email,
+        mobile_number: this.formData.phone
+      }
+
+      await axios.post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
+      .then((response) => {
+        this.isLoading = false;
+        Swal.fire({
+          title: "Registration Successfully!",
+          text: response.data.message || "Thank you for registering!",
+          icon: "success",
+          heightAuto: false,
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        this.isLoading = false;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message || "Something went wrong!",
+          heightAuto: false,
+          customClass: {
+            popup: 'my-fullscreen-modal'
+          },
+        });
+      })
+      .finally(() => {
+        this.clearForm();
+        this.isLoading = false;
+      })
+    },
+
+    clearForm() {
+      this.formData = {
+        fullName: '',
+        company: '',
+        jobTitle: '',
+        email: '',
+        phone: ''
+      };
+    }
+  }
 });
 </script>
 <template>
   <ion-page>
+    <!-- loading -->
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="loader"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+    <!-- loading -->
+
     <ion-content>
       <!-- Hero Section -->
       <div class="hero-section">
         <img src="/img/asset/microsite.png" alt="Security Illustration" />
       </div>
 
-      <ion-grid class="ion-container ion-margin-top">
+      <ion-grid class="ion-container ion-margin-top position-relative">
 
         <ion-row class="ml-4">
           
@@ -338,13 +413,130 @@ export default defineComponent({
       </ion-grid>
 
       <!-- Footer Section -->
-       <div class="">
-        <div class="footer-section">
-          <img src="/img/asset/win_prize.png" alt="" style="width: 100%;" class="hfull">
+      <div class="footer-section">
+        <div class="footer-bg-image">
+          <!-- Win The Prize Section -->
+          <div class="footer-content">
+            <div class="prize-section">
+              <h2 class="prize-title">Win The Prize</h2>
+              
+              <!-- Prize Items -->
+              <div class="prize-items">
+                <div class="prize-container">
+                  <img src="/img/asset/doorprize.png" alt="Prize Items" class="prize-image">
+                  <div class="prize-text-overlay">
+                    <div class="prize-item prize-item-left">
+                      <p class="prize-name">Samsung Galaxy<br>Watch7</p>
+                    </div>
+                    <div class="prize-item prize-item-center">
+                      <p class="prize-name">Xiaomi Robot Vacuum E10</p>
+                    </div>
+                    <div class="prize-item prize-item-right">
+                      <p class="prize-name">JBL Tune 510BT<br>Wireless</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Registration Form -->
+            <div class="registration-form">
+              <ion-grid class="ion-container registration-content">
+                <ion-row class="ion-justify-content-center">
+                  <ion-col size="12" size-md="8" size-lg="6">
+                    <ion-card class="registration-card">
+                      <ion-card-header class="registration-header">
+                        <ion-card-title class="registration-title">
+                          Registration Form
+                        </ion-card-title>
+                      </ion-card-header>
+                      
+                      <ion-card-content class="registration-form">
+                        <ion-list lines="none">
+                          <ion-item class="form-item ion-margin-top">
+                            <ion-input
+                              v-model="formData.fullName"
+                              placeholder="Full Name"
+                              class="custom-input"
+                              fill="outline"
+                              label="First Name"
+                              label-placement="stacked"
+                              clear-input
+                              autocomplete="given-name"
+                            ></ion-input>
+                          </ion-item>
+                          
+                          <ion-item class="form-item">
+                            <ion-input
+                              v-model="formData.company"
+                              placeholder="Company"
+                              class="custom-input"
+                              fill="outline"
+                              label="Company"
+                              label-placement="stacked"
+                              clear-input
+                              autocomplete="organization"
+                            ></ion-input>
+                          </ion-item>
+                          
+                          <ion-item class="form-item">
+                            <ion-input
+                              v-model="formData.jobTitle"
+                              placeholder="Job Title"
+                              class="custom-input"
+                              fill="outline"
+                              label="Job Title"
+                              label-placement="stacked"
+                              clear-input
+                              autocomplete="organization-title"
+                            ></ion-input>
+                          </ion-item>
+                          
+                          <ion-item class="form-item">
+                            <ion-input
+                              v-model="formData.email"
+                              type="email"
+                              placeholder="Company Email"
+                              class="custom-input"
+                              fill="outline"
+                              label="Company Email"
+                              label-placement="stacked"
+                              clear-input
+                              autocomplete="email"
+                            ></ion-input>
+                          </ion-item>
+                          
+                          <ion-item class="form-item">
+                            <ion-input
+                              v-model="formData.phone"
+                              type="tel"
+                              placeholder="Mobile Phone"
+                              class="custom-input"
+                              fill="outline"
+                              label="Mobile Phone"
+                              label-placement="stacked"
+                              clear-input
+                              autocomplete="tel"
+                            ></ion-input>
+                          </ion-item>
+                        </ion-list>
+                        
+                        <ion-button
+                          expand="block"
+                          class="submit-button"
+                          @click="submitForm"
+                        >
+                          SUBMIT
+                        </ion-button>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
         </div>
-
-        <div class="footer-bg-image"></div>
-       </div>
+      </div>
     </ion-content>
   </ion-page>
 </template>

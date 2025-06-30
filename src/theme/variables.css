@@ -1,7 +1,7 @@
 :root {
   --primary: #1d1d51;
   --primary-dark: #196ba0;
-  --primary-2: #1d1d51;
+  --primary-2: #011640;
   --primary-2-dark: #196ba0;
   --primary-3: #bc3366;
   --primary-3-dark: #a02952;
@@ -563,18 +563,13 @@ ion-tab-button ion-label {
 .registration-card {
   position: relative;
   z-index: 20;
-  margin: 1rem 1rem 2rem;
+  margin: 1rem -10rem 2rem -6rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, .95);
   border: 1px solid rgba(255, 255, 255, .2);
   overflow: hidden;
-}
-.registration-form {
-  background: rgba(255, 255, 255, .9);
-  backdrop-filter: blur(15px);
-  border-radius: 0 0 20px 20px;
 }
 .custom-input, .submit-button {
   --border-radius: 12px;
@@ -1162,5 +1157,11 @@ ion-tab-button ion-label {
     overflow-x: hidden;
   }
 }
+
+/* Utility Classes */
+.position-relative {
+  position: relative;
+}
+
 
 
