@@ -3,8 +3,8 @@
   --primary-dark: #196ba0;
   --primary-2: #011640;
   --primary-2-dark: #196ba0;
-  --primary-3: #bc3366;
-  --primary-3-dark: #a02952;
+  --primary-3: #85C7DE;
+  --primary-3-dark: #A0C4E2;
   --secondary-1: #fbbc1d;
   --secondary-1-alt: #efa809;
   --secondary-2: #1484c7;
@@ -45,6 +45,7 @@
   --font-weight-regular: 400;
   --font-weight-light: 300;
 }
+
 * {
   font-family: Poppins;
 }
@@ -108,7 +109,20 @@ ion-tab-bar, ion-tab-button {
 }
 .event-icon {
   background: var(--bg-primary);
-  width: 70%}
+  width: 70%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Untuk ion-img border radius */
+.event-icon img {
+  border-radius: 15px;
+}
+
+/* Fallback untuk ionic img component */
+.event-icon::part(image) {
+  border-radius: 15px;
+}
 .event-details {
   color: var(--neutral-text-dark);
   font-size: 17px;
@@ -130,7 +144,7 @@ ion-tab-bar, ion-tab-button {
   color: var(--primary-2);
 }
 .blue-text {
-  color: var(--primary);
+  color: #0a6ebb;
 }
 .purple-text {
   color: var(--primary-3);
@@ -235,6 +249,12 @@ ion-item ion-icon {
     width: 100%;
     margin-left: 0; /* Remove margin causing layout issues */
     max-width: 60px; /* Add max-width for better proportion */
+    overflow: hidden;
+  }
+  
+  .event-icon img,
+  ion-img.event-icon img {
+    border-radius: 10px;
   }
   
   /* Event details mobile layout */
@@ -676,12 +696,11 @@ ion-tab-button ion-label {
   margin-top: 0.5rem;
   font-weight: 700;
   font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(188, 51, 102, .3);
 }
 .submit-button:hover {
-  --background: linear-gradient(135deg,  var(--primary-3-dark),  #8a2347);
+  /* --background: linear-gradient(135deg,  var(--primary-3-dark),  ); */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(188, 51, 102, .4);
+  /* box-shadow: 0 6px 20px rgba(188, 51, 102, .4); */
 }
 @media (max-width:768px) {
   ion-tab-button ion-icon {
@@ -827,6 +846,13 @@ ion-tab-button ion-label {
   
   .event-icon {
     max-width: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .event-icon img,
+  ion-img.event-icon img {
+    border-radius: 8px;
   }
   
   /* Paragraph text mobile */
@@ -980,6 +1006,13 @@ ion-tab-button ion-label {
   
   .event-icon {
     max-width: 45px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .event-icon img,
+  ion-img.event-icon img {
+    border-radius: 6px;
   }
   
   .ion-container {
@@ -1161,6 +1194,102 @@ ion-tab-button ion-label {
 /* Utility Classes */
 .position-relative {
   position: relative;
+}
+
+/* Ion-img border radius fix */
+ion-img.event-icon {
+  border-radius: 15px;
+  overflow: hidden;
+  display: block;
+}
+
+ion-img.event-icon img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Alternative class for rounded images */
+.rounded-icon {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.rounded-icon img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Alternatif jika ion-img masih bermasalah dengan border radius */
+.event-icon-wrapper {
+  border-radius: 15px;
+  overflow: hidden;
+  display: inline-block;
+  background: var(--bg-primary);
+}
+
+.event-icon-wrapper ion-img {
+  display: block;
+  border-radius: 15px;
+}
+
+/* Untuk memastikan ionic img component mengikuti border radius */
+.event-icon {
+  --border-radius: 15px;
+}
+
+.event-icon::part(image) {
+  border-radius: var(--border-radius, 15px);
+}
+
+/* Force border radius untuk semua child elements */
+.event-icon * {
+  border-radius: inherit;
+}
+
+@media(max-width:768px) {
+  .event-icon-wrapper {
+    border-radius: 10px;
+  }
+  
+  .event-icon-wrapper ion-img {
+    border-radius: 10px;
+  }
+  
+  .event-icon {
+    --border-radius: 10px;
+  }
+}
+
+@media (max-width:480px) {
+  .event-icon-wrapper {
+    border-radius: 8px;
+  }
+  
+  .event-icon-wrapper ion-img {
+    border-radius: 8px;
+  }
+  
+  .event-icon {
+    --border-radius: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .event-icon-wrapper {
+    border-radius: 6px;
+  }
+  
+  .event-icon-wrapper ion-img {
+    border-radius: 6px;
+  }
+  
+  .event-icon {
+    --border-radius: 6px;
+  }
 }
 
 

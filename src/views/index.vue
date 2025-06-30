@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonIcon,
 } from '@ionic/vue';
-import { home, personAdd, helpCircle, radio, library, search } from 'ionicons/icons';
+import { home, personAdd, helpCircle, radio, library, search, camera } from 'ionicons/icons';
 import { ref } from 'vue';
 
 export default {
@@ -77,13 +77,13 @@ export default {
         Beranda
       </ion-tab-button>
       <ion-tab-button tab="cameraParticipatPage">
-        <ion-icon :icon="helpCircle" />
-        Feedbacks
+        <ion-icon :icon="camera" />
+        Camera
       </ion-tab-button>
-      <ion-tab-button tab="registerPage">
+      <!-- <ion-tab-button tab="registerPage">
         <ion-icon :icon="personAdd" />
         Register
-      </ion-tab-button>
+      </ion-tab-button> -->
     </ion-tab-bar>
   </ion-tabs>
 </template>

@@ -148,7 +148,7 @@ export default defineComponent({
           <ion-col size="8" class="">
             
             <ion-col class="">
-              <h3 class="blue-text ion-no-margin text-center"><strong>NEW EXPERIENCE!</strong></h3>
+              <h1 class="blue-text ion-no-margin text-center oxanium-extrabold"><strong>NEW EXPERIENCE!</strong></h1>
               <div class="judul-home">
                 <span class="strip left-strip"></span>
                   <div class="mt-8">
@@ -285,7 +285,7 @@ export default defineComponent({
                 
                 <!-- Breakout A Section -->
                 <div class="schedule-section-header">
-                  <h3>Breakout A (AI/ML & Data Management)</h3>
+                  <h3>Breakout Session A : AI/ML Data Management</h3>
                 </div>
                 
                 <div class="schedule-item">
@@ -335,7 +335,7 @@ export default defineComponent({
                 
                 <!-- Breakout B Section -->
                 <div class="schedule-section-header">
-                  <h3>Breakout B (Cyber Security)</h3>
+                  <h3>Breakout Session B : Cyber Security</h3>
                 </div>
                 
                 <div class="schedule-item schedule-item-blue">
