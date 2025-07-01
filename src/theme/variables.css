@@ -964,6 +964,51 @@ ion-tab-button ion-label {
   border-radius: 8px;
 }
 
+/* Content section styling */
+.content-section {
+  width: 100%;
+  padding: 0;
+}
+
+.experience-image {
+  width: 100%;
+  text-align: center;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Mobile specific improvements */
+@media (max-width: 768px) {
+  .content-section {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .experience-image {
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .responsive-image {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-section {
+    padding: 4px;
+  }
+  
+  .responsive-image {
+    max-width: 90%;
+  }
+}
+
 /* Additional Mobile Improvements */
 @media (max-width: 375px) {
   /* Very small screens - iPhone SE, etc */
@@ -1046,23 +1091,37 @@ ion-tab-button ion-label {
 
 /* Fix for grid layout on mobile */
 @media (max-width: 768px) {
-  ion-row[class*="ml-"] {
+  /* Better grid handling for mobile */
+  ion-row.ml-4 {
+    margin-left: 0 !important;
     flex-direction: column;
   }
   
-  ion-col[size="8"] {
-    --ion-grid-column-padding: 0;
+  ion-col[size="12"][size-md="5"][size-lg="7"] {
+    --ion-grid-column-padding: 8px;
+    margin-bottom: 16px;
   }
   
   ion-col[class*="ml-"] {
     margin-left: 0 !important;
-    padding-left: 0;
+    padding-left: 8px;
+  }
+  
+  /* Prevent overflow issues */
+  .ion-container {
+    overflow-x: hidden;
+    max-width: 100%;
   }
   
   /* Better image responsiveness */
   ion-img {
     max-width: 100%;
     height: auto;
+  }
+  
+  /* Fix for column spacing */
+  ion-row ion-col {
+    padding: 4px;
   }
 }
 
@@ -1191,11 +1250,62 @@ ion-tab-button ion-label {
   }
 }
 
-/* Utility Classes */
-.position-relative {
-  position: relative;
+/* Mobile Layout Fixes */
+@media (max-width: 768px) {
+  /* Prevent container overflow */
+  .ion-container.position-relative {
+    position: relative;
+    overflow: visible; /* Allow content to flow naturally */
+    margin-bottom: 20px; /* Add space to prevent overlapping */
+  }
+  
+  /* Fix for judul-home section */
+  .judul-home {
+    margin: 16px 0;
+    padding: 0 8px;
+  }
+  
+  /* Ensure bg-gradient-blue doesn't cause issues */
+  .bg-gradient-blue {
+    margin: 20px 0;
+    clear: both; /* Clear any floating elements */
+  }
+  
+  /* Better spacing for mobile detail event */
+  .mobile-detail-event {
+    margin: 8px 0;
+    padding: 0 4px;
+  }
+  
+  /* Fix column layout issues */
+  ion-col.ion-align-self-center {
+    align-self: stretch;
+    margin-bottom: 12px;
+  }
+  
+  /* Prevent text overflow */
+  .paragraph-text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 }
 
+/* Extra small screens fixes */
+@media (max-width: 480px) {
+  .ion-container.position-relative {
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .judul-home {
+    margin: 12px 0;
+    padding: 0 4px;
+  }
+  
+  .bg-gradient-blue {
+    margin: 16px 0;
+  }
+}
 /* Ion-img border radius fix */
 ion-img.event-icon {
   border-radius: 15px;

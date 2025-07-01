@@ -141,13 +141,12 @@ export default defineComponent({
         <img src="/img/asset/microsite.png" alt="Security Illustration" />
       </div>
 
-      <ion-grid class="ion-container ion-margin-top position-relative">
+      <ion-grid class="ion-container ion-margin-top">
 
-        <ion-row class="ml-4">
+        <ion-row>
           
-          <ion-col size="8" class="">
-            
-            <ion-col class="">
+          <ion-col size="12" size-md="8" size-lg="7">
+            <div class="content-section">
               <h1 class="blue-text ion-no-margin text-center oxanium-extrabold"><strong>NEW EXPERIENCE!</strong></h1>
               <div class="judul-home">
                 <span class="strip left-strip"></span>
@@ -168,12 +167,14 @@ export default defineComponent({
                 <p><span class="blue-text">Secure your spot by RSVP by <strong>11 September 2025.</strong></span> Don't miss the chance to harness the power of AI your company. We look forward to your participation and engaging discussion during the Event. Thank you</p>
                 
               </ion-text>
-            </ion-col>
+            </div>
 
           </ion-col>
           
-          <ion-col class="ion-align-self-center ion-text-center ml-8">
-            <img src="/img/asset/asset_experience.png" alt="Experience" class="">
+          <ion-col size="12" size-md="4" size-lg="5" class="ion-align-self-center ion-text-center">
+            <div class="experience-image">
+              <img src="/img/asset/asset_experience.png" alt="Experience" class="responsive-image">
+            </div>
           </ion-col>
 
         </ion-row>
