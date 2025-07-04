@@ -48,6 +48,7 @@ export default {
       library,
       search,
       activeTab,
+      camera,
       onTabChange
     };
   },
