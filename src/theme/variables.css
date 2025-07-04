@@ -1,10 +1,10 @@
 :root {
-  --primary: #1d1d51;
-  --primary-dark: #196ba0;
-  --primary-2: #011640;
-  --primary-2-dark: #196ba0;
-  --primary-3: #85C7DE;
-  --primary-3-dark: #A0C4E2;
+  --primary: #022b61;
+  --primary-dark: #04649E;
+  --primary-2: #022b61;
+  --primary-2-dark: #04649E;
+  --primary-3: #D7F0FF;
+  --primary-3-dark: #04649E;
   --secondary-1: #fbbc1d;
   --secondary-1-alt: #efa809;
   --secondary-2: #1484c7;
@@ -23,11 +23,11 @@
   --bg-warning: #fff3cd;
   --border-light: #f1f3f4;
   --border-warning: #ffc107;
-  --gradient-primary: linear-gradient(135deg,  var(--primary),  var(--primary-dark));
+  --gradient-primary: linear-gradient(135deg,  var(--primary),  var(--primary-dark, var(--primary-3)));
   --gradient-2: linear-gradient(135deg,  var(--primary-2),  var(--primary-2-dark));
   --gradient-3: linear-gradient(135deg,  var(--primary-3),  var(--primary-3-dark));
   --gradient-registration: linear-gradient(167deg,  rgba(253,  189,  29,  1) 65%,  rgba(12,  95,  180,  1) 55%);
---gradient-blue: linear-gradient(to right, #022b61, #294f90);
+--gradient-blue: linear-gradient(135deg,  var(--primary),  var(--primary-dark, var(--primary-3)));
 
   /* Font Family */
   --font-heading: 'Poppins', sans-serif;
@@ -312,7 +312,21 @@ ion-item ion-icon {
     margin-right: 0;
     width: 100%;
   }
-}.schedule-header, .schedule-item {
+}
+
+.schedule-card-title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: var(--gradient-primary) ;
+  margin-bottom: 10px;
+}
+
+.schedule-card-title h2{
+  color: var(--neutral-white);
+}
+
+
+.schedule-header, .schedule-item {
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr;
   gap: .5rem;

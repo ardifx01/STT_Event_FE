@@ -225,7 +225,7 @@ export default defineComponent({
           <ion-col size="12">
             <ion-card>
 
-              <ion-card-header>
+              <ion-card-header class="schedule-card-title">
                 <ion-card-title class="ion-text-center">
                   <h2><strong>General Session</strong></h2>
                   <!-- <h4>AI IN ACTION : REAL WORLD USE CASES FOR COMPETITIVE ADVANTAGES</h4> -->
