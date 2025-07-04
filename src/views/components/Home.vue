@@ -180,7 +180,7 @@ export default defineComponent({
         </ion-row>
 
         <div class="bg-gradient-blue">
-          <p>Event</p>
+          <h5 class="oxanium-bold">Event Detail</h5>
         </div>
 
         <ion-row class="">
@@ -227,18 +227,18 @@ export default defineComponent({
 
               <ion-card-header class="schedule-card-title">
                 <ion-card-title class="ion-text-center">
-                  <h2><strong>General Session</strong></h2>
+                  <h2 class="oxanium-bold letters-spacing"><strong>General Session</strong></h2>
                   <!-- <h4>AI IN ACTION : REAL WORLD USE CASES FOR COMPETITIVE ADVANTAGES</h4> -->
                 </ion-card-title>
               </ion-card-header>
               
-              <ion-card-content class="schedule">
+              <ion-card-content class="schedule oxanium-semibold">
                 <!-- Schedule Header -->
                 <div class="schedule-header">
-                  <div class="schedule-time">Time</div>
-                  <div class="schedule-agenda">Agenda</div>
-                  <div class="schedule-topic">Topic</div>
-                  <div class="schedule-speaker">Speaker</div>
+                  <div class="schedule-time letters-spacing">Time</div>
+                  <div class="schedule-agenda letters-spacing">Agenda</div>
+                  <div class="schedule-topic letters-spacing">Topic</div>
+                  <div class="schedule-speaker letters-spacing">Speaker</div>
                   <!-- <div class="schedule-brand">Brand</div>
                   <div class="schedule-solution">Solution</div> -->
                 </div>
@@ -286,7 +286,7 @@ export default defineComponent({
                 
                 <!-- Breakout A Section -->
                 <div class="schedule-section-header">
-                  <h3>Breakout Session A : AI/ML Data Management</h3>
+                  <h3 class="letters-spacing">Breakout Session A : AI/ML Data Management</h3>
                 </div>
                 
                 <div class="schedule-item">
@@ -336,7 +336,7 @@ export default defineComponent({
                 
                 <!-- Breakout B Section -->
                 <div class="schedule-section-header">
-                  <h3>Breakout Session B : Cyber Security</h3>
+                  <h3 class="letters-spacing">Breakout Session B : Cyber Security</h3>
                 </div>
                 
                 <div class="schedule-item schedule-item-blue">
@@ -386,7 +386,7 @@ export default defineComponent({
                 
                 <!-- General Session -->
                 <div class="schedule-section-header">
-                  <h3>General Session</h3>
+                  <h3 class="letters-spacing">General Session</h3>
                 </div>
                 
                 <div class="schedule-item">
@@ -419,7 +419,7 @@ export default defineComponent({
           <!-- Win The Prize Section -->
           <div class="footer-content">
             <div class="prize-section">
-              <h2 class="prize-title">Win The Prize</h2>
+              <h2 class="prize-title oxanium-bold letters-spacing">Win The Prize</h2>
               
               <!-- Prize Items -->
               <div class="prize-items">

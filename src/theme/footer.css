@@ -73,20 +73,20 @@
 }
 
 .prize-item-left {
-  top: 8%;
-  left: 27%;
+  top: 2%;
+  left: 25%;
   width: 25%;
 }
 
 .prize-item-center {
-  top: 12%;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 25%;
 }
 
 .prize-item-right {
-  top: 8%;
+  top: 2%;
   right: 8%;
   width: 25%;
 }
@@ -160,7 +160,7 @@
   }
   
   .prize-image {
-    width: 120px;
+    width: 300px;
     height: 120px;
   }
   
@@ -171,5 +171,30 @@
   .form-group {
     grid-template-columns: 1fr;
   }
+
+  .prize-item-left {
+  top: 0%;
+  left: 20%;
+  width: 25%;
+}
+
+.prize-item-center {
+  bottom: 6%;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 25%;
+}
+
+.prize-item-right {
+  top: 2%;
+  right: 5%;
+  width: 25%;
+}
+
+.prize-name {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
 }
 
