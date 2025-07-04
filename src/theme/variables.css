@@ -11,7 +11,7 @@
   --secondary-2-alt: #2a8ecf;
   --neutral-white: #ffffff;
   --neutral-light-gray: #f8f9fa;
-  --neutral-light-blue: #d8e2f8;
+  --neutral-light-blue: #D7F0FF;
   --neutral-gray: #e9ecef;
   --neutral-dark-gray: #dee2e6;
   --neutral-text: #495057;
@@ -27,7 +27,7 @@
   --gradient-2: linear-gradient(135deg,  var(--primary-2),  var(--primary-2-dark));
   --gradient-3: linear-gradient(135deg,  var(--primary-3),  var(--primary-3-dark));
   --gradient-registration: linear-gradient(167deg,  rgba(253,  189,  29,  1) 65%,  rgba(12,  95,  180,  1) 55%);
---gradient-blue: linear-gradient(135deg,  var(--primary),  var(--primary-dark, var(--primary-3)));
+  --gradient-blue: linear-gradient(135deg,  var(--primary),  var(--primary-dark, var(--primary-3)));
 
   /* Font Family */
   --font-heading: 'Poppins', sans-serif;
@@ -325,10 +325,13 @@ ion-item ion-icon {
   color: var(--neutral-white);
 }
 
+.schedule-background {
+  background: var(--gradient-blue);
+}
 
 .schedule-header, .schedule-item {
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   gap: .5rem;
 }
 @media(max-width:425px) {
@@ -402,7 +405,7 @@ ion-item ion-icon {
   font-weight: 700;
 }
 .lunch-break {
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 4fr;
 }
 .lunch-break .schedule-agenda-content {
   background: var(--bg-warning);

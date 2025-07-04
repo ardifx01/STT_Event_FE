@@ -223,7 +223,7 @@ export default defineComponent({
 
         <ion-row>
           <ion-col size="12">
-            <ion-card>
+            <ion-card class="schedule-background">
 
               <ion-card-header class="schedule-card-title">
                 <ion-card-title class="ion-text-center">
@@ -232,11 +232,10 @@ export default defineComponent({
                 </ion-card-title>
               </ion-card-header>
               
-              <ion-card-content class="schedule oxanium-semibold">
+              <ion-card-content class="schedule oxanium-semibold" >
                 <!-- Schedule Header -->
                 <div class="schedule-header">
                   <div class="schedule-time letters-spacing">Time</div>
-                  <div class="schedule-agenda letters-spacing">Agenda</div>
                   <div class="schedule-topic letters-spacing">Topic</div>
                   <div class="schedule-speaker letters-spacing">Speaker</div>
                   <!-- <div class="schedule-brand">Brand</div>
@@ -246,35 +245,30 @@ export default defineComponent({
                 <!-- Morning Sessions -->
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">09.30 - 09.45<br><small>15 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Opening</div>
                   <div class="schedule-topic-content border-gray table-center">Sapta Tunas Achievement & Roadmap</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Arianto</strong></div>
                 </div>
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">09.45 - 10.00<br><small>15 min</small></div>
-                  <div class="schedule-topic-content border-blue table-center">-</div>
                   <div class="schedule-agenda-content border-blue table-center">Keynote Speech</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Erwin</strong></div>
                 </div>
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">10.00 - 10.30<br><small>30 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Background</div>
                   <div class="schedule-topic-content border-gray table-center">Current Challenges & Latest IT Trends</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Andre</strong></div>
                 </div>
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">10.30 - 11.15<br><small>45 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">Session 1</div>
                   <div class="schedule-topic-content border-blue table-center">Cloud Transformation</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Bram</strong></div>
                 </div>
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">11.15 - 12.00<br><small>45 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Session 2</div>
                   <div class="schedule-topic-content border-gray table-center">Dell AI Factory</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>David</strong></div>
                 </div>
@@ -291,7 +285,6 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">13.00 - 13.30<br><small>30 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Session 2</div>
                   <div class="schedule-topic-content border-gray table-center">Master Data Management (Pentaho)</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Victor</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Xeratic</strong></div>
@@ -300,7 +293,6 @@ export default defineComponent({
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content border-blue table-center schedule-time-content-blue">13.30 - 14.30<br><small>60 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">Session 3</div>
                   <div class="schedule-topic-content border-blue table-center">AI Experience Introduction</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Juan Fernando</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>STT</strong></div>
@@ -309,16 +301,14 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">14.20 - 15.00<br><small>30 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">-</div>
                   <div class="schedule-speaker-content border-gray table-center">-</div>
-                  <div class="schedule-topic-conten border-gray table-centert">-</div>
+                  <div class="schedule-topic-conten border-gray table-center">-</div>
                   <!-- <div class="schedule-brand-content">-</div>
                   <div class="schedule-solution-content"></div> -->
                 </div>
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content border-blue table-center schedule-time-content-blue">15.00 - 15.30<br><small>30 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">Session 4</div>
                   <div class="schedule-topic-content border-blue table-center">AI Infrastructure</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Fitra</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Rafay</strong></div>
@@ -327,7 +317,6 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">15.30 - 16.00<br><small>30 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Session 5</div>
                   <div class="schedule-topic-content border-gray table-center">AI Paralel File Storage Solution</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Eunice</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Weka</strong></div>
@@ -341,7 +330,6 @@ export default defineComponent({
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">13.00 - 13.40<br><small>40 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">Session 2</div>
                   <div class="schedule-topic-content border-blue table-center">Threat Intelligence</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Rangga</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Cyble</strong></div>
@@ -350,7 +338,6 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">13.40 - 14.20<br><small>40 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Session 3</div>
                   <div class="schedule-topic-content border-gray table-center">Enterprise User Protection</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Calvin</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Cisco</strong></div>
@@ -359,7 +346,6 @@ export default defineComponent({
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">14.20 - 14.40<br><small>20 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">-</div>
                   <div class="schedule-speaker-content border-blue table-center">-</div>
                   <div class="schedule-topic-content border-blue table-center">-</div>
                   <!-- <div class="schedule-brand-content"></div>
@@ -368,7 +354,6 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">14.40 - 15.20<br><small>40 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Session 4</div>
                   <div class="schedule-topic-content border-gray table-center">Security + Observability (AI Ops)</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Diar</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>Elastic</strong></div>
@@ -377,7 +362,6 @@ export default defineComponent({
                 
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">15.20 - 16.00<br><small>40 min</small></div>
-                  <div class="schedule-agenda-content border-blue table-center">Session 5</div>
                   <div class="schedule-topic-content border-blue table-center">Cyber Resiliency (CRS)</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Felix</strong></div>
                   <!-- <div class="schedule-brand-content"><strong>STT</strong></div>
@@ -391,8 +375,7 @@ export default defineComponent({
                 
                 <div class="schedule-item">
                   <div class="schedule-time-content border-gray table-center">16.00 - 16.15<br><small>15 min</small></div>
-                  <div class="schedule-agenda-content border-gray table-center">Customer Testimonial</div>
-                  <div class="schedule-topic-content border-gray table-center">-</div>
+                  <div class="schedule-topic-content border-gray table-center">Customer Testimonial</div>
                   <div class="schedule-speaker-content border-gray table-center"><strong>Alfandi</strong></div>
                   <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -401,7 +384,6 @@ export default defineComponent({
                 <div class="schedule-item schedule-item-blue">
                   <div class="schedule-time-content schedule-time-content-blue border-blue table-center">16.15 - 16.30<br><small>15 min</small></div>
                   <div class="schedule-agenda-content border-blue table-center">Door Prize & Closing</div>
-                  <div class="schedule-topic-conten border-blue table-centert">-</div>
                   <div class="schedule-speaker-content border-blue table-center"><strong>Sastrya</strong></div>
                   <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
