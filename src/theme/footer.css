@@ -32,17 +32,19 @@
 }
 
 .prize-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-align: center;
 }
 
 .prize-items {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  padding: 0 15px;
 }
 
 .prize-container {
@@ -82,7 +84,7 @@
   bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 25%;
+  width: 23%;
 }
 
 .prize-item-right {
@@ -99,6 +101,91 @@
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   margin: 0;
   text-align: left;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .prize-section {
+    margin-top: 150px;
+    margin-bottom: 50px;
+  }
+  
+  .prize-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .prize-name {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .prize-section {
+    margin-top: 120px;
+    margin-bottom: 40px;
+  }
+  
+  .prize-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+  
+  .prize-item-left {
+    top: 1%;
+    left: 22%;
+    width: 28%;
+  }
+  
+  .prize-item-center {
+    bottom: 12%;
+    width: 26%;
+  }
+  
+  .prize-item-right {
+    top: 1%;
+    right: 6%;
+    width: 28%;
+  }
+  
+  .prize-name {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .prize-section {
+    margin-top: 243px;
+    margin-bottom: 30px;
+  }
+  
+  .prize-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  .prize-item-left {
+    top: 0;
+    left: 20%;
+    width: 30%;
+  }
+  
+  .prize-item-center {
+    bottom: 10%;
+    width: 30%;
+  }
+  
+  .prize-item-right {
+    top: 0;
+    right: 4%;
+    width: 30%;
+  }
+  
+  .prize-name {
+    font-size: 0.6rem;
+    line-height: 1.1;
+  }
 }
 
 
@@ -160,8 +247,8 @@
   }
   
   .prize-image {
-    width: 300px;
-    height: 120px;
+    width: 100%;
+    height: auto;
   }
   
   .form-container {
@@ -174,7 +261,7 @@
 
   .prize-item-left {
   top: 0%;
-  left: 20%;
+  left: 25%;
   width: 25%;
 }
 

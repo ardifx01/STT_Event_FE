@@ -702,8 +702,9 @@ ion-tab-button ion-label {
   --border-color: var(--primary);
   box-shadow: 0 4px 12px rgba(43, 133, 193, .15);
 }
+
 .submit-button {
-  --background: var(--gradient-3);
+  --background: var(--primary-3-dark);
   --color: var(--neutral-white);
   --padding-top: 1rem;
   --padding-bottom: 1rem;
@@ -711,11 +712,13 @@ ion-tab-button ion-label {
   font-weight: 700;
   font-size: 1.1rem;
 }
+
 .submit-button:hover {
   /* --background: linear-gradient(135deg,  var(--primary-3-dark),  ); */
   transform: translateY(-2px);
   /* box-shadow: 0 6px 20px rgba(188, 51, 102, .4); */
 }
+
 @media (max-width:768px) {
   ion-tab-button ion-icon {
   font-size: 2.2rem;
