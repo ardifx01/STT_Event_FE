@@ -6,26 +6,31 @@
         <ion-spinner name="crescent"></ion-spinner>
         <p>Loading participants...</p>
       </div>
-      
+
       <!-- Error State -->
       <div v-else-if="error" class="error-container">
         <p>{{ error }}</p>
-        <ion-button @click="loadParticipants" fill="outline" size="small">Retry</ion-button>
+        <ion-button @click="loadParticipants" fill="outline" size="small"
+          >Retry</ion-button
+        >
       </div>
-      
+
       <!-- Wheel -->
       <fieldset v-else class="ui-wheel-of-fortune" :style="wheelStyle">
         <ul>
-          <li v-for="(participant, index) in participants" :key="participant.id || index" :style="getSegmentStyle(index)">
+          <li
+            v-for="(participant, index) in participants"
+            :key="participant.id || index"
+            :style="getSegmentStyle(index)"
+          >
             {{ participant.registration?.full_name }}
           </li>
         </ul>
         <button type="button" :disabled="isSpinning">
-          {{ isSpinning ? 'SPINNING...' : 'SPIN' }}
+          {{ isSpinning ? "SPINNING..." : "SPIN" }}
         </button>
       </fieldset>
 
-      
       <!-- Winner Modal -->
       <ion-modal :is-open="!!winner">
         <ion-content class="ion-padding">
@@ -35,47 +40,72 @@
             <div class="loading-text">Loading...</div>
           </div>
           <!-- loading -->
-          
 
           <div class="winner-content">
-            <div class="winner-icon">
-              🏆
-            </div>
+            <div class="winner-icon">🏆</div>
             <h1>🎉 Congratulations! 🎉</h1>
-            <h1 class="winner-name">{{ winner && typeof winner === 'object' ? winner.registration?.full_name : winner }}</h1>
-            <div v-if="winner && typeof winner === 'object'" class="winner-details">
+            <h1 class="winner-name">
+              {{
+                winner && typeof winner === "object"
+                  ? winner.registration?.full_name
+                  : winner
+              }}
+            </h1>
+            <div
+              v-if="winner && typeof winner === 'object'"
+              class="winner-details"
+            >
               <p v-if="winner.registration?.email" class="winner-email">
-                {{ winner.registration?.email  }}
+                {{ winner.registration?.email }}
               </p>
-              <p v-if="winner.registration?.company_name" class="winner-company">
+              <p
+                v-if="winner.registration?.company_name"
+                class="winner-company"
+              >
                 {{ winner.registration?.company_name }}
               </p>
             </div>
             <div class="winner-actions">
               <ion-row>
-                  <ion-col size="6">
-                    <ion-button @click="dismissModal()" expand="block" size="large" fill="outline" class="close-btn">
-                      CLOSE
-                    </ion-button>
-                  </ion-col>
-                  <ion-col size="6">
-                    <ion-button @click="submitWinner()" expand="block" size="large" class="submit-btn">
-                      SUBMIT
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
+                <ion-col size="6">
+                  <ion-button
+                    @click="dismissModal()"
+                    expand="block"
+                    size="large"
+                    fill="outline"
+                    class="close-btn"
+                  >
+                    CLOSE
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button
+                    @click="submitWinner()"
+                    expand="block"
+                    size="large"
+                    class="submit-btn"
+                  >
+                    SUBMIT
+                  </ion-button>
+                </ion-col>
+              </ion-row>
               <!-- tekan submit, tombol ini akan reset dan yang menang akan masuk ke dalam database -->
             </div>
           </div>
         </ion-content>
       </ion-modal>
-      
+
       <!-- Participants Info -->
       <div class="participants-info">
         <p>Total Participants: {{ participants.length }}</p>
 
         <div class="refresh-btn-container">
-          <ion-button @click="refreshParticipant()" expand="block" size="large" class="submit-btn">
+          <ion-button
+            @click="refreshParticipant()"
+            expand="block"
+            size="large"
+            class="submit-btn"
+          >
             REFRESH PARTICIPANTS
           </ion-button>
         </div>
@@ -85,9 +115,9 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { defineComponent } from 'vue';
+import axios from "axios";
+import Swal from "sweetalert2";
+import { defineComponent } from "vue";
 import {
   IonPage,
   IonHeader,
@@ -102,12 +132,12 @@ import {
   IonCardContent,
   IonModal,
   IonButtons,
-  IonIcon
-} from '@ionic/vue';
-import { close } from 'ionicons/icons';
+  IonIcon,
+} from "@ionic/vue";
+import { close } from "ionicons/icons";
 
 export default defineComponent({
-  name: 'PrizeDrawEntries',
+  name: "PrizeDrawEntries",
   components: {
     IonPage,
     IonHeader,
@@ -122,7 +152,7 @@ export default defineComponent({
     IonCardContent,
     IonModal,
     IonButtons,
-    IonIcon
+    IonIcon,
   },
   data() {
     return {
@@ -140,16 +170,113 @@ export default defineComponent({
   computed: {
     wheelStyle() {
       return {
-        '--_items': this.participants.length
+        "--_items": this.participants.length,
       };
-    }
+    },
   },
   async mounted() {
     await this.loadParticipants();
     this.$nextTick(() => {
       this.initWheelOfFortune();
     });
-
+    this.participants = [
+      {
+        id: 23,
+        registration_id: 36,
+        eligible: true,
+        winner: false,
+        date_winner: null,
+        winner_spinn_number: null,
+        created_at: "2025-07-07T02:56:37.000000Z",
+        updated_at: "2025-07-07T02:56:37.000000Z",
+        registration: {
+          id: 36,
+          confirm_barcode: "ba9270cb-1f71-46d7-b9b1-5a2d15df6727",
+          status: "confirmed",
+          absent: 1,
+          full_name: "Anton Wijaya",
+          email: "anton.wijaya@example.com",
+          job_title: "DevOps Engineer",
+          company_name: "CloudNet Solutions",
+          mobile_number: "08123456785",
+          created_at: "2025-07-07T09:05:00.000000Z",
+          updated_at: "2025-07-07T09:10:00.000000Z",
+          deleted_at: null,
+        },
+      },
+      {
+        id: 22,
+        registration_id: 37,
+        eligible: true,
+        winner: false,
+        date_winner: null,
+        winner_spinn_number: null,
+        created_at: "2025-07-07T02:56:29.000000Z",
+        updated_at: "2025-07-07T02:56:29.000000Z",
+        registration: {
+          id: 37,
+          confirm_barcode: "d5cf9496-3d6f-40a4-8264-8e8794e7d312",
+          status: "confirmed",
+          absent: 1,
+          full_name: "Sinta Dewi",
+          email: "sinta.dewi@example.com",
+          job_title: "Data Analyst",
+          company_name: "InfoAnalytics ID",
+          mobile_number: "08123456786",
+          created_at: "2025-07-07T09:06:00.000000Z",
+          updated_at: "2025-07-07T09:11:00.000000Z",
+          deleted_at: null,
+        },
+      },
+      {
+        id: 21,
+        registration_id: 38,
+        eligible: true,
+        winner: false,
+        date_winner: null,
+        winner_spinn_number: null,
+        created_at: "2025-07-07T02:56:23.000000Z",
+        updated_at: "2025-07-07T02:56:23.000000Z",
+        registration: {
+          id: 38,
+          confirm_barcode: "d176f8d6-5fcf-49c0-9131-b7a65310ef76",
+          status: "confirmed",
+          absent: 1,
+          full_name: "Rangga Saputra",
+          email: "rangga.saputra@example.com",
+          job_title: "QA Engineer",
+          company_name: "BugBuster Tech",
+          mobile_number: "08123456787",
+          created_at: "2025-07-07T09:07:00.000000Z",
+          updated_at: "2025-07-07T09:12:00.000000Z",
+          deleted_at: null,
+        },
+      },
+      {
+        id: 20,
+        registration_id: 39,
+        eligible: true,
+        winner: false,
+        date_winner: null,
+        winner_spinn_number: null,
+        created_at: "2025-07-07T02:56:16.000000Z",
+        updated_at: "2025-07-07T02:56:16.000000Z",
+        registration: {
+          id: 39,
+          confirm_barcode: "8cb0f011-5d4f-44cb-942c-9c8c9a7e4a9a",
+          status: "confirmed",
+          absent: 1,
+          full_name: "Fiona Natalia",
+          email: "fiona.natalia@example.com",
+          job_title: "Frontend Developer",
+          company_name: "ModernWeb Studio",
+          mobile_number: "08123456788",
+          created_at: "2025-07-07T09:08:00.000000Z",
+          updated_at: "2025-07-07T09:13:00.000000Z",
+          deleted_at: null,
+        },
+      },
+    ];
   },
   methods: {
     async refreshParticipant() {
@@ -162,13 +289,18 @@ export default defineComponent({
     async submitWinner() {
       this.isLoadingSubmitWinner = true;
       if (!this.winner) return;
-      const sesiSpin = localStorage.getItem('sesiSpin');
+      const sesiSpin = localStorage.getItem("sesiSpin");
 
       try {
-        const res = await axios.put(`${import.meta.env.VITE_SPIN_WHEEL_SUBMIT_WINNER_API}/${this.winner.registration.id}` , {
-          winner_spinn_number: sesiSpin,
-        });
-        
+        const res = await axios.put(
+          `${import.meta.env.VITE_SPIN_WHEEL_SUBMIT_WINNER_API}/${
+            this.winner.registration.id
+          }`,
+          {
+            winner_spinn_number: sesiSpin,
+          }
+        );
+
         this.isLoadingSubmitWinner = false;
         Swal.fire({
           title: "Successfully Submit!",
@@ -176,13 +308,13 @@ export default defineComponent({
           icon: "success",
           heightAuto: false, // ini bisa membantu
           customClass: {
-            popup: 'my-fullscreen-modal'
+            popup: "my-fullscreen-modal",
           },
         });
         this.winner = null; // Reset winner after submission
       } catch (error) {
-        this.error = 'Failed to submit winner. Please try again.';
-        console.log('Error submitting winner:', error);
+        this.error = "Failed to submit winner. Please try again.";
+        console.log("Error submitting winner:", error);
         this.isLoadingSubmitWinner = false;
         Swal.fire({
           icon: "error",
@@ -190,7 +322,7 @@ export default defineComponent({
           text: error.response.data.message || "Something went wrong!",
           heightAuto: false, // ini bisa membantu
           customClass: {
-            popup: 'my-fullscreen-modal'
+            popup: "my-fullscreen-modal",
           },
         });
       } finally {
@@ -201,11 +333,13 @@ export default defineComponent({
 
     async getAllParticipants() {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SPIN_WHEEL_API}`);
-        console.log('Participants fetched successfully:', response.data.data);
+        const response = await axios.get(
+          `${import.meta.env.VITE_SPIN_WHEEL_API}`
+        );
+        console.log("Participants fetched successfully:", response.data.data);
         return response.data.data;
       } catch (error) {
-        console.error('Error fetching participants:', error);
+        console.error("Error fetching participants:", error);
         throw error;
       } finally {
         this.isLoading = false;
@@ -214,53 +348,52 @@ export default defineComponent({
     async loadParticipants() {
       this.isLoading = true;
       this.error = null;
-      
+
       try {
         // TODO: Replace with actual API call
         const response = await this.getAllParticipants();
         this.participants = response;
-        
+
         if (this.participants.length === 0) {
-          this.error = 'No participants found';
+          this.error = "No participants found";
         }
       } catch (err) {
-        this.error = 'Failed to load participants. Please try again.';
-        console.error('Error loading participants:', err);
+        this.error = "Failed to load participants. Please try again.";
+        console.error("Error loading participants:", err);
       } finally {
         this.isLoading = false;
       }
     },
-    
-    
+
     getSegmentStyle(index) {
       return {
-        '--_idx': index + 1
+        "--_idx": index + 1,
       };
     },
-    
+
     initWheelOfFortune() {
-      const node = document.querySelector('.ui-wheel-of-fortune');
+      const node = document.querySelector(".ui-wheel-of-fortune");
       if (!node) return;
 
-      const spin = node.querySelector('button');
-      const wheel = node.querySelector('ul');
-      
+      const spin = node.querySelector("button");
+      const wheel = node.querySelector("ul");
+
       if (!spin || !wheel) return;
 
       // Remove existing event listeners
-      spin.removeEventListener('click', this.handleSpinClick);
-      spin.addEventListener('click', this.handleSpinClick);
+      spin.removeEventListener("click", this.handleSpinClick);
+      spin.addEventListener("click", this.handleSpinClick);
     },
-    
+
     handleSpinClick() {
       if (this.isSpinning || this.participants.length === 0) return;
-      
+
       this.isSpinning = true;
       this.winner = null;
-      
-      const wheel = document.querySelector('.ui-wheel-of-fortune ul');
+
+      const wheel = document.querySelector(".ui-wheel-of-fortune ul");
       if (!wheel) return;
-      
+
       if (this.animation) {
         this.animation.cancel();
       }
@@ -268,83 +401,88 @@ export default defineComponent({
       const randomAdditionalDegrees = Math.random() * 360 + 1800;
       const newEndDegree = this.previousEndDegree + randomAdditionalDegrees;
 
-      this.animation = wheel.animate([
-        { transform: `rotate(${this.previousEndDegree}deg)` },
-        { transform: `rotate(${newEndDegree}deg)` }
-      ], {
-        duration: 10000,
-        direction: 'normal',
-        easing: 'cubic-bezier(0.25, 0.8, 0.5, 1)',
-        // easing : 'ease-out',
-        fill: 'forwards',
-        iterations: 1
-      });
+      this.animation = wheel.animate(
+        [
+          { transform: `rotate(${this.previousEndDegree}deg)` },
+          { transform: `rotate(${newEndDegree}deg)` },
+        ],
+        {
+          duration: 100,
+          direction: "normal",
+          easing: "cubic-bezier(0.25, 0.8, 0.5, 1)",
+          // easing : 'ease-out',
+          fill: "forwards",
+          iterations: 1,
+        }
+      );
 
       this.previousEndDegree = newEndDegree;
-      
-      this.animation.addEventListener('finish', () => {
+
+      this.animation.addEventListener("finish", () => {
         wheel.style.transform = `rotate(${newEndDegree}deg)`;
         this.detectWinner(newEndDegree);
         this.isSpinning = false;
       });
     },
-    
+
     dismissModal() {
       this.winner = null;
       this.isSpinning = false;
 
-      const sesiSpin = localStorage.getItem('sesiSpin');
+      const sesiSpin = localStorage.getItem("sesiSpin");
       if (sesiSpin > 0) {
         const resetSesiSpin = parseInt(sesiSpin) - 1;
-        localStorage.setItem('sesiSpin', resetSesiSpin);
+        localStorage.setItem("sesiSpin", resetSesiSpin);
       }
     },
-    
+
     detectWinner(finalDegree) {
       if (this.participants.length === 0) return;
-      
+
       // Normalize degree to 0-360 range
       const normalizedDegree = ((finalDegree % 360) + 360) % 360;
-      
+
       // Calculate segment angle
       const segmentAngle = 360 / this.participants.length;
-      
+      console.log(normalizedDegree);
+      console.log(segmentAngle);
       // Arrow is at the top (270°), pointing downward into the wheel
       // Segments are arranged clockwise starting from 0° (right side)
       // We need to find which segment is currently under the arrow
-      
+
       // Calculate the offset from the arrow position
       // Since arrow is at 270° and wheel rotates, we need to find what's under the arrow
-      const arrowPosition = 465; // Arrow is at the top
-      
+      const arrowPosition = 458; // Arrow is at the top
+
       // Calculate which segment is currently under the arrow
       // We subtract the wheel rotation from the arrow position
       const segmentUnderArrow = (arrowPosition - normalizedDegree + 360) % 360;
-      
+
       // Find the segment index
-      let winningSegmentIndex = Math.floor(segmentUnderArrow / segmentAngle);
-      
+      let winningSegmentIndex = parseInt(segmentUnderArrow / segmentAngle);
+      console.log(segmentUnderArrow);
+      console.log(winningSegmentIndex);
       // Ensure the index is within bounds
       winningSegmentIndex = winningSegmentIndex % this.participants.length;
-      
+
       // Get the winner
       this.winner = this.participants[winningSegmentIndex];
+      console.log(this.winner);
       this.storeSesiSpin();
-      
+
       // Optional: Send winner data to backend
       // this.recordWinner(this.winner);
     },
 
     storeSesiSpin() {
-      const sesiSpin = localStorage.getItem('sesiSpin') || 0;
+      const sesiSpin = localStorage.getItem("sesiSpin") || 0;
 
       if (sesiSpin >= 0) {
         const newSesiSpin = parseInt(sesiSpin) + 1;
-        localStorage.setItem('sesiSpin', newSesiSpin);
+        localStorage.setItem("sesiSpin", newSesiSpin);
       }
-    }
-    
-  }
+    },
+  },
 });
 </script>
 
@@ -370,7 +508,6 @@ export default defineComponent({
 .winner-content {
   text-align: center;
   padding: 10px;
- 
 }
 
 .winner-icon {
@@ -426,7 +563,7 @@ export default defineComponent({
   font-size: 1rem;
   height: 50px;
   letter-spacing: 0.5px;
-  }
+}
 
 @keyframes bounceIn {
   0% {
@@ -467,19 +604,19 @@ export default defineComponent({
   width: min(9vw, 500px);
   max-width: 900px;
   margin: 0 auto;
-  
+
   @media (min-width: 768px) {
     width: min(60vw, 450px);
   }
-  
+
   @media (min-width: 1024px) {
     width: min(40vw, 900px);
   }
-  
+
   @media (max-width: 480px) {
     width: min(95vw, 300px);
   }
-  
+
   &::after {
     content: "";
     position: absolute;
@@ -492,9 +629,9 @@ export default defineComponent({
     border-right: 15px solid transparent;
     border-top: 25px solid #dc143c;
     z-index: 10;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -506,10 +643,12 @@ export default defineComponent({
     background-color: #dc143c;
     border-radius: 2px;
     z-index: 9;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
-  & > * { position: absolute; }
+  & > * {
+    position: absolute;
+  }
 
   button {
     aspect-ratio: 1 / 1;
@@ -523,15 +662,15 @@ export default defineComponent({
     z-index: 5;
     transition: transform 0.1s ease;
     font-weight: bold;
-    
+
     &:hover:not(:disabled) {
       transform: scale(1.05);
     }
-    
+
     &:active:not(:disabled) {
       transform: scale(0.95);
     }
-    
+
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
@@ -548,7 +687,11 @@ export default defineComponent({
     li {
       align-content: center;
       aspect-ratio: 1 / calc(2 * tan(180deg / var(--_items)));
-      background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
+      background: hsl(
+        calc(360deg / var(--_items) * calc(var(--_idx))),
+        100%,
+        75%
+      );
       clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
       display: grid;
       font-size: 18px;
@@ -591,53 +734,57 @@ export default defineComponent({
 @media (max-width: 768px) {
   :where(.ui-wheel-of-fortune) {
     width: 80%;
-    
+
     ul li {
       font-size: 12px;
     }
-    
+
     button {
       font-size: 4cqi;
     }
   }
 }
 
-   /* Overlay full screen */
-    .loading-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(18, 18, 18, 0.8); /* putih transparan */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999 !important;
-      flex-direction: column;
-    }
+/* Overlay full screen */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 18, 18, 0.8); /* putih transparan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999 !important;
+  flex-direction: column;
+}
 
-    /* Spinner */
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-    }
+/* Spinner */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
 
-    /* Text */
-    .loading-text {
-      margin-top: 16px;
-      font-family: sans-serif;
-      font-size: 16px;
-      color: #555;
-    }
+/* Text */
+.loading-text {
+  margin-top: 16px;
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #555;
+}
 
-        /* Animasi */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+/* Animasi */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
