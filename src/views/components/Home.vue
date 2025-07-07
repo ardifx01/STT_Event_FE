@@ -95,6 +95,7 @@ export default defineComponent({
               popup: "my-fullscreen-modal",
             },
           });
+          this.clearForm();
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -110,7 +111,6 @@ export default defineComponent({
           });
         })
         .finally(() => {
-          this.clearForm();
           this.isLoading = false;
         });
     },
