@@ -12,17 +12,17 @@ const routes: Array<RouteRecordRaw> = [
     component: Index
   },
   {
-    path: '/admin/spinwheel',
+    path: '/spinwheel',
     name: 'PrizeDrawEntries',
     component: PrizeDrawEntries
   },
   {
-    path:'/admin/staff/register',
+    path:'/staff/register',
     name:'StaffScanQR',
     component:StaffScanQR
   },
   {
-    path:'/admin/staff/booth_visit',
+    path:'/staff/booth_visit',
     name:'BoothVisit',
     component:BoothVisit
   },
