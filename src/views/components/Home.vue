@@ -72,8 +72,50 @@ export default defineComponent({
   },
   methods: {
     async submitForm() {
-      this.isLoading = true;
+      const email = this.formData.email.trim();
+      const publicEmailDomains = [
+        "gmail.com",
+        "yahoo.com",
+        "outlook.com",
+        "hotmail.com",
+        "aol.com",
+        "protonmail.com",
+        "icloud.com",
+        "mail.com",
+        "zoho.com",
+        "yandex.com",
+      ];
+      const isPublicEmail = publicEmailDomains.some((domain) =>
+        email.toLowerCase().endsWith(`@${domain}`)
+      );
 
+      if (isPublicEmail) {
+        Swal.fire({
+          icon: "error",
+          title: "Invalid Email",
+          text: "Please use your company email address (no Gmail, Yahoo, etc.)",
+          heightAuto: false,
+          customClass: {
+            popup: "my-fullscreen-modal",
+          },
+        });
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        Swal.fire({
+          icon: "error",
+          title: "Invalid Email",
+          text: "Please enter a valid email address",
+          heightAuto: false,
+          customClass: {
+            popup: "my-fullscreen-modal",
+          },
+        });
+        return;
+      }
+      this.isLoading = true;
       const data = {
         full_name: this.formData.fullName,
         job_title: this.formData.jobTitle,
@@ -85,7 +127,9 @@ export default defineComponent({
       await axios
         .post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
         .then((response) => {
+          this.handleEmail(data);
           this.isLoading = false;
+
           Swal.fire({
             title: "Registration Successfully!",
             text: response.data.message || "Thank you for registering!",
@@ -95,6 +139,7 @@ export default defineComponent({
               popup: "my-fullscreen-modal",
             },
           });
+
           this.clearForm();
         })
         .catch((error) => {
@@ -114,15 +159,15 @@ export default defineComponent({
           this.isLoading = false;
         });
     },
-
-    clearForm() {
-      this.formData = {
-        fullName: "",
-        company: "",
-        jobTitle: "",
-        email: "",
-        phone: "",
-      };
+    handleEmail(data) {
+      axios
+        .post(`${import.meta.env.VITE_REGISTRATION_EVENT_EMAIL_STT_API}`, data)
+        .then((response) => {
+          console.log("success");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     },
   },
 });
