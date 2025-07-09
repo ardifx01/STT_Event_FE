@@ -61,6 +61,7 @@ export default defineComponent({
     return {
       isLoading: false,
       errorMessage: null,
+      activeBreakoutTab: 'sessionA', // Default to Session A
       formData: {
         fullName: "",
         company: "",
@@ -169,6 +170,9 @@ export default defineComponent({
           console.error("Error:", error);
         });
     },
+    switchBreakoutTab(tab) {
+      this.activeBreakoutTab = tab;
+    },
   },
 });
 </script>
@@ -257,9 +261,9 @@ export default defineComponent({
         </div>
         <div class="card-event">
           <ion-row class="">
-            <ion-col class="ion-align-self-center mobile-detail-event">
+            <ion-col size-md="6" size-xs="12" class="ion-align-self-center mobile-detail-event">
               <ion-row>
-                <ion-col size="3" class="ion-text-end">
+                <ion-col size="4" class="ion-text-end">
                   <ion-img
                     src="/img/asset/asset_location.png"
                     class="event-icon"
@@ -279,9 +283,10 @@ export default defineComponent({
               </ion-row>
             </ion-col>
 
-            <ion-col class="ion-align-self-center mobile-detail-event">
+            <ion-col size-md="6" size-xs="12" class="ion-align-self-center mobile-detail-event">
+
               <ion-row>
-                <ion-col size="3" class="ion-text-end">
+                <ion-col size="4" class="ion-text-end">
                   <ion-img
                     src="/img/asset/asset_date.png"
                     class="event-icon"
@@ -321,9 +326,9 @@ export default defineComponent({
                 <ion-card-content class="schedule oxanium-semibold">
                   <!-- Schedule Header -->
                   <div class="schedule-header">
-                    <div class="schedule-time letters-spacing">Time</div>
-                    <div class="schedule-topic letters-spacing">Topic</div>
-                    <div class="schedule-speaker letters-spacing">Speaker</div>
+                    <div class="schedule-time letters-spacing">Time </div>
+                    <div class="schedule-topic letters-spacing">Topic </div>
+                    <div class="schedule-speaker letters-spacing">Speaker </div>
                     <!-- <div class="schedule-brand">Brand</div>
                   <div class="schedule-solution">Solution</div> -->
                   </div>
@@ -406,160 +411,161 @@ export default defineComponent({
                     </div>
                   </div>
 
-                  <!-- Breakout A Section -->
-                  <div class="schedule-section-header">
-                    <h3 class="letters-spacing">
-                      Breakout Session A : AI/ML Data Management
-                    </h3>
-                  </div>
+                  <!-- Breakout Sessions Tab Container -->
+                  <div class="breakout-tabs-container">
+                    <!-- Tab Navigation -->
+                    <div class="breakout-tab-nav">
+                      <button 
+                        class="breakout-tab-button" 
+                        :class="{ 'active': activeBreakoutTab === 'sessionA' }"
+                        @click="switchBreakoutTab('sessionA')"
+                      >
+                        <span class="tab-title">Session A</span>
+                        <span class="tab-subtitle">AI/ML Data Management</span>
+                      </button>
+                      <button 
+                        class="breakout-tab-button" 
+                        :class="{ 'active': activeBreakoutTab === 'sessionB' }"
+                        @click="switchBreakoutTab('sessionB')"
+                      >
+                        <span class="tab-title">Session B</span>
+                        <span class="tab-subtitle">Cyber Security</span>
+                      </button>
+                    </div>
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      13.00 - 13.30<br /><small>30 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      Master Data Management (Pentaho)
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Victor</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Xeratic</strong></div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                    <!-- Tab Content -->
+                    <div class="breakout-tab-content">
+                      <!-- Session A Content -->
+                      <div v-show="activeBreakoutTab === 'sessionA'" class="tab-panel">
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content table-center schedule-time-content-blue"
-                    >
-                      13.30 - 14.30<br /><small>60 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      AI Experience Introduction
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Juan Fernando</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>STT</strong></div>
-                  <div class="schedule-solution-content">KYX, FD, CV, LLM</div> -->
-                  </div>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            13.00 - 13.30<br /><small>30 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            Master Data Management (Pentaho)
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Victor</strong>
+                          </div>
+                        </div>
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      14.20 - 15.00<br /><small>30 min</small>
-                    </div>
-                    <div class="schedule-speaker-content table-center">-</div>
-                    <div class="schedule-topic-conten table-center">-</div>
-                    <!-- <div class="schedule-brand-content">-</div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content table-center schedule-time-content-blue"
+                          >
+                            13.30 - 14.30<br /><small>60 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            AI Experience Introduction
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Juan Fernando</strong>
+                          </div>
+                        </div>
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content table-center schedule-time-content-blue"
-                    >
-                      15.00 - 15.30<br /><small>30 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      AI Infrastructure
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Fitra</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Rafay</strong></div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            14.20 - 15.00<br /><small>30 min</small>
+                          </div>
+                          <div class="schedule-speaker-content table-center">-</div>
+                          <div class="schedule-topic-content table-center">-</div>
+                        </div>
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      15.30 - 16.00<br /><small>30 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      AI Paralel File Storage Solution
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Eunice</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Weka</strong></div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content table-center schedule-time-content-blue"
+                          >
+                            15.00 - 15.30<br /><small>30 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            AI Infrastructure
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Fitra</strong>
+                          </div>
+                        </div>
 
-                  <!-- Breakout B Section -->
-                  <div class="schedule-section-header">
-                    <h3 class="letters-spacing">
-                      Breakout Session B : Cyber Security
-                    </h3>
-                  </div>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            15.30 - 16.00<br /><small>30 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            AI Paralel File Storage Solution
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Eunice</strong>
+                          </div>
+                        </div>
+                      </div>
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
-                    >
-                      13.00 - 13.40<br /><small>40 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      Threat Intelligence
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Rangga</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Cyble</strong></div>
-                  <div class="schedule-solution-content">Network Security</div> -->
-                  </div>
+                      <!-- Session B Content -->
+                      <div v-show="activeBreakoutTab === 'sessionB'" class="tab-panel">
+                        
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      13.40 - 14.20<br /><small>40 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      Enterprise User Protection
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Calvin</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Cisco</strong></div>
-                  <div class="schedule-solution-content">Endpoint Security</div> -->
-                  </div>
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content schedule-time-content-blue table-center"
+                          >
+                            13.00 - 13.40<br /><small>40 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            Threat Intelligence
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Rangga</strong>
+                          </div>
+                        </div>
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
-                    >
-                      14.20 - 14.40<br /><small>20 min</small>
-                    </div>
-                    <div class="schedule-speaker-content table-center">-</div>
-                    <div class="schedule-topic-content table-center">-</div>
-                    <!-- <div class="schedule-brand-content"></div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            13.40 - 14.20<br /><small>40 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            Enterprise User Protection
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Calvin</strong>
+                          </div>
+                        </div>
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      14.40 - 15.20<br /><small>40 min</small>
-                    </div>
-                    <div class="schedule-topic-content table-center">
-                      Security + Observability (AI Ops)
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Diar</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>Elastic</strong></div>
-                  <div class="schedule-solution-content"></div> -->
-                  </div>
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content schedule-time-content-blue table-center"
+                          >
+                            14.20 - 14.40<br /><small>20 min</small>
+                          </div>
+                          <div class="schedule-speaker-content table-center">-</div>
+                          <div class="schedule-topic-content table-center">-</div>
+                        </div>
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
-                    >
-                      15.20 - 16.00<br /><small>40 min</small>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            14.40 - 15.20<br /><small>40 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            Security + Observability (AI Ops)
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Diar</strong>
+                          </div>
+                        </div>
+
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content schedule-time-content-blue table-center"
+                          >
+                            15.20 - 16.00<br /><small>40 min</small>
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            Cyber Resiliency (CRS)
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Felix</strong>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="schedule-topic-content table-center">
-                      Cyber Resiliency (CRS)
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Felix</strong>
-                    </div>
-                    <!-- <div class="schedule-brand-content"><strong>STT</strong></div>
-                  <div class="schedule-solution-content">Data Security</div> -->
                   </div>
 
                   <!-- General Session -->
