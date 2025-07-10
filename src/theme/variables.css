@@ -184,7 +184,7 @@ ion-list {
 }
 ion-item {
   --background: transparent;
-  --padding-start: 0;
+  --padding-start: 10px;
   --inner-padding-end: 0;
 }
 ion-item ion-icon {
@@ -662,10 +662,6 @@ ion-tab-button ion-label {
   --background: var(--neutral-white);
   --border-color: var(--neutral-dark-gray);
   --border-width: 2px;
-  --padding-start: 1rem;
-  --padding-end: 1rem;
-  --padding-top: 0.75rem;
-  --padding-bottom: 0.75rem;
   --placeholder-color: var(--neutral-text-light);
   --color: var(--neutral-text);
   font-size: 1rem;
@@ -676,12 +672,9 @@ ion-tab-button ion-label {
   /* Android specific fixes */
   --highlight-color-focused: var(--primary);
 }
-
 /* Platform-specific adjustments */
 .ios .custom-input {
   --border-radius: 10px;
-  --padding-top: 1rem;
-  --padding-bottom: 1rem;
 }
 
 .md .custom-input {
@@ -697,9 +690,7 @@ ion-tab-button ion-label {
   }
   
   .custom-input {
-    font-size: 16px; /* Prevents zoom on iOS */
-    --padding-top: 1rem;
-    --padding-bottom: 1rem;
+    font-size: 16px;
   }
   
   .registration-form {
@@ -715,8 +706,6 @@ ion-tab-button ion-label {
   
   .custom-input {
     font-size: 16px;
-    --padding-start: 0.875rem;
-    --padding-end: 0.875rem;
   }
   
   .registration-card {

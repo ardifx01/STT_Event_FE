@@ -425,7 +425,7 @@ export default defineComponent({
 .wheel-container {
   width: 90%; /* Adjust width as needed */
   height: 100%; /* Adjust height as needed */
-  margin: 0 auto;
+  margin: 45px auto;
   padding: 20px;
 }
 

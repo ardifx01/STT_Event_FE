@@ -2,7 +2,6 @@
 import { defineComponent } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-
 import {
   IonPage,
   IonHeader,
@@ -27,6 +26,9 @@ import {
   IonFabButton,
   IonText,
   IonImg,
+  IonSelect,
+  IonSelectOption,
+  IonCheckbox,
 } from "@ionic/vue";
 import { locationOutline, calendarOutline, add } from "ionicons/icons";
 
@@ -56,23 +58,47 @@ export default defineComponent({
     IonFabButton,
     IonText,
     IonImg,
+    IonSelect,
+    IonSelectOption,
+    IonCheckbox,
   },
   data() {
     return {
       isLoading: false,
       errorMessage: null,
-      activeBreakoutTab: 'sessionA', // Default to Session A
+      activeBreakoutTab: "sessionA", // Default to Session A
+      agree: false,
+      isTouched: false,
+      isValid: false,
       formData: {
         fullName: "",
         company: "",
         jobTitle: "",
         email: "",
         phone: "",
+        session: null,
       },
     };
   },
   methods: {
+    validateCheckbox() {
+      this.isValid = this.agree;
+      this.isTouched = true;
+    },
     async submitForm() {
+      if (!this.agree) {
+        Swal.fire({
+          icon: "error",
+          title: "Terms Not Accepted",
+          text: "You must agree to the terms to continue",
+          heightAuto: false,
+          customClass: {
+            popup: "my-fullscreen-modal",
+          },
+        });
+        return;
+      }
+
       const email = this.formData.email.trim();
       const publicEmailDomains = [
         "gmail.com",
@@ -123,8 +149,9 @@ export default defineComponent({
         company_name: this.formData.company,
         email: this.formData.email,
         mobile_number: this.formData.phone,
+        session: this.formData.session,
       };
-
+      console.log(data);
       await axios
         .post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
         .then((response) => {
@@ -159,6 +186,16 @@ export default defineComponent({
         .finally(() => {
           this.isLoading = false;
         });
+    },
+    clearForm() {
+      this.formData = {
+        fullName: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+        session: null,
+      };
     },
     handleEmail(data) {
       axios
@@ -261,7 +298,11 @@ export default defineComponent({
         </div>
         <div class="card-event">
           <ion-row class="">
-            <ion-col size-md="6" size-xs="12" class="ion-align-self-center mobile-detail-event">
+            <ion-col
+              size-md="6"
+              size-xs="12"
+              class="ion-align-self-center mobile-detail-event"
+            >
               <ion-row>
                 <ion-col size="4" class="ion-text-end">
                   <ion-img
@@ -283,8 +324,11 @@ export default defineComponent({
               </ion-row>
             </ion-col>
 
-            <ion-col size-md="6" size-xs="12" class="ion-align-self-center mobile-detail-event">
-
+            <ion-col
+              size-md="6"
+              size-xs="12"
+              class="ion-align-self-center mobile-detail-event"
+            >
               <ion-row>
                 <ion-col size="4" class="ion-text-end">
                   <ion-img
@@ -298,7 +342,7 @@ export default defineComponent({
                 >
                   <ion-text color="dark">
                     <h2 class="ion-no-margin">
-                      <strong>Tuesday, 24 October 2023</strong>
+                      <strong>Tuesday, 11 September 2025s</strong>
                     </h2>
                     <p class="ion-no-margin">09.00 - 17.00</p>
                   </ion-text>
@@ -326,9 +370,9 @@ export default defineComponent({
                 <ion-card-content class="schedule oxanium-semibold">
                   <!-- Schedule Header -->
                   <div class="schedule-header">
-                    <div class="schedule-time letters-spacing">Time </div>
-                    <div class="schedule-topic letters-spacing">Topic </div>
-                    <div class="schedule-speaker letters-spacing">Speaker </div>
+                    <div class="schedule-time letters-spacing">Time</div>
+                    <div class="schedule-topic letters-spacing">Topic</div>
+                    <div class="schedule-speaker letters-spacing">Speaker</div>
                     <!-- <div class="schedule-brand">Brand</div>
                   <div class="schedule-solution">Solution</div> -->
                   </div>
@@ -415,17 +459,17 @@ export default defineComponent({
                   <div class="breakout-tabs-container">
                     <!-- Tab Navigation -->
                     <div class="breakout-tab-nav">
-                      <button 
-                        class="breakout-tab-button" 
-                        :class="{ 'active': activeBreakoutTab === 'sessionA' }"
+                      <button
+                        class="breakout-tab-button"
+                        :class="{ active: activeBreakoutTab === 'sessionA' }"
                         @click="switchBreakoutTab('sessionA')"
                       >
                         <span class="tab-title">Session A</span>
                         <span class="tab-subtitle">AI/ML Data Management</span>
                       </button>
-                      <button 
-                        class="breakout-tab-button" 
-                        :class="{ 'active': activeBreakoutTab === 'sessionB' }"
+                      <button
+                        class="breakout-tab-button"
+                        :class="{ active: activeBreakoutTab === 'sessionB' }"
                         @click="switchBreakoutTab('sessionB')"
                       >
                         <span class="tab-title">Session B</span>
@@ -436,8 +480,10 @@ export default defineComponent({
                     <!-- Tab Content -->
                     <div class="breakout-tab-content">
                       <!-- Session A Content -->
-                      <div v-show="activeBreakoutTab === 'sessionA'" class="tab-panel">
-
+                      <div
+                        v-show="activeBreakoutTab === 'sessionA'"
+                        class="tab-panel"
+                      >
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
                             13.00 - 13.30<br /><small>30 min</small>
@@ -468,8 +514,12 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             14.20 - 15.00<br /><small>30 min</small>
                           </div>
-                          <div class="schedule-speaker-content table-center">-</div>
-                          <div class="schedule-topic-content table-center">-</div>
+                          <div class="schedule-speaker-content table-center">
+                            -
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            -
+                          </div>
                         </div>
 
                         <div class="schedule-item schedule-item-blue">
@@ -500,9 +550,10 @@ export default defineComponent({
                       </div>
 
                       <!-- Session B Content -->
-                      <div v-show="activeBreakoutTab === 'sessionB'" class="tab-panel">
-                        
-
+                      <div
+                        v-show="activeBreakoutTab === 'sessionB'"
+                        class="tab-panel"
+                      >
                         <div class="schedule-item schedule-item-blue">
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
@@ -535,8 +586,12 @@ export default defineComponent({
                           >
                             14.20 - 14.40<br /><small>20 min</small>
                           </div>
-                          <div class="schedule-speaker-content table-center">-</div>
-                          <div class="schedule-topic-content table-center">-</div>
+                          <div class="schedule-speaker-content table-center">
+                            -
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            -
+                          </div>
                         </div>
 
                         <div class="schedule-item">
@@ -644,96 +699,144 @@ export default defineComponent({
               <!-- Registration Form -->
               <div class="registration-form">
                 <ion-grid class="ion-container registration-content">
-                  <ion-row class="ion-justify-content-center">
-                    <ion-col size="12" size-md="8" size-lg="6">
-                      <ion-card class="registration-card">
-                        <ion-card-header class="registration-header">
-                          <ion-card-title class="registration-title">
-                            Registration Form
-                          </ion-card-title>
-                        </ion-card-header>
+                  <form @submit.prevent="submitForm">
+                    <ion-row class="ion-justify-content-center">
+                      <ion-col size="12" size-md="8" size-lg="6">
+                        <ion-card class="registration-card">
+                          <ion-card-header class="registration-header">
+                            <ion-card-title class="registration-title">
+                              Registration Form
+                            </ion-card-title>
+                          </ion-card-header>
 
-                        <ion-card-content class="registration-form">
-                          <ion-list lines="none">
-                            <ion-item class="form-item ion-margin-top">
-                              <ion-input
-                                v-model="formData.fullName"
-                                placeholder="Full Name"
-                                class="custom-input"
-                                fill="outline"
-                                label="First Name"
-                                label-placement="stacked"
-                                clear-input
-                                autocomplete="given-name"
-                              ></ion-input>
-                            </ion-item>
-
-                            <ion-item class="form-item">
-                              <ion-input
-                                v-model="formData.company"
-                                placeholder="Company"
-                                class="custom-input"
-                                fill="outline"
-                                label="Company"
-                                label-placement="stacked"
-                                clear-input
-                                autocomplete="organization"
-                              ></ion-input>
-                            </ion-item>
-
-                            <ion-item class="form-item">
-                              <ion-input
-                                v-model="formData.jobTitle"
-                                placeholder="Job Title"
-                                class="custom-input"
-                                fill="outline"
-                                label="Job Title"
-                                label-placement="stacked"
-                                clear-input
-                                autocomplete="organization-title"
-                              ></ion-input>
-                            </ion-item>
-
-                            <ion-item class="form-item">
-                              <ion-input
-                                v-model="formData.email"
-                                type="email"
-                                placeholder="Company Email"
-                                class="custom-input"
-                                fill="outline"
-                                label="Company Email"
-                                label-placement="stacked"
-                                clear-input
-                                autocomplete="email"
-                              ></ion-input>
-                            </ion-item>
-
-                            <ion-item class="form-item">
-                              <ion-input
-                                v-model="formData.phone"
-                                type="tel"
-                                placeholder="Mobile Phone"
-                                class="custom-input"
-                                fill="outline"
-                                label="Mobile Phone"
-                                label-placement="stacked"
-                                clear-input
-                                autocomplete="tel"
-                              ></ion-input>
-                            </ion-item>
-                          </ion-list>
-
-                          <ion-button
-                            expand="block"
-                            class="submit-button"
-                            @click="submitForm"
-                          >
-                            SUBMIT
-                          </ion-button>
-                        </ion-card-content>
-                      </ion-card>
-                    </ion-col>
-                  </ion-row>
+                          <ion-card-content>
+                            <ion-row>
+                              <ion-col
+                                size="12"
+                                size-md="12"
+                                class="ion-margin-top"
+                              >
+                                <ion-input
+                                  v-model="formData.fullName"
+                                  class="custom-input"
+                                  label="Full Name"
+                                  label-placement="floating"
+                                  fill="outline"
+                                  placeholder="Full Name"
+                                  autocomplete="given-name"
+                                ></ion-input>
+                              </ion-col>
+                              <ion-col size="12" size-md="6">
+                                <ion-input
+                                  v-model="formData.company"
+                                  placeholder="Company"
+                                  class="custom-input"
+                                  fill="outline"
+                                  label="Company"
+                                  label-placement="floating"
+                                  autocomplete="organization"
+                                ></ion-input>
+                              </ion-col>
+                              <ion-col size="12" size-md="6">
+                                <ion-input
+                                  v-model="formData.jobTitle"
+                                  placeholder="Job Title"
+                                  class="custom-input"
+                                  fill="outline"
+                                  label="Job Title"
+                                  label-placement="floating"
+                                  autocomplete="organization-title"
+                                ></ion-input>
+                              </ion-col>
+                              <ion-col size="12" size-md="6">
+                                <ion-input
+                                  v-model="formData.email"
+                                  type="email"
+                                  placeholder="Company Email"
+                                  class="custom-input"
+                                  fill="outline"
+                                  label="Company Email"
+                                  label-placement="floating"
+                                  autocomplete="email"
+                                ></ion-input>
+                              </ion-col>
+                              <ion-col size="12" size-md="6">
+                                <ion-input
+                                  v-model="formData.phone"
+                                  type="tel"
+                                  placeholder="Mobile Phone"
+                                  class="custom-input"
+                                  fill="outline"
+                                  label="Mobile Phone"
+                                  label-placement="floating"
+                                  autocomplete="tel"
+                                ></ion-input>
+                              </ion-col>
+                              <ion-col size="12" size-md="12">
+                                <ion-select
+                                  v-model="formData.session"
+                                  placeholder="Select Session"
+                                  interface="popover"
+                                  label="Session"
+                                  label-placement="floating"
+                                  fill="outline"
+                                  class="custom-input"
+                                >
+                                  <ion-select-option value="1"
+                                    >AI/ML & Data Management</ion-select-option
+                                  >
+                                  <ion-select-option value="2"
+                                    >Cyber Security</ion-select-option
+                                  >
+                                </ion-select>
+                              </ion-col>
+                              <ion-col
+                                size="12"
+                                size-md="12"
+                                style="text-align: left; padding: 20px"
+                              >
+                                <p>
+                                  PT. Sapta Tunas Teknologi would love to stay
+                                  in touch to hear about your needs and to keep
+                                  you updated on products, services, solutions,
+                                  exclusive offers and special events. For
+                                  information on how we protect your personal
+                                  data, see our
+                                  <a
+                                    href="/PrivacyPolicy.docx"
+                                    style="text-decoration: solid"
+                                    ><b>Privacy Statement</b></a
+                                  >. You can unsubscribe at any time.
+                                </p>
+                                <ion-checkbox
+                                  v-model="agree"
+                                  @ionChange="validateCheckbox"
+                                  :class="{
+                                    'ion-valid': isValid,
+                                    'ion-invalid': isValid === false,
+                                    'ion-touched': isTouched,
+                                  }"
+                                  label-placement="end"
+                                >
+                                  Yes, I would like to stay in touch with PT.
+                                  Sapta Tunas Teknologi by email.
+                                </ion-checkbox>
+                              </ion-col>
+                              <ion-col size="12" size-md="12">
+                                <ion-button
+                                  expand="block"
+                                  class="submit-button"
+                                  type="submit"
+                                >
+                                  SUBMIT
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
+                    </ion-row>
+                  </form>
                 </ion-grid>
               </div>
             </div>
@@ -743,7 +846,6 @@ export default defineComponent({
     </ion-content>
   </ion-page>
 </template>
-
 
 
 
