@@ -777,7 +777,7 @@ export default defineComponent({
                                   v-model="formData.session"
                                   placeholder="Select Session"
                                   interface="popover"
-                                  label="Session"
+                                  label="Select Session"
                                   label-placement="floating"
                                   fill="outline"
                                   class="custom-input"
