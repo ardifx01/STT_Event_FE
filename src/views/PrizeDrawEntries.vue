@@ -90,11 +90,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <!-- <p>{{ winner }}</p> -->
                     <tr v-for="(winner, index) in winners" :key="winner.id">
                       <td>{{ index + 1 }}</td>
                       <td>{{ winner.registration?.full_name || "N/A" }}</td>
                       <td>{{ winner.registration?.company_name || "N/A" }}</td>
-                      <td>Sesi {{ winner.winner_spinn_number }}</td>
+                      <td>Sesi {{ winner.prize_sesi }}</td>
                     </tr>
                     <tr v-if="winners.length === 0">
                       <td colspan="4" class="no-winners">No winners yet</td>
@@ -231,15 +232,18 @@ export default defineComponent({
       cursorAngle: 0,
       cursorPosition: "edge",
       cursorDistance: 0,
+      session: 0,
     };
   },
   computed: {
     winners() {
       if (this.participants.length > 0) {
         console.log(
-          this.participants.filters((i) => i.winner_spinn_number !== null)
+          this.participants.filters((i) => i.prize_sesi !== null)
         );
-        return this.participants.filters((i) => i.winner_spinn_number !== null);
+        return this.participants
+        .filters((i) => i.prize_sesi !== null)
+        .sort((a, b) => a.prize_sesi - b.prize_sesi);
       }
       return [];
     },
@@ -253,7 +257,8 @@ export default defineComponent({
         const response = await axios.get(
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
-        console.log("Participants fetched successfully:", response.data.data);
+        console.log("Participants fetched successfully:", response.data);
+        this.session = response.data.total_sesi
         return response.data.data;
       } catch (error) {
         console.error("Error fetching participants:", error);
@@ -267,7 +272,8 @@ export default defineComponent({
       try {
         const all_participants = await this.getAllParticipants();
         const participants = all_participants.filter((i) => !i.winner);
-        this.winners = all_participants.filter((i) => i.winner);
+        this.winners = all_participants.filter((i) => i.winner).sort((a, b) => a.prize_sesi - b.prize_sesi);
+        console.log("Winners:", this.winners);
         const total = participants.length;
 
         this.slices = participants.map((p, i) => {
@@ -333,7 +339,7 @@ export default defineComponent({
 
       if (winnerIndex >= 0 && winnerIndex < this.slices.length) {
         this.winnerResult = this.slices[winnerIndex];
-        this.storeSesiSpin();
+        // this.storeSesiSpin();
         console.log("Winner:", this.winnerResult);
       } else {
         console.error("Invalid winner index:", winnerIndex);
@@ -346,7 +352,8 @@ export default defineComponent({
     async submitWinner() {
       this.isLoadingSubmitWinner = true;
       if (!this.winnerResult) return;
-      const sesiSpin = localStorage.getItem("sesiSpin");
+      // return console.log(this.session + 1);
+      // const sesiSpin = localStorage.getItem("sesiSpin");
 
       try {
         const res = await axios.put(
@@ -354,7 +361,7 @@ export default defineComponent({
             this.winnerResult.originalData.registration.id
           }`,
           {
-            winner_spinn_number: sesiSpin,
+            prize_sesi: this.session + 1, // Increment session by 1
           }
         );
 
@@ -390,21 +397,15 @@ export default defineComponent({
     dismissModal() {
       this.winnerResult = null;
       this.isSpinning = false;
-
-      const sesiSpin = localStorage.getItem("sesiSpin");
-      if (sesiSpin && parseInt(sesiSpin) > 0) {
-        const resetSesiSpin = parseInt(sesiSpin) - 1;
-        localStorage.setItem("sesiSpin", resetSesiSpin.toString());
-      }
     },
-    storeSesiSpin() {
-      const sesiSpin = localStorage.getItem("sesiSpin") || 0;
+    // storeSesiSpin() {
+    //   const sesiSpin = localStorage.getItem("sesiSpin") || 0;
 
-      if (sesiSpin >= 0) {
-        const newSesiSpin = parseInt(sesiSpin) + 1;
-        localStorage.setItem("sesiSpin", newSesiSpin);
-      }
-    },
+    //   if (sesiSpin >= 0) {
+    //     const newSesiSpin = parseInt(sesiSpin) + 1;
+    //     localStorage.setItem("sesiSpin", newSesiSpin);
+    //   }
+    // },
   },
 });
 </script>
