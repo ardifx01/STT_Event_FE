@@ -19,7 +19,6 @@
 
 .footer-content {
   width: 100%;
-  max-width: 1200px;
   padding: 60px 20px;
   color: white;
   /* text-align: center; */
@@ -27,7 +26,7 @@
 
 /* Prize Section */
 .prize-section {
-    margin-bottom: 80px;
+    margin-bottom: 0;
     margin-top: 220px;
 }
 
@@ -50,7 +49,7 @@
 .prize-container {
   position: relative;
   display: inline-block;
-  max-width: 800px;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -94,7 +93,7 @@
 }
 
 .prize-name {
-  font-size: 0.9rem;
+  font-size: 18px;
   font-weight: 500;
   color: white;
   line-height: 1.3;
@@ -107,7 +106,7 @@
 @media (max-width: 991px) {
   .prize-section {
     margin-top: 150px;
-    margin-bottom: 50px;
+    margin-bottom: 0;
   }
   
   .prize-title {
@@ -122,8 +121,8 @@
 
 @media (max-width: 767px) {
   .prize-section {
-    margin-top: 120px;
-    margin-bottom: 40px;
+    margin-top: 190px;
+    margin-bottom: 0;
   }
   
   .prize-title {
@@ -157,7 +156,7 @@
 @media (max-width: 480px) {
   .prize-section {
     margin-top: 243px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
   }
   
   .prize-title {

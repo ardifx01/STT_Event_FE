@@ -31,7 +31,6 @@ import {
   IonCheckbox,
 } from "@ionic/vue";
 import { locationOutline, calendarOutline, add } from "ionicons/icons";
-
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -81,7 +80,11 @@ export default defineComponent({
     };
   },
   methods: {
+    toggleCheckbox() {
+      this.validateCheckbox();
+    },
     validateCheckbox() {
+      this.agree = !this.agree;
       this.isValid = this.agree;
       this.isTouched = true;
     },
@@ -232,16 +235,16 @@ export default defineComponent({
         <ion-row>
           <ion-col size="12" size-md="8" size-lg="7">
             <div class="content-section">
-              <h1 class="blue-text ion-no-margin text-center oxanium-extrabold">
-                <strong>NEW EXPERIENCE!</strong>
-              </h1>
+              <div class="judul-home">
+                <p class="blue-text text-center oxanium-bold font-judul-home">
+                  NEW EXPERIENCE!
+                </p>
+              </div>
               <div class="judul-home">
                 <span class="strip left-strip"></span>
                 <div class="mt-8">
                   <p class="text-center font-judul-home">AI</p>
-                  <h5 class="ion-no-margin font-judul-home">
-                    <strong>Experience</strong>
-                  </h5>
+                  <p class="text-center font-judul-home">Experience</p>
                   <p class="text-center font-judul-home">Booth</p>
                 </div>
                 <span class="strip right-strip"></span>
@@ -342,7 +345,7 @@ export default defineComponent({
                 >
                   <ion-text color="dark">
                     <h2 class="ion-no-margin">
-                      <strong>Tuesday, 11 September 2025s</strong>
+                      <strong>Thursday, 11 September 2025</strong>
                     </h2>
                     <p class="ion-no-margin">09.00 - 17.00</p>
                   </ion-text>
@@ -380,7 +383,7 @@ export default defineComponent({
                   <!-- Morning Sessions -->
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      09.30 - 09.45<br /><small>15 min</small>
+                      09.30 - 09.35
                     </div>
                     <div class="schedule-topic-content table-center">
                       Sapta Tunas Achievement & Roadmap
@@ -394,11 +397,9 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      09.45 - 10.00<br /><small>15 min</small>
+                      09.35 - 09.45
                     </div>
-                    <div class="schedule-agenda-content table-center">
-                      Keynote Speech
-                    </div>
+                    <div class="schedule-agenda-content table-center">-</div>
                     <div class="schedule-speaker-content table-center">
                       <strong>Erwin</strong>
                     </div>
@@ -406,7 +407,7 @@ export default defineComponent({
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      10.00 - 10.30<br /><small>30 min</small>
+                      09.45 - 10.00
                     </div>
                     <div class="schedule-topic-content table-center">
                       Current Challenges & Latest IT Trends
@@ -420,10 +421,11 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      10.30 - 11.15<br /><small>45 min</small>
+                      10.00 - 10.40
                     </div>
                     <div class="schedule-topic-content table-center">
-                      Cloud Transformation
+                      Cloud Smart Transformation Rebalanced Strategy : Optimize,
+                      Repatriatte, Innovate
                     </div>
                     <div class="schedule-speaker-content table-center">
                       <strong>Bram</strong>
@@ -432,29 +434,40 @@ export default defineComponent({
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      11.15 - 12.00<br /><small>45 min</small>
+                      10.40 - 11.10
+                    </div>
+                    <div class="schedule-topic-content table-center">
+                      Nutanix NCI & NAI
+                    </div>
+                    <div class="schedule-speaker-content table-center">
+                      <strong>Petrus</strong>
+                    </div>
+                  </div>
+                  <div class="schedule-item">
+                    <div class="schedule-time-content table-center">
+                      11.10 - 12.00
                     </div>
                     <div class="schedule-topic-content table-center">
                       Dell AI Factory
                     </div>
                     <div class="schedule-speaker-content table-center">
-                      <strong>David</strong>
+                      <strong>Fardy - Wijaya</strong>
                     </div>
                   </div>
 
-                  <div class="schedule-item lunch-break schedule-item-blue">
+                  <div class="schedule-item schedule-item-blue">
                     <div
-                      class="schedule-time-content schedule-time-content-blue"
+                      class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      12.00 - 13.00<br /><small>60 min</small>
+                      12.00 - 13.30
                     </div>
+
                     <div
-                      class="schedule-time-content-blue text-center table-center"
+                      class="schedule-time-content schedule-time-content-blue text-center table-center"
                     >
                       <strong>Networking Lunch</strong>
                     </div>
                   </div>
-
                   <!-- Breakout Sessions Tab Container -->
                   <div class="breakout-tabs-container">
                     <!-- Tab Navigation -->
@@ -486,13 +499,13 @@ export default defineComponent({
                       >
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            13.00 - 13.30<br /><small>30 min</small>
+                            13.30 - 14.10
                           </div>
                           <div class="schedule-topic-content table-center">
-                            Master Data Management (Pentaho)
+                            Modern Datalake Infrastructure
                           </div>
                           <div class="schedule-speaker-content table-center">
-                            <strong>Victor</strong>
+                            <strong>Felix / Hendro</strong>
                           </div>
                         </div>
 
@@ -500,25 +513,26 @@ export default defineComponent({
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
-                            13.30 - 14.30<br /><small>60 min</small>
+                            14.10 - 14.50
                           </div>
                           <div class="schedule-topic-content table-center">
-                            AI Experience Introduction
+                            Transform to Perform : Enterprise AI Synergy via
+                            Seeing, Understanding and Acting in Action
                           </div>
                           <div class="schedule-speaker-content table-center">
-                            <strong>Juan Fernando</strong>
+                            <strong>Don JuanDo</strong>
                           </div>
                         </div>
 
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            14.20 - 15.00<br /><small>30 min</small>
+                            14.50 - 15.10
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            -
-                          </div>
-                          <div class="schedule-topic-content table-center">
-                            -
+
+                          <div
+                            class="schedule-time-content text-center table-center"
+                          >
+                            <strong>Coffee Break</strong>
                           </div>
                         </div>
 
@@ -526,25 +540,25 @@ export default defineComponent({
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
-                            15.00 - 15.30<br /><small>30 min</small>
-                          </div>
-                          <div class="schedule-topic-content table-center">
-                            AI Infrastructure
-                          </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Fitra</strong>
-                          </div>
-                        </div>
-
-                        <div class="schedule-item">
-                          <div class="schedule-time-content table-center">
-                            15.30 - 16.00<br /><small>30 min</small>
+                            15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             AI Paralel File Storage Solution
                           </div>
                           <div class="schedule-speaker-content table-center">
                             <strong>Eunice</strong>
+                          </div>
+                        </div>
+
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            15.50 - 16.30
+                          </div>
+                          <div class="schedule-topic-content table-center">
+                            AI Infrastructure Platform
+                          </div>
+                          <div class="schedule-speaker-content table-center">
+                            <strong>Fitra</strong>
                           </div>
                         </div>
                       </div>
@@ -554,29 +568,41 @@ export default defineComponent({
                         v-show="activeBreakoutTab === 'sessionB'"
                         class="tab-panel"
                       >
-                        <div class="schedule-item schedule-item-blue">
-                          <div
-                            class="schedule-time-content schedule-time-content-blue table-center"
-                          >
-                            13.00 - 13.40<br /><small>40 min</small>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            13.30 - 14.10
                           </div>
                           <div class="schedule-topic-content table-center">
-                            Threat Intelligence
+                            Unmasking Cyber Threats : Unlock the Power of
+                            AI-Driven Threat Intelligence
                           </div>
                           <div class="schedule-speaker-content table-center">
                             <strong>Rangga</strong>
                           </div>
                         </div>
 
-                        <div class="schedule-item">
-                          <div class="schedule-time-content table-center">
-                            13.40 - 14.20<br /><small>40 min</small>
+                        <div class="schedule-item schedule-item-blue">
+                          <div
+                            class="schedule-time-content schedule-time-content-blue table-center"
+                          >
+                            14.10 - 14.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             Enterprise User Protection
                           </div>
                           <div class="schedule-speaker-content table-center">
-                            <strong>Calvin</strong>
+                            <strong>Rein</strong>
+                          </div>
+                        </div>
+
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            14.50 - 15.10
+                          </div>
+                          <div
+                            class="schedule-time-content text-center table-center"
+                          >
+                            <strong>Coffee Break</strong>
                           </div>
                         </div>
 
@@ -584,39 +610,26 @@ export default defineComponent({
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
                           >
-                            14.20 - 14.40<br /><small>20 min</small>
-                          </div>
-                          <div class="schedule-speaker-content table-center">
-                            -
+                            15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-center">
-                            -
-                          </div>
-                        </div>
-
-                        <div class="schedule-item">
-                          <div class="schedule-time-content table-center">
-                            14.40 - 15.20<br /><small>40 min</small>
-                          </div>
-                          <div class="schedule-topic-content table-center">
-                            Security + Observability (AI Ops)
+                            Supercharge SecOps Workflows with AI-Driven Security
+                            Analytics
                           </div>
                           <div class="schedule-speaker-content table-center">
                             <strong>Diar</strong>
                           </div>
                         </div>
 
-                        <div class="schedule-item schedule-item-blue">
-                          <div
-                            class="schedule-time-content schedule-time-content-blue table-center"
-                          >
-                            15.20 - 16.00<br /><small>40 min</small>
+                        <div class="schedule-item">
+                          <div class="schedule-time-content table-center">
+                            15.50 - 16.30
                           </div>
                           <div class="schedule-topic-content table-center">
                             Cyber Resiliency (CRS)
                           </div>
                           <div class="schedule-speaker-content table-center">
-                            <strong>Felix</strong>
+                            <strong>Felix / Martin</strong>
                           </div>
                         </div>
                       </div>
@@ -628,9 +641,11 @@ export default defineComponent({
                     <h3 class="letters-spacing">General Session</h3>
                   </div>
 
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
-                      16.00 - 16.15<br /><small>15 min</small>
+                  <div class="schedule-item schedule-item-blue">
+                    <div
+                      class="schedule-time-content schedule-time-content-blue table-center"
+                    >
+                      16.30 - 16.45
                     </div>
                     <div class="schedule-topic-content table-center">
                       Customer Testimonial
@@ -642,14 +657,12 @@ export default defineComponent({
                   <div class="schedule-solution-content"></div> -->
                   </div>
 
-                  <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
-                    >
-                      16.15 - 16.30<br /><small>15 min</small>
+                  <div class="schedule-item">
+                    <div class="schedule-time-content table-center">
+                      16.45 - 17.00
                     </div>
                     <div class="schedule-agenda-content table-center">
-                      Door Prize & Closing
+                      Grand Prize & Closing
                     </div>
                     <div class="schedule-speaker-content table-center">
                       <strong>Sastrya</strong>
@@ -803,24 +816,37 @@ export default defineComponent({
                                   information on how we protect your personal
                                   data, see our
                                   <a
-                                    href="/PrivacyPolicy.docx"
+                                    href="/privacy-policy"
                                     style="text-decoration: solid"
-                                    ><b>Privacy Statement</b></a
+                                  >
+                                    <b>Privacy Statement</b> </a
                                   >. You can unsubscribe at any time.
                                 </p>
-                                <ion-checkbox
-                                  v-model="agree"
-                                  @ionChange="validateCheckbox"
-                                  :class="{
-                                    'ion-valid': isValid,
-                                    'ion-invalid': isValid === false,
-                                    'ion-touched': isTouched,
-                                  }"
-                                  label-placement="end"
+                                <ion-item
+                                  lines="none"
+                                  button
+                                  @click="toggleCheckbox"
+                                  style="--padding-start: 0"
                                 >
-                                  Yes, I would like to stay in touch with PT.
-                                  Sapta Tunas Teknologi by email.
-                                </ion-checkbox>
+                                  <ion-checkbox
+                                    slot="start"
+                                    v-model="agree"
+                                    @ionChange="validateCheckbox"
+                                    :class="{
+                                      'ion-valid': isValid,
+                                      'ion-invalid': isValid === false,
+                                      'ion-touched': isTouched,
+                                    }"
+                                  ></ion-checkbox>
+
+                                  <p
+                                    class="ion-text-wrap"
+                                    style="color: #757575"
+                                  >
+                                    Yes, I would like to stay in touch with PT.
+                                    Sapta Tunas Teknologi by email.
+                                  </p>
+                                </ion-item>
                               </ion-col>
                               <ion-col size="12" size-md="12">
                                 <ion-button
