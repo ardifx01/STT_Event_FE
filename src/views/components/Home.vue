@@ -31,7 +31,6 @@ import {
   IonCheckbox,
 } from "@ionic/vue";
 import { locationOutline, calendarOutline, add } from "ionicons/icons";
-
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -81,7 +80,11 @@ export default defineComponent({
     };
   },
   methods: {
+    toggleCheckbox() {
+      this.validateCheckbox();
+    },
     validateCheckbox() {
+      this.agree = !this.agree;
       this.isValid = this.agree;
       this.isTouched = true;
     },
@@ -813,24 +816,37 @@ export default defineComponent({
                                   information on how we protect your personal
                                   data, see our
                                   <a
-                                    href="/PrivacyPolicy.docx"
+                                    href="/privacy-policy"
                                     style="text-decoration: solid"
-                                    ><b>Privacy Statement</b></a
+                                  >
+                                    <b>Privacy Statement</b> </a
                                   >. You can unsubscribe at any time.
                                 </p>
-                                <ion-checkbox
-                                  v-model="agree"
-                                  @ionChange="validateCheckbox"
-                                  :class="{
-                                    'ion-valid': isValid,
-                                    'ion-invalid': isValid === false,
-                                    'ion-touched': isTouched,
-                                  }"
-                                  label-placement="end"
+                                <ion-item
+                                  lines="none"
+                                  button
+                                  @click="toggleCheckbox"
+                                  style="--padding-start: 0"
                                 >
-                                  Yes, I would like to stay in touch with PT.
-                                  Sapta Tunas Teknologi by email.
-                                </ion-checkbox>
+                                  <ion-checkbox
+                                    slot="start"
+                                    v-model="agree"
+                                    @ionChange="validateCheckbox"
+                                    :class="{
+                                      'ion-valid': isValid,
+                                      'ion-invalid': isValid === false,
+                                      'ion-touched': isTouched,
+                                    }"
+                                  ></ion-checkbox>
+
+                                  <p
+                                    class="ion-text-wrap"
+                                    style="color: #757575"
+                                  >
+                                    Yes, I would like to stay in touch with PT.
+                                    Sapta Tunas Teknologi by email.
+                                  </p>
+                                </ion-item>
                               </ion-col>
                               <ion-col size="12" size-md="12">
                                 <ion-button

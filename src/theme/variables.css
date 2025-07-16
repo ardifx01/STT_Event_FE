@@ -1551,3 +1551,19 @@ ion-img.event-icon img {
 
 
 
+ion-checkbox {
+  --size: 20px; /* Ukuran checkbox */
+  
+  /* Style untuk label */
+  ::part(label) {
+    white-space: normal !important;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-left: 8px;
+  }
+  
+  /* Container utama */
+  ::part(container) {
+    align-items: flex-start; /* Untuk alignment vertikal */
+  }
+}
