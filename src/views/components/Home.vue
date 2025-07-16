@@ -232,16 +232,16 @@ export default defineComponent({
         <ion-row>
           <ion-col size="12" size-md="8" size-lg="7">
             <div class="content-section">
-              <h1 class="blue-text ion-no-margin text-center oxanium-extrabold">
-                <strong>NEW EXPERIENCE!</strong>
-              </h1>
+              <div class="judul-home">
+                <p class="blue-text text-center oxanium-bold font-judul-home">
+                  NEW EXPERIENCE!
+                </p>
+              </div>
               <div class="judul-home">
                 <span class="strip left-strip"></span>
                 <div class="mt-8">
                   <p class="text-center font-judul-home">AI</p>
-                  <h5 class="ion-no-margin font-judul-home">
-                    <strong>Experience</strong>
-                  </h5>
+                  <p class="text-center font-judul-home">Experience</p>
                   <p class="text-center font-judul-home">Booth</p>
                 </div>
                 <span class="strip right-strip"></span>
@@ -342,7 +342,7 @@ export default defineComponent({
                 >
                   <ion-text color="dark">
                     <h2 class="ion-no-margin">
-                      <strong>Tuesday, 11 September 2025</strong>
+                      <strong>Thursday, 11 September 2025</strong>
                     </h2>
                     <p class="ion-no-margin">09.00 - 17.00</p>
                   </ion-text>
@@ -380,7 +380,7 @@ export default defineComponent({
                   <!-- Morning Sessions -->
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      09.30 - 09.35<br /><small>5 min</small>
+                      09.30 - 09.35
                     </div>
                     <div class="schedule-topic-content table-center">
                       Sapta Tunas Achievement & Roadmap
@@ -394,7 +394,7 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      09.35 - 09.45<br /><small>15 min</small>
+                      09.35 - 09.45
                     </div>
                     <div class="schedule-agenda-content table-center">-</div>
                     <div class="schedule-speaker-content table-center">
@@ -404,7 +404,7 @@ export default defineComponent({
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      09.45 - 10.00<br /><small>15 min</small>
+                      09.45 - 10.00
                     </div>
                     <div class="schedule-topic-content table-center">
                       Current Challenges & Latest IT Trends
@@ -418,7 +418,7 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      10.00 - 10.40<br /><small>40 min</small>
+                      10.00 - 10.40
                     </div>
                     <div class="schedule-topic-content table-center">
                       Cloud Smart Transformation Rebalanced Strategy : Optimize,
@@ -431,7 +431,7 @@ export default defineComponent({
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      10.40 - 11.10<br /><small>30 min</small>
+                      10.40 - 11.10
                     </div>
                     <div class="schedule-topic-content table-center">
                       Nutanix NCI & NAI
@@ -442,7 +442,7 @@ export default defineComponent({
                   </div>
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      11.10 - 12.00<br /><small>50 min</small>
+                      11.10 - 12.00
                     </div>
                     <div class="schedule-topic-content table-center">
                       Dell AI Factory
@@ -451,19 +451,20 @@ export default defineComponent({
                       <strong>Fardy - Wijaya</strong>
                     </div>
                   </div>
-                  <div class="schedule-item lunch-break schedule-item-blue">
+
+                  <div class="schedule-item schedule-item-blue">
                     <div
-                      class="schedule-time-content schedule-time-content-blue"
+                      class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      12.00 - 13.30<br /><small>90 min</small>
+                      12.00 - 13.30
                     </div>
+
                     <div
-                      class="schedule-time-content-blue text-center table-center"
+                      class="schedule-time-content schedule-time-content-blue text-center table-center"
                     >
                       <strong>Networking Lunch</strong>
                     </div>
                   </div>
-
                   <!-- Breakout Sessions Tab Container -->
                   <div class="breakout-tabs-container">
                     <!-- Tab Navigation -->
@@ -495,7 +496,7 @@ export default defineComponent({
                       >
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            13.30 - 14.10<br /><small>40 min</small>
+                            13.30 - 14.10
                           </div>
                           <div class="schedule-topic-content table-center">
                             Modern Datalake Infrastructure
@@ -509,7 +510,7 @@ export default defineComponent({
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
-                            14.10 - 14.50<br /><small>40 min</small>
+                            14.10 - 14.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             Transform to Perform : Enterprise AI Synergy via
@@ -522,7 +523,7 @@ export default defineComponent({
 
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            14.50 - 15.10<br /><small>20 min</small>
+                            14.50 - 15.10
                           </div>
 
                           <div
@@ -536,7 +537,7 @@ export default defineComponent({
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
-                            15.10 - 15.50<br /><small>40 min</small>
+                            15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             AI Paralel File Storage Solution
@@ -548,7 +549,7 @@ export default defineComponent({
 
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            15.50 - 16.30<br /><small>40 min</small>
+                            15.50 - 16.30
                           </div>
                           <div class="schedule-topic-content table-center">
                             AI Infrastructure Platform
@@ -566,7 +567,7 @@ export default defineComponent({
                       >
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            13.30 - 14.10<br /><small>40 min</small>
+                            13.30 - 14.10
                           </div>
                           <div class="schedule-topic-content table-center">
                             Unmasking Cyber Threats : Unlock the Power of
@@ -581,7 +582,7 @@ export default defineComponent({
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
                           >
-                            14.10 - 14.50<br /><small>40 min</small>
+                            14.10 - 14.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             Enterprise User Protection
@@ -593,7 +594,7 @@ export default defineComponent({
 
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            14.50 - 15.10<br /><small>20 min</small>
+                            14.50 - 15.10
                           </div>
                           <div
                             class="schedule-time-content text-center table-center"
@@ -606,7 +607,7 @@ export default defineComponent({
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
                           >
-                            15.10 - 15.50<br /><small>40 min</small>
+                            15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-center">
                             Supercharge SecOps Workflows with AI-Driven Security
@@ -619,7 +620,7 @@ export default defineComponent({
 
                         <div class="schedule-item">
                           <div class="schedule-time-content table-center">
-                            15.50 - 16.30<br /><small>40 min</small>
+                            15.50 - 16.30
                           </div>
                           <div class="schedule-topic-content table-center">
                             Cyber Resiliency (CRS)
@@ -641,7 +642,7 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      16.30 - 16.45<br /><small>15 min</small>
+                      16.30 - 16.45
                     </div>
                     <div class="schedule-topic-content table-center">
                       Customer Testimonial
@@ -655,7 +656,7 @@ export default defineComponent({
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      16.45 - 17.00<br /><small>15 min</small>
+                      16.45 - 17.00
                     </div>
                     <div class="schedule-agenda-content table-center">
                       Grand Prize & Closing
