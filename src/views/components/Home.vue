@@ -790,17 +790,11 @@ export default defineComponent({
                                   v-model="formData.session"
                                   placeholder="Select Session"
                                   interface="popover"
-                                  label="Select Session"
-                                  label-placement="floating"
                                   fill="outline"
-                                  class="custom-input"
+                                  class="custom-select"
                                 >
-                                  <ion-select-option value="1"
-                                    >AI/ML & Data Management</ion-select-option
-                                  >
-                                  <ion-select-option value="2"
-                                    >Cyber Security</ion-select-option
-                                  >
+                                  <ion-select-option value="1">AI/ML & Data Management</ion-select-option>
+                                  <ion-select-option value="2">Cyber Security</ion-select-option>
                                 </ion-select>
                               </ion-col>
                               <ion-col

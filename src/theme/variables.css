@@ -771,7 +771,7 @@ ion-tab-button ion-label {
 }
 
 /* iOS Select styling */
-ion-select.custom-input {
+ion-select.custom-select {
   --background: var(--neutral-white);
   --border-color: var(--neutral-dark-gray);
   --border-width: 2px;
@@ -783,6 +783,68 @@ ion-select.custom-input {
   -webkit-appearance: none;
   -webkit-border-radius: 12px;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Select styling for better mobile experience */
+.custom-select {
+  --background: var(--neutral-white);
+  --border-color: var(--neutral-dark-gray);
+  --border-width: 2px;
+  --border-radius: 12px;
+  --placeholder-color: var(--neutral-text-light);
+  --color: var(--neutral-text);
+  --padding-start: 16px;
+  --padding-end: 40px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  font-size: 15px !important;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  transition: all 0.3s ease;
+  /* iOS Safari specific */
+  -webkit-appearance: none;
+  -webkit-border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+  /* Better mobile touch target */
+  --min-height: 56px;
+  text-align: left;
+  text-align-last: left;
+}
+
+.custom-select::part(icon) {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-select:focus {
+  --border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(43, 133, 193, 0.1);
+}
+
+/* Mobile specific improvements for custom-select */
+@media (max-width: 768px) {
+  .custom-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    --min-height: 60px;
+    --padding-start: 18px;
+    --padding-end: 45px;
+    --padding-top: 0px !important;
+    --padding-bottom: 0px !important;
+    --border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-select {
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 40px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
 }
 
 /* iOS Checkbox styling */
