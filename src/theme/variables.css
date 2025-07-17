@@ -50,6 +50,72 @@
   font-family: Poppins;
 }
 
+/* iOS Safari viewport and scrolling fixes */
+body {
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Prevent zoom on input focus for iOS */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* iOS specific body fixes */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  /* Fix for iOS Safari bottom bar */
+  .ion-page {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-y: auto;
+  }
+  
+  /* Allow vertical scroll but prevent horizontal scroll on iOS */
+  ion-content {
+    --overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    min-height: auto;
+  }
+}
+
+/* Ensure scrolling works on all mobile devices */
+ion-content {
+  --overflow: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for mobile scrolling issues */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  ion-content {
+    --overflow: auto;
+    overflow-y: auto;
+    height: auto;
+    max-height: none;
+  }
+  
+  .ion-page {
+    overflow-y: auto;
+    height: auto;
+  }
+}
+
 .reset-spacing {
   padding: 0 !important;
   margin: 0 !important;
@@ -635,6 +701,29 @@ ion-tab-button ion-label {
   background: rgba(255, 255, 255, .95);
   border: 1px solid rgba(255, 255, 255, .2);
   overflow: hidden;
+  /* iOS safe area support */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iOS keyboard handling */
+@supports (-webkit-touch-callout: none) {
+  .registration-form {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  
+  /* Prevent form from being hidden behind keyboard */
+  .registration-card {
+    margin-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  
+  /* Better spacing for iOS notch devices */
+  @media screen and (max-width: 414px) and (orientation: portrait) {
+    .registration-card {
+      margin-top: calc(1rem + env(safe-area-inset-top));
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
 }
 .custom-input, .submit-button {
   --border-radius: 12px;
@@ -674,8 +763,53 @@ ion-tab-button ion-label {
   /* iOS specific fixes */
   -webkit-appearance: none;
   appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
   /* Android specific fixes */
   --highlight-color-focused: var(--primary);
+}
+
+/* iOS Select styling */
+ion-select.custom-input {
+  --background: var(--neutral-white);
+  --border-color: var(--neutral-dark-gray);
+  --border-width: 2px;
+  --placeholder-color: var(--neutral-text-light);
+  --color: var(--neutral-text);
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  /* iOS Safari specific */
+  -webkit-appearance: none;
+  -webkit-border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOS Checkbox styling */
+ion-checkbox {
+  --size: 20px;
+  --border-radius: 4px;
+  --border-width: 2px;
+  --border-color: var(--neutral-dark-gray);
+  --checkmark-color: var(--neutral-white);
+  --background-checked: var(--primary);
+  --border-color-checked: var(--primary);
+  /* iOS specific */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Better touch targets for checkboxes on mobile */
+@media (max-width: 768px) {
+  ion-checkbox {
+    --size: 24px;
+    margin-right: 12px;
+  }
+  
+  ion-item {
+    --min-height: 48px;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
 }
 /* Platform-specific adjustments */
 .ios .custom-input {
@@ -695,7 +829,11 @@ ion-tab-button ion-label {
   }
   
   .custom-input {
-    font-size: 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
   }
   
   .registration-form {
@@ -710,12 +848,96 @@ ion-tab-button ion-label {
   }
   
   .custom-input {
-    font-size: 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    --padding-start: 3px;
+    --padding-end: 3px;
+    --padding-top: 3px;
+    --padding-bottom: 3px;
   }
   
   .registration-card {
     margin: 0.5rem;
     border-radius: 12px;
+  }
+}
+
+/* iPhone specific optimizations */
+@media only screen and (max-width: 414px) {
+  /* iPhone Pro Max, iPhone Plus */
+  .registration-card {
+    margin: 0.25rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-input {
+    --min-height: 48px;
+    font-size: 16px;
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    /* iOS Safari specific fixes */
+    -webkit-appearance: none;
+    -webkit-border-radius: 12px;
+  }
+  
+  .submit-button {
+    --min-height: 48px;
+    --border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  /* iPhone 12/13/14, iPhone X/XS */
+  .registration-form {
+    padding: 1rem 0.75rem;
+  }
+  
+  .custom-input {
+    --min-height: 44px;
+    font-size: 16px;
+    --padding-start: 14px;
+    --padding-end: 14px;
+  }
+  
+  .registration-title {
+    font-size: 1.2rem;
+  }
+  
+  .submit-button {
+    --min-height: 44px;
+    font-size: 0.95rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  /* iPhone SE, older iPhones */
+  .registration-card {
+    margin: 0.125rem;
+    border-radius: 12px;
+  }
+  
+  .registration-form {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .custom-input {
+    --min-height: 42px;
+    font-size: 16px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+  
+  .registration-title {
+    font-size: 1.1rem;
+  }
+  
+  .submit-button {
+    --min-height: 42px;
+    font-size: 0.9rem;
   }
 }
 .custom-input:focus-within {
