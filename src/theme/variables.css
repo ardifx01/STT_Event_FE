@@ -534,19 +534,19 @@ ion-item ion-icon {
   color: var(--neutral-white);
 }
 .schedule-agenda-content:before {
-  content: "Agenda:";
+  content: "";
   margin-right: 0.3rem;
   font-weight: 700;
   color: var(--neutral-text-light);
 }
 .schedule-speaker-content:before {
-  content: "Speaker:";
+  content: "";
   font-weight: 700;
   margin-right: 0.3rem;
   color: var(--neutral-text-light);
 }
 .schedule-topic-content:before {
-  content: "Topic: ";
+  content: "";
   margin-right: 0.3rem;
   font-weight: 700;
   color: var(--neutral-text-light);
