@@ -307,14 +307,13 @@ export default defineComponent({
               class="ion-align-self-center mobile-detail-event"
             >
               <ion-row>
-                <ion-col size="4" class="ion-text-end">
+                <ion-col size="2" size-md="3" class="ion-text-center">
                   <ion-img
                     src="/img/asset/asset_location.png"
                     class="event-icon"
                   ></ion-img>
                 </ion-col>
-                <ion-col
-                  size="8"
+                <ion-col size="10" size-md="9" 
                   class="event-details mobile-detail-event ion-align-self-center"
                 >
                   <ion-text color="dark">
@@ -333,14 +332,13 @@ export default defineComponent({
               class="ion-align-self-center mobile-detail-event"
             >
               <ion-row>
-                <ion-col size="4" class="ion-text-end">
+                <ion-col size="2" size-md="3" class="ion-text-end">
                   <ion-img
                     src="/img/asset/asset_date.png"
                     class="event-icon"
                   ></ion-img>
                 </ion-col>
-                <ion-col
-                  size="8"
+                <ion-col size="10" size-md="9" 
                   class="event-details mobile-detail-event ion-align-self-center"
                 >
                   <ion-text color="dark">
