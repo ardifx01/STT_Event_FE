@@ -1559,6 +1559,7 @@ ion-tab-button ion-label {
 /* Improve table layout on mobile */
 @media (max-width: 768px) {
   .table-center {
+    text-align: center;
     padding: 4px;
     font-size: 0.85rem;
   }
