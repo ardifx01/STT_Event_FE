@@ -87,7 +87,7 @@
                       <th>No</th>
                       <th>Winner Name</th>
                       <th>Company</th>
-                      <th>Session</th>
+                      <th>Winner</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -96,7 +96,7 @@
                       <td>{{ index + 1 }}</td>
                       <td>{{ winner.registration?.full_name || "N/A" }}</td>
                       <td>{{ winner.registration?.company_name || "N/A" }}</td>
-                      <td>Sesi {{ winner.prize_sesi }}</td>
+                      <td>Winner {{ winner.prize_sesi }}</td>
                     </tr>
                     <tr v-if="winners.length === 0">
                       <td colspan="4" class="no-winners">No winners yet</td>
@@ -127,12 +127,6 @@
               {{ winnerResult.originalData.registration?.full_name }}
             </h1>
             <div class="winner-details">
-              <p
-                v-if="winnerResult.originalData.registration?.email"
-                class="winner-email"
-              >
-                {{ winnerResult.originalData.registration?.email }}
-              </p>
               <p
                 v-if="winnerResult.originalData.registration?.company_name"
                 class="winner-company"
