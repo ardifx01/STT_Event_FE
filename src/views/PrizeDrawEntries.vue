@@ -167,8 +167,6 @@
 </template>
 
 <script>
-import winnerSound from "/winner.mp3";
-import spinningSound from "/spinner.mp3";
 import { refreshOutline } from "ionicons/icons";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -191,7 +189,8 @@ import {
   IonIcon,
 } from "@ionic/vue";
 import { close } from "ionicons/icons";
-
+import winnerSound from "@/assets/audio/winner.mp3";
+import spinSound from "@/assets/audio/spinner.mp3";
 export default defineComponent({
   name: "PrizeDrawEntries",
   components: {
@@ -232,11 +231,11 @@ export default defineComponent({
       session: 0,
       sounds: {
         won: winnerSound,
-        spinning: spinningSound,
+        spinning: spinSound,
       },
     };
   },
-  setup() {},
+
   computed: {
     winners() {
       if (this.participants.length > 0) {
