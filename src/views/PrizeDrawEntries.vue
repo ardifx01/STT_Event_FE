@@ -30,6 +30,7 @@
                   ref="spinner"
                   class="spinner"
                   :slices="slices"
+                  :sounds="sounds"
                   :winner-index="defaultWinner"
                   :cursor-angle="cursorAngle"
                   :cursor-position="cursorPosition"
@@ -172,6 +173,8 @@
 </template>
 
 <script>
+import winnerSound from "/winner.mp3";
+import spinningSound from "/spinner.mp3";
 import { refreshOutline } from "ionicons/icons";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -233,17 +236,19 @@ export default defineComponent({
       cursorPosition: "edge",
       cursorDistance: 0,
       session: 0,
+      sounds: {
+        won: winnerSound,
+        spinning: spinningSound,
+      },
     };
   },
+  setup() {},
   computed: {
     winners() {
       if (this.participants.length > 0) {
-        console.log(
-          this.participants.filters((i) => i.prize_sesi !== null)
-        );
         return this.participants
-        .filters((i) => i.prize_sesi !== null)
-        .sort((a, b) => a.prize_sesi - b.prize_sesi);
+          .filters((i) => i.prize_sesi !== null)
+          .sort((a, b) => a.prize_sesi - b.prize_sesi);
       }
       return [];
     },
@@ -258,7 +263,7 @@ export default defineComponent({
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
         console.log("Participants fetched successfully:", response.data);
-        this.session = response.data.total_sesi
+        this.session = response.data.total_sesi;
         return response.data.data;
       } catch (error) {
         console.error("Error fetching participants:", error);
@@ -272,7 +277,9 @@ export default defineComponent({
       try {
         const all_participants = await this.getAllParticipants();
         const participants = all_participants.filter((i) => !i.winner);
-        this.winners = all_participants.filter((i) => i.winner).sort((a, b) => a.prize_sesi - b.prize_sesi);
+        this.winners = all_participants
+          .filter((i) => i.winner)
+          .sort((a, b) => a.prize_sesi - b.prize_sesi);
         console.log("Winners:", this.winners);
         const total = participants.length;
 
