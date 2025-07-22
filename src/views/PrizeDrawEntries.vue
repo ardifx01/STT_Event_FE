@@ -229,6 +229,8 @@ export default defineComponent({
       cursorPosition: "edge",
       cursorDistance: 0,
       session: 0,
+      max_winner: 0,
+      total_winner: 0,
       sounds: {
         won: winnerSound,
         spinning: spinSound,
@@ -256,7 +258,8 @@ export default defineComponent({
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
         console.log("Participants fetched successfully:", response.data);
-        this.session = response.data.total_sesi;
+        this.max_winner = response.data.max_winner;
+        this.total_winner = response.data.total_winners;
         return response.data.data;
       } catch (error) {
         console.error("Error fetching participants:", error);
@@ -328,9 +331,11 @@ export default defineComponent({
     },
 
     onSpinStart() {
-      this.winnerResult = null;
-      this.isSpinning = true;
-      console.log("Spin started");
+      if (this.max_winner - this.total_winner > 0) {
+        this.winnerResult = null;
+        this.isSpinning = true;
+        console.log("Spin started");
+      }
     },
 
     onSpinEnd(winnerIndex) {
@@ -352,8 +357,7 @@ export default defineComponent({
     async submitWinner() {
       this.isLoadingSubmitWinner = true;
       if (!this.winnerResult) return;
-      // return console.log(this.session + 1);
-      // const sesiSpin = localStorage.getItem("sesiSpin");
+      const winner = lthis.max_winner - this.total_winner;
 
       try {
         const res = await axios.put(
@@ -361,7 +365,7 @@ export default defineComponent({
             this.winnerResult.originalData.registration.id
           }`,
           {
-            prize_sesi: this.session + 1, // Increment session by 1
+            prize_sesi: winner,
           }
         );
 
@@ -399,7 +403,7 @@ export default defineComponent({
       this.isSpinning = false;
     },
     // storeSesiSpin() {
-    //   const sesiSpin = localStorage.getItem("sesiSpin") || 0;
+    //   const sesiSpin = localStorage.getItem("sesiSpin") || 3;
 
     //   if (sesiSpin >= 0) {
     //     const newSesiSpin = parseInt(sesiSpin) + 1;
