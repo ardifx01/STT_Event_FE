@@ -111,7 +111,7 @@
       </ion-grid>
 
       <!-- Winner Modal -->
-      <ion-modal :is-open="!!winnerResult">
+      <ion-modal :is-open="!!winnerResult" :css-class="'custom-modal'">
         <ion-content class="ion-padding">
           <!-- loading -->
           <div v-if="isLoadingSubmitWinner" class="loading-overlay">
@@ -123,6 +123,9 @@
           <div class="winner-content" v-if="winnerResult">
             <div class="winner-icon">🏆</div>
             <h1>🎉 Congratulations! 🎉</h1>
+            <div v-for="image in image_prize" :key="index" class="winner-image">
+              <img v-if="max_winner - total_winner == image.for_winner" :src="getImageUrl(image.image_path)" alt="Winner Image" />
+            </div>
             <h1 class="winner-name">
               {{ winnerResult.originalData.registration?.full_name }}
             </h1>
@@ -235,6 +238,7 @@ export default defineComponent({
         won: winnerSound,
         spinning: spinSound,
       },
+      image_prize: [],
     };
   },
 
@@ -247,6 +251,9 @@ export default defineComponent({
       }
       return [];
     },
+    baseUrl() {
+      return import.meta.env.VITE_BACKEND_API_BASE_URL_IMAGE;
+    }
   },
   async mounted() {
     await this.loadParticipants();
@@ -257,8 +264,9 @@ export default defineComponent({
         const response = await axios.get(
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
-        console.log("Participants fetched successfully:", response.data);
+        console.log("Participants fetched successfully:", response.data.image_prize);
         this.max_winner = response.data.max_winner;
+        this.image_prize = response.data.image_prize;
         this.total_winner = response.data.total_winners;
         return response.data.data;
       } catch (error) {
@@ -357,7 +365,7 @@ export default defineComponent({
     async submitWinner() {
       this.isLoadingSubmitWinner = true;
       if (!this.winnerResult) return;
-      const winner = lthis.max_winner - this.total_winner;
+      const winner = this.max_winner - this.total_winner;
 
       try {
         const res = await axios.put(
@@ -410,6 +418,11 @@ export default defineComponent({
     //     localStorage.setItem("sesiSpin", newSesiSpin);
     //   }
     // },
+
+    getImageUrl(image) {
+      // Jika `image` adalah string (misalnya "winner.jpg")
+      return `${this.baseUrl}${image}`;
+    }
   },
 });
 </script>
@@ -529,7 +542,9 @@ export default defineComponent({
 /* Winner Modal Styles */
 .winner-content {
   text-align: center;
-  padding: 10px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .winner-icon {
@@ -742,5 +757,14 @@ export default defineComponent({
 }
 .winners-table tr:nth-child(3) {
   animation-delay: 0.3s;
+}
+
+.winner-image img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover; /* agar gambar tidak gepeng */
+  border-radius: 12px; /* opsional: buat sudut membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* opsional: biar lebih menonjol */
+  margin: 8px;
 }
 </style>
