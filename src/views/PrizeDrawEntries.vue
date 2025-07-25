@@ -122,9 +122,13 @@
 
           <div class="winner-content" v-if="winnerResult">
             <div class="winner-icon">🏆</div>
-            <h1>🎉 Congratulations! 🎉</h1>
+            <h1 style="font-size: 40px">🎉 Congratulations! 🎉</h1>
             <div v-for="image in image_prize" :key="index" class="winner-image">
-              <img v-if="max_winner - total_winner == image.for_winner" :src="getImageUrl(image.image_path)" alt="Winner Image" />
+              <img
+                v-if="max_winner - total_winner == image.for_winner"
+                :src="getImageUrl(image.image_path)"
+                alt="Winner Image"
+              />
             </div>
             <h1 class="winner-name">
               {{ winnerResult.originalData.registration?.full_name }}
@@ -253,7 +257,7 @@ export default defineComponent({
     },
     baseUrl() {
       return import.meta.env.VITE_BACKEND_API_BASE_URL_IMAGE;
-    }
+    },
   },
   async mounted() {
     await this.loadParticipants();
@@ -264,7 +268,10 @@ export default defineComponent({
         const response = await axios.get(
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
-        console.log("Participants fetched successfully:", response.data.image_prize);
+        console.log(
+          "Participants fetched successfully:",
+          response.data.image_prize
+        );
         this.max_winner = response.data.max_winner;
         this.image_prize = response.data.image_prize;
         this.total_winner = response.data.total_winners;
@@ -406,9 +413,44 @@ export default defineComponent({
         this.isLoadingSubmitWinner = false;
       }
     },
-    dismissModal() {
-      this.winnerResult = null;
-      this.isSpinning = false;
+    async dismissModal() {
+      this.isLoadingSubmitWinner = true;
+      try {
+        const res = await axios.put(
+          `${import.meta.env.VITE_SPIN_WHEEL_CLOSE_WINNER_API}/${
+            this.winnerResult.originalData.registration.id
+          }`
+        );
+
+        this.isLoadingSubmitWinner = false;
+        Swal.fire({
+          title: "Successfully Close!",
+          text: "Thank you for registering!",
+          icon: "success",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: "my-fullscreen-modal",
+          },
+        });
+        this.isSpinning = false;
+        this.winnerResult = null; // Reset winner after submission
+      } catch (error) {
+        this.error = "Failed to close winner. Please try again.";
+        console.log("Error submitting winner:", error);
+        this.isLoadingSubmitWinner = false;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message || "Something went wrong!",
+          heightAuto: false, // ini bisa membantu
+          customClass: {
+            popup: "my-fullscreen-modal",
+          },
+        });
+      } finally {
+        this.refreshParticipant();
+        this.isLoadingSubmitWinner = false;
+      }
     },
     // storeSesiSpin() {
     //   const sesiSpin = localStorage.getItem("sesiSpin") || 3;
@@ -422,7 +464,7 @@ export default defineComponent({
     getImageUrl(image) {
       // Jika `image` adalah string (misalnya "winner.jpg")
       return `${this.baseUrl}${image}`;
-    }
+    },
   },
 });
 </script>
@@ -569,7 +611,7 @@ export default defineComponent({
 .winner-email,
 .winner-company {
   margin: 8px 0;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #666;
   text-align: center;
 }
@@ -761,7 +803,8 @@ export default defineComponent({
 
 .winner-image img {
   width: 300px;
-  height: 200px;
+  max-width: 300px;
+  max-height: 300px;
   object-fit: cover; /* agar gambar tidak gepeng */
   border-radius: 12px; /* opsional: buat sudut membulat */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* opsional: biar lebih menonjol */
