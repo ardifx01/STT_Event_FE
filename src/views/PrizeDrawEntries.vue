@@ -805,9 +805,7 @@ export default defineComponent({
   width: 300px;
   max-width: 300px;
   max-height: 300px;
-  object-fit: cover; /* agar gambar tidak gepeng */
-  border-radius: 12px; /* opsional: buat sudut membulat */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* opsional: biar lebih menonjol */
+  object-fit: contain; /* agar gambar tidak gepeng */
   margin: 8px;
 }
 </style>
