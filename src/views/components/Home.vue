@@ -237,7 +237,7 @@ export default defineComponent({
             <div class="content-section">
               <div class="judul-home">
                 <p class="blue-text text-center oxanium-bold font-judul-home">
-                  How AI Boost Your Business with REAL Use Case?
+                  How AI Boost Your Business with REAL Use Case?
                 </p>
               </div>
               <div class="judul-home">
