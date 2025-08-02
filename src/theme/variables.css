@@ -67,7 +67,10 @@ body {
 input, select, textarea {
   font-size: 16px !important;
 }
-
+  .logo {
+        margin-left: 5px;
+        vertical-align: middle;
+    }
 /* iOS specific body fixes */
 @supports (-webkit-touch-callout: none) {
   body {
@@ -101,7 +104,9 @@ ion-content {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-
+ .partner-img-mobile {
+  display:none;
+  }
 /* Fix for mobile scrolling issues */
 @media (max-width: 768px) {
   body {
@@ -424,7 +429,7 @@ ion-item ion-icon {
 
 .schedule-header, .schedule-item {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2.5fr 1.5fr;
   gap: .5rem;
 }
 @media(max-width:425px) {
@@ -1399,7 +1404,19 @@ ion-tab-button ion-label {
   height: 100%;
   border-radius: 8px;
 }
+ .table-speaker, .table-topic {
+    align-content: center;
+  }
+.schedule-speaker-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; /* Jarak antara teks dan gambar */
+}
 
+.logo {
+    margin-left: auto; /* Posisikan gambar di sebelah kanan */
+  }
 /* Content section styling */
 .content-section {
   width: 100%;
@@ -1528,6 +1545,7 @@ ion-tab-button ion-label {
 
 /* Fix for grid layout on mobile */
 @media (max-width: 768px) {
+  
   /* Better grid handling for mobile */
   ion-row.ml-4 {
     margin-left: 0 !important;
@@ -1561,9 +1579,34 @@ ion-tab-button ion-label {
     padding: 4px;
   }
 }
-
+@media (max-width: 1000px) {
+ .partner-img-mobile {
+ display: block;
+ place-self: center;
+ margin-top: -20px;
+ }
+ .partner-img {
+ display:none;
+ }
+ .speaker-info{
+ display: math;
+ }
+      .schedule-speaker-content {
+    display: block;
+    align-items: center;
+    justify-content:center;
+    gap: 0; /* Jarak antara teks dan gambar */
+}
+      .table-speaker, .table-topic {
+    text-align: center;
+    padding: 8px;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+}
 /* Improve table layout on mobile */
 @media (max-width: 768px) {
+
   .table-center {
     text-align: center;
     padding: 4px;

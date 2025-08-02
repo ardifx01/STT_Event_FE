@@ -313,7 +313,9 @@ export default defineComponent({
                     class="event-icon"
                   ></ion-img>
                 </ion-col>
-                <ion-col size="10" size-md="9" 
+                <ion-col
+                  size="10"
+                  size-md="9"
                   class="event-details mobile-detail-event ion-align-self-center"
                 >
                   <ion-text color="dark">
@@ -338,14 +340,16 @@ export default defineComponent({
                     class="event-icon"
                   ></ion-img>
                 </ion-col>
-                <ion-col size="10" size-md="9" 
+                <ion-col
+                  size="10"
+                  size-md="9"
                   class="event-details mobile-detail-event ion-align-self-center"
                 >
                   <ion-text color="dark">
                     <h2 class="ion-no-margin">
                       <strong>Thursday, 11 September 2025</strong>
                     </h2>
-                    <p class="ion-no-margin">09.00 - 17.00</p>
+                    <p class="ion-no-margin">09.30 - 17.00</p>
                   </ion-text>
                 </ion-col>
               </ion-row>
@@ -379,15 +383,43 @@ export default defineComponent({
                   </div>
 
                   <!-- Morning Sessions -->
+                  <div class="schedule-item schedule-item-blue">
+                    <div
+                      class="schedule-time-content schedule-time-content-blue table-center"
+                    >
+                      08.45 - 09.30
+                    </div>
+
+                    <div
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
+                    >
+                      <strong>Registration</strong>
+                    </div>
+                  </div>
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
                       09.30 - 09.35
                     </div>
-                    <div class="schedule-topic-content table-center">
-                      Sapta Tunas Achievement & Roadmap
+                    <div class="schedule-topic-content table-topic">
+                      Greeting Welcome from PT Sapta Tunas Teknologi
                     </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Arianto</strong>
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/stt.png"
+                        width="50"
+                      />
+                      <div class="speaker-info">
+                        <strong>Arianto</strong>
+                        <div style="font-size: 11px">
+                          General Manager, PT Sapta Tunas Teknologi
+                        </div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/stt.png"
+                        width="50"
+                      />
                     </div>
                   </div>
 
@@ -397,21 +429,52 @@ export default defineComponent({
                     >
                       09.35 - 09.45
                     </div>
-                    <div class="schedule-agenda-content table-center">-</div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Erwin</strong>
+                    <div class="schedule-agenda-content table-topic">
+                      Keynote Speech
+                    </div>
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/dell.png"
+                        width="40"
+                      />
+                      <div class="speaker-info">
+                        <strong>Erwin Yusran</strong>
+                        <div style="font-size: 11px">
+                          Head of Data Center Sales, Dell Technologies
+                        </div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/dell.png"
+                        width="40"
+                      />
                     </div>
                   </div>
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      09.45 - 10.00
+                      09.45 - 10.20
                     </div>
-                    <div class="schedule-topic-content table-center">
-                      Current Challenges & Latest IT Trends
+                    <div class="schedule-topic-content table-topic">
+                      The Tomorrow AI : Small, Sovereign, Specific
                     </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Andre</strong>
+
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/soca.png"
+                        width="40"
+                      />
+                      <div class="speaker-info">
+                        <strong>Jimmy Yogaswara</strong>
+                        <div style="font-size: 11px">CEO, Soca AI</div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/soca.png"
+                        width="40"
+                      />
                     </div>
                   </div>
 
@@ -419,37 +482,84 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      10.00 - 10.40
+                      10.20 - 10.55
                     </div>
-                    <div class="schedule-topic-content table-center">
+                    <div class="schedule-topic-content table-topic">
                       Cloud Smart Transformation Rebalanced Strategy : Optimize,
                       Repatriatte, Innovate
                     </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Bram</strong>
+
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/stt.png"
+                        width="50"
+                      />
+                      <div class="speaker-info">
+                        <strong>T. Bram</strong>
+                        <div style="font-size: 11px">
+                          Enteprise Architect, PT Sapta Tunas Teknologi
+                        </div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/stt.png"
+                        width="50"
+                      />
                     </div>
                   </div>
 
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      10.40 - 11.10
+                      10.55 - 11.30
                     </div>
-                    <div class="schedule-topic-content table-center">
-                      Nutanix NCI & NAI
+                    <div class="schedule-topic-content table-topic">
+                      Nutanix Enterprise AI : Private and Secure Centralized
+                      Inferencing for GenAI
                     </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Petrus</strong>
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/nutanix.png"
+                        width="50"
+                      />
+                      <div class="speaker-info">
+                        <strong>Sahdam Husen</strong>
+                        <div style="font-size: 11px">
+                          Senior System Engineer, Nutanix Indonesia
+                        </div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/nutanix.png"
+                        width="50"
+                      />
                     </div>
                   </div>
                   <div class="schedule-item">
                     <div class="schedule-time-content table-center">
-                      11.10 - 12.00
+                      11.30 - 12.00
                     </div>
-                    <div class="schedule-topic-content table-center">
+                    <div class="schedule-topic-content table-topic">
                       Dell AI Factory
                     </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Fardy - Wijaya</strong>
+                    <div class="schedule-speaker-content table-speaker">
+                      <img
+                        class="partner-img-mobile"
+                        src="/img/partner/dell.png"
+                        width="40"
+                      />
+                      <div class="speaker-info">
+                        <strong>Fardy Umar</strong>
+                        <div style="font-size: 11px">
+                          Solution Architect, Dell Technologies
+                        </div>
+                      </div>
+                      <img
+                        class="partner-img"
+                        src="/img/partner/dell.png"
+                        width="40"
+                      />
                     </div>
                   </div>
 
@@ -461,7 +571,7 @@ export default defineComponent({
                     </div>
 
                     <div
-                      class="schedule-time-content schedule-time-content-blue text-center table-center"
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
                     >
                       <strong>Networking Lunch</strong>
                     </div>
@@ -499,11 +609,26 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             13.30 - 14.10
                           </div>
-                          <div class="schedule-topic-content table-center">
-                            Modern Datalake Infrastructure
+                          <div class="schedule-topic-content table-topic">
+                            Dell Data Lakehouse - Modern Datta Infrastructure
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Felix / Hendro</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/dell.png"
+                              width="40"
+                            />
+                            <div class="speaker-info">
+                              <strong>Hendro Kusno</strong>
+                              <div style="font-size: 11px">
+                                UDS Territory Manager, Dell Technologies
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/dell.png"
+                              width="40"
+                            />
                           </div>
                         </div>
 
@@ -513,12 +638,27 @@ export default defineComponent({
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-center">
+                          <div class="schedule-topic-content table-topic">
                             Transform to Perform : Enterprise AI Synergy via
                             Seeing, Understanding and Acting in Action
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Don JuanDo</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/stt.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Juan - Fernando</strong>
+                              <div style="font-size: 11px">
+                                AI Consultant, PT Sapta Tunas Teknologi
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/stt.png"
+                              width="50"
+                            />
                           </div>
                         </div>
 
@@ -527,9 +667,7 @@ export default defineComponent({
                             14.50 - 15.10
                           </div>
 
-                          <div
-                            class="schedule-time-content text-center table-center"
-                          >
+                          <div class="schedule-agenda-content table-topic">
                             <strong>Coffee Break</strong>
                           </div>
                         </div>
@@ -540,11 +678,26 @@ export default defineComponent({
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-center">
-                            AI Paralel File Storage Solution
+                          <div class="schedule-topic-content table-topic">
+                            NeuralMesh By WEKA, Accelerating AI
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Eunice</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/weka.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Eunice Zhou</strong>
+                              <div style="font-size: 11px">
+                                Regional Sales Manager, WEKA
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/weka.png"
+                              width="50"
+                            />
                           </div>
                         </div>
 
@@ -552,11 +705,26 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             15.50 - 16.30
                           </div>
-                          <div class="schedule-topic-content table-center">
-                            AI Infrastructure Platform
+                          <div class="schedule-topic-content table-topic">
+                            Accelerating AI and Cloud Native Adoption
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Fitra</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/rafay.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Fitra Alim</strong>
+                              <div style="font-size: 11px">
+                                Technical Delivery Lead, Refay Systems
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/rafay.png"
+                              width="50"
+                            />
                           </div>
                         </div>
                       </div>
@@ -570,12 +738,27 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             13.30 - 14.10
                           </div>
-                          <div class="schedule-topic-content table-center">
+                          <div class="schedule-topic-content table-topic">
                             Unmasking Cyber Threats : Unlock the Power of
                             AI-Driven Threat Intelligence
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Rangga</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/cyble.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Rangga F.</strong>
+                              <div style="font-size: 11px">
+                                Sales Director, Cyble.Inc.
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/cyble.png"
+                              width="50"
+                            />
                           </div>
                         </div>
 
@@ -585,11 +768,28 @@ export default defineComponent({
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-center">
-                            Enterprise User Protection
+                          <div class="schedule-topic-content table-topic">
+                            Harnessing AI for Next-Generation Threat Defense
+                            with Cisco
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Rein</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/cisco.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Rein Rachman Putra</strong>
+                              <div style="font-size: 11px">
+                                Cybersecurity Solutions Engineer, Cisco
+                                Indonesia
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/cisco.png"
+                              width="50"
+                            />
                           </div>
                         </div>
 
@@ -597,9 +797,7 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             14.50 - 15.10
                           </div>
-                          <div
-                            class="schedule-time-content text-center table-center"
-                          >
+                          <div class="schedule-agenda-content table-topic">
                             <strong>Coffee Break</strong>
                           </div>
                         </div>
@@ -610,12 +808,27 @@ export default defineComponent({
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-center">
+                          <div class="schedule-topic-content table-topic">
                             Supercharge SecOps Workflows with AI-Driven Security
                             Analytics
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Diar</strong>
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/elastic.png"
+                              width="50"
+                            />
+                            <div class="speaker-info">
+                              <strong>Diar Firman</strong>
+                              <div style="font-size: 11px">
+                                Senior Solutions Architect, ELASTIC
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/elastic.png"
+                              width="50"
+                            />
                           </div>
                         </div>
 
@@ -623,11 +836,28 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             15.50 - 16.30
                           </div>
-                          <div class="schedule-topic-content table-center">
-                            Cyber Resiliency (CRS)
+                          <div class="schedule-topic-content table-topic">
+                            Surviving Cyber Attacks : Effective Data Recovery
+                            Strategies with Dell
                           </div>
-                          <div class="schedule-speaker-content table-center">
-                            <strong>Felix / Martin</strong>
+
+                          <div class="schedule-speaker-content table-speaker">
+                            <img
+                              class="partner-img-mobile"
+                              src="/img/partner/dell.png"
+                              width="40"
+                            />
+                            <div class="speaker-info">
+                              <strong>Martin Ruslan</strong>
+                              <div style="font-size: 11px">
+                                Sales Specialist, Dell Technologies
+                              </div>
+                            </div>
+                            <img
+                              class="partner-img"
+                              src="/img/partner/dell.png"
+                              width="40"
+                            />
                           </div>
                         </div>
                       </div>
@@ -645,11 +875,11 @@ export default defineComponent({
                     >
                       16.30 - 16.45
                     </div>
-                    <div class="schedule-topic-content table-center">
-                      Customer Testimonial
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Alfandi</strong>
+
+                    <div
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
+                    >
+                      <strong> Customer Testimonial</strong>
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -659,11 +889,8 @@ export default defineComponent({
                     <div class="schedule-time-content table-center">
                       16.45 - 17.00
                     </div>
-                    <div class="schedule-agenda-content table-center">
-                      Grand Prize & Closing
-                    </div>
-                    <div class="schedule-speaker-content table-center">
-                      <strong>Sastrya</strong>
+                    <div class="schedule-agenda-content table-topic">
+                      <strong> Grand Prize & Closing</strong>
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -791,8 +1018,12 @@ export default defineComponent({
                                   fill="outline"
                                   class="custom-select"
                                 >
-                                  <ion-select-option value="1">AI/ML & Data Management</ion-select-option>
-                                  <ion-select-option value="2">Cyber Security</ion-select-option>
+                                  <ion-select-option value="1"
+                                    >AI/ML & Data Management</ion-select-option
+                                  >
+                                  <ion-select-option value="2"
+                                    >Cyber Security</ion-select-option
+                                  >
                                 </ion-select>
                               </ion-col>
                               <ion-col
