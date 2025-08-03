@@ -512,7 +512,6 @@ ion-item ion-icon {
   border-left: 4px solid var(--border-warning);
   font-weight: 700;
   text-align: center;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -1396,6 +1395,7 @@ ion-tab-button ion-label {
   border-radius: 30px;
   overflow: hidden;
 }
+
 .table-center {
   display: flex;
   justify-content: center;
@@ -1404,9 +1404,15 @@ ion-tab-button ion-label {
   height: 100%;
   border-radius: 8px;
 }
- .table-speaker, .table-topic {
-    align-content: center;
-  }
+.table-speaker,
+.table-topic {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
 .schedule-speaker-content {
     display: flex;
     align-items: center;
@@ -1434,31 +1440,7 @@ ion-tab-button ion-label {
   display: block;
   margin: 0 auto;
 }
-@media (max-width: 1000px) {
- .partner-img-mobile {
-    display: block;
-    place-self: center;
-    margin-top: -20px;
- }
- .partner-img {
-    display:none;
- }
- .speaker-info{
-    display: math;
- }
-  .schedule-speaker-content {
-    display: block;
-    align-items: center;
-    justify-content:center;
-    gap: 0; /* Jarak antara teks dan gambar */
-}
-  .table-speaker, .table-topic {
-    text-align: center;
-    padding: 8px;
-    min-height: 44px;
-    font-size: 0.85rem;
-  }
-}
+
 /* Mobile specific improvements */
 @media (max-width: 768px) {
 
@@ -1709,6 +1691,7 @@ ion-tab-button ion-label {
     min-height: 44px;
     padding: 8px;
   }
+  
 }
 
 /* Fix layout overflow issues */
@@ -1898,5 +1881,36 @@ ion-checkbox {
   /* Container utama */
   ::part(container) {
     align-items: flex-start; /* Untuk alignment vertikal */
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .partner-img-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-top: -20px;
+  }
+  .partner-img {
+    display: none;
+  }
+  .speaker-info {
+    display: block;
+  }
+  .schedule-speaker-content {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Jarak antara teks dan gambar */
+  }
+  .table-speaker,
+  .table-topic {  
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    min-height: 44px;
+    font-size: 0.85rem;
   }
 }

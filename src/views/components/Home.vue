@@ -404,11 +404,9 @@ export default defineComponent({
                       Greeting Welcome from PT Sapta Tunas Teknologi
                     </div>
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/stt.png"
-                        width="50"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/stt.png" width="50" />
+                      </div>
                       <div class="speaker-info">
                         <strong>Arianto</strong>
                         <div style="font-size: 11px">
@@ -433,11 +431,9 @@ export default defineComponent({
                       Keynote Speech
                     </div>
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/dell.png"
-                        width="40"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/dell.png" width="40" />
+                      </div>
                       <div class="speaker-info">
                         <strong>Erwin Yusran</strong>
                         <div style="font-size: 11px">
@@ -461,11 +457,9 @@ export default defineComponent({
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/soca.png"
-                        width="40"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/soca.png" width="40" />
+                      </div>
                       <div class="speaker-info">
                         <strong>Jimmy Yogaswara</strong>
                         <div style="font-size: 11px">CEO, Soca AI</div>
@@ -490,11 +484,9 @@ export default defineComponent({
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/stt.png"
-                        width="50"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/stt.png" width="50" />
+                      </div>
                       <div class="speaker-info">
                         <strong>T. Bram</strong>
                         <div style="font-size: 11px">
@@ -518,11 +510,9 @@ export default defineComponent({
                       Inferencing for GenAI
                     </div>
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/nutanix.png"
-                        width="50"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/nutanix.png" width="50" />
+                      </div>
                       <div class="speaker-info">
                         <strong>Sahdam Husen</strong>
                         <div style="font-size: 11px">
@@ -544,11 +534,9 @@ export default defineComponent({
                       Dell AI Factory
                     </div>
                     <div class="schedule-speaker-content table-speaker">
-                      <img
-                        class="partner-img-mobile"
-                        src="/img/partner/dell.png"
-                        width="40"
-                      />
+                      <div class="partner-img-mobile">
+                        <img src="/img/partner/dell.png" width="40" />
+                      </div>
                       <div class="speaker-info">
                         <strong>Fardy Umar</strong>
                         <div style="font-size: 11px">
@@ -613,11 +601,9 @@ export default defineComponent({
                             Dell Data Lakehouse - Modern Datta Infrastructure
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/dell.png"
-                              width="40"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/dell.png" width="40" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Hendro Kusno</strong>
                               <div style="font-size: 11px">
@@ -643,11 +629,9 @@ export default defineComponent({
                             Seeing, Understanding and Acting in Action
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/stt.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/stt.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Juan - Fernando</strong>
                               <div style="font-size: 11px">
@@ -682,11 +666,9 @@ export default defineComponent({
                             NeuralMesh By WEKA, Accelerating AI
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/weka.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/weka.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Eunice Zhou</strong>
                               <div style="font-size: 11px">
@@ -709,11 +691,9 @@ export default defineComponent({
                             Accelerating AI and Cloud Native Adoption
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/rafay.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/rafay.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Fitra Alim</strong>
                               <div style="font-size: 11px">
@@ -743,11 +723,9 @@ export default defineComponent({
                             AI-Driven Threat Intelligence
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/cyble.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/cyble.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Rangga F.</strong>
                               <div style="font-size: 11px">
@@ -773,11 +751,9 @@ export default defineComponent({
                             with Cisco
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/cisco.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/cisco.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Rein Rachman Putra</strong>
                               <div style="font-size: 11px">
@@ -813,11 +789,9 @@ export default defineComponent({
                             Analytics
                           </div>
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/elastic.png"
-                              width="50"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/elastic.png" width="50" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Diar Firman</strong>
                               <div style="font-size: 11px">
@@ -842,11 +816,9 @@ export default defineComponent({
                           </div>
 
                           <div class="schedule-speaker-content table-speaker">
-                            <img
-                              class="partner-img-mobile"
-                              src="/img/partner/dell.png"
-                              width="40"
-                            />
+                            <div class="partner-img-mobile">
+                              <img src="/img/partner/dell.png" width="40" />
+                            </div>
                             <div class="speaker-info">
                               <strong>Martin Ruslan</strong>
                               <div style="font-size: 11px">
@@ -1098,6 +1070,5 @@ export default defineComponent({
     </ion-content>
   </ion-page>
 </template>
-
 
 
