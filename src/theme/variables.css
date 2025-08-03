@@ -1434,7 +1434,31 @@ ion-tab-button ion-label {
   display: block;
   margin: 0 auto;
 }
-
+@media (max-width: 1000px) {
+ .partner-img-mobile {
+    display: block;
+    place-self: center;
+    margin-top: -20px;
+ }
+ .partner-img {
+    display:none;
+ }
+ .speaker-info{
+    display: math;
+ }
+  .schedule-speaker-content {
+    display: block;
+    align-items: center;
+    justify-content:center;
+    gap: 0; /* Jarak antara teks dan gambar */
+}
+  .table-speaker, .table-topic {
+    text-align: center;
+    padding: 8px;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+}
 /* Mobile specific improvements */
 @media (max-width: 768px) {
 
@@ -1577,31 +1601,6 @@ ion-tab-button ion-label {
   /* Fix for column spacing */
   ion-row ion-col {
     padding: 4px;
-  }
-}
-@media (max-width: 1000px) {
- .partner-img-mobile {
- display: block;
- place-self: center;
- margin-top: -20px;
- }
- .partner-img {
- display:none;
- }
- .speaker-info{
- display: math;
- }
-      .schedule-speaker-content {
-    display: block;
-    align-items: center;
-    justify-content:center;
-    gap: 0; /* Jarak antara teks dan gambar */
-}
-      .table-speaker, .table-topic {
-    text-align: center;
-    padding: 8px;
-    min-height: 44px;
-    font-size: 0.85rem;
   }
 }
 /* Improve table layout on mobile */

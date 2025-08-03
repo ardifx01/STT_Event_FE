@@ -486,7 +486,7 @@ export default defineComponent({
                     </div>
                     <div class="schedule-topic-content table-topic">
                       Cloud Smart Transformation Rebalanced Strategy : Optimize,
-                      Repatriatte, Innovate
+                      Repatriate, Innovate
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
@@ -910,6 +910,9 @@ export default defineComponent({
                 <h2 class="prize-title oxanium-bold letters-spacing">
                   Win The Prize
                 </h2>
+                <div class="prize-subtitle">
+                  Grand Prize & Social Media Challenge
+                </div>
 
                 <!-- Prize Items -->
                 <div class="prize-items">
@@ -919,7 +922,7 @@ export default defineComponent({
                       alt="Prize Items"
                       class="prize-image"
                     />
-                    <div class="prize-text-overlay">
+                    <!-- <div class="prize-text-overlay">
                       <div class="prize-item prize-item-left">
                         <p class="prize-name">Samsung Galaxy<br />Watch7</p>
                       </div>
@@ -929,7 +932,7 @@ export default defineComponent({
                       <div class="prize-item prize-item-right">
                         <p class="prize-name">JBL Tune 510BT<br />Wireless</p>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
