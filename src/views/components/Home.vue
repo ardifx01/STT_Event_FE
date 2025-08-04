@@ -688,7 +688,7 @@ export default defineComponent({
                           </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             15.50 - 16.30
                           </div>
@@ -864,11 +864,11 @@ export default defineComponent({
                   <div class="schedule-solution-content"></div> -->
                   </div>
 
-                  <div class="schedule-item">
+                  <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center">
                       16.45 - 17.00
                     </div>
-                    <div class="schedule-agenda-content table-topic">
+                    <div class="schedule-agenda-content table-topic customer-testimonial">
                       <strong class="color-font-gray"> Grand Prize & Closing</strong>
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
