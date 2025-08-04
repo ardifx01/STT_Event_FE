@@ -454,7 +454,7 @@ ion-item ion-icon {
   overflow: hidden;
 }
 .schedule-item-blue {
-  background: var(--neutral-light-blue);
+  background: var(--gradient-blue);
 }
 .border-blue {
   border-left: 4px solid var(--primary);
@@ -462,15 +462,21 @@ ion-item ion-icon {
 .border-gray {
     border-left: 4px solid var(--neutral-gray);
 }
+/*  */
 .schedule-agenda-content, .schedule-brand-content, .schedule-solution-content, .schedule-speaker-content, .schedule-time-content, .schedule-topic-content {
   padding: .8rem;
   font-size: .95rem;
   line-height: 1.3;
   /* color: var(--primary); */
   color: var(--neutral-text-dark);
-}
-.schedule-time-content {
   background: var(--neutral-light-gray);
+}
+
+.color-font-gray {
+  color: var(--neutral-text);
+}
+
+.schedule-time-content {
   font-weight: 600;
   color: var(--neutral-text);
   text-align: center;
@@ -504,8 +510,9 @@ ion-item ion-icon {
   font-size: 1.1rem;
   font-weight: 700;
 }
-.lunch-break {
-  grid-template-columns: 1fr 4fr;
+.customer-testimonial {
+  grid-column-start: 2;
+  grid-column-end: -1; /* -1 berarti kolom terakhir */
 }
 .lunch-break .schedule-agenda-content {
   background: var(--bg-warning);
@@ -576,9 +583,6 @@ margin-right: 0.3rem;
 .schedule-solution-content {
   border-bottom: none;
   border-radius: 0 0 12px 12px;
-}
-.lunch-break {
-  display: block;
 }
 .lunch-break .schedule-agenda-content {
   background: var(--neutral-light-blue);

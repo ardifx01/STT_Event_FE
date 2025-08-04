@@ -363,6 +363,7 @@ export default defineComponent({
           <ion-row>
             <ion-col size="12">
               <ion-card class="schedule-background">
+                <!-- header -->
                 <ion-card-header class="schedule-card-title">
                   <ion-card-title class="ion-text-center">
                     <h2 class="oxanium-bold letters-spacing">
@@ -383,21 +384,19 @@ export default defineComponent({
                   </div>
 
                   <!-- Morning Sessions -->
+                  <!-- table biru -->
                   <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
-                    >
+                    <div class="schedule-time-content schedule-time-content-blue table-center">
                       08.45 - 09.30
                     </div>
 
-                    <div
-                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
-                    >
-                      <strong>Registration</strong>
+                    <div class="schedule-agenda-content schedule-agenda-content-blue table-topic schedule-time-content-blue customer-testimonial ">
+                      <strong class="color-font-gray">Registration</strong>
                     </div>
                   </div>
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
+
+                  <div class="schedule-item schedule-item-blue">
+                    <div class="schedule-time-content table-center ">
                       09.30 - 09.35
                     </div>
                     <div class="schedule-topic-content table-topic">
@@ -421,16 +420,18 @@ export default defineComponent({
                     </div>
                   </div>
 
+                  <!-- table biru -->
                   <div class="schedule-item schedule-item-blue">
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
                       09.35 - 09.45
                     </div>
-                    <div class="schedule-agenda-content table-topic">
+                    <div class="schedule-agenda-content schedule-time-content-blue table-topic table-center">
                       Keynote Speech
                     </div>
-                    <div class="schedule-speaker-content table-speaker">
+
+                    <div class="schedule-speaker-content schedule-time-content-blue table-speaker table-center">
                       <div class="partner-img-mobile">
                         <img src="/img/partner/dell.png" width="40" />
                       </div>
@@ -448,7 +449,7 @@ export default defineComponent({
                     </div>
                   </div>
 
-                  <div class="schedule-item">
+                  <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center">
                       09.45 - 10.20
                     </div>
@@ -472,18 +473,19 @@ export default defineComponent({
                     </div>
                   </div>
 
+                  <!-- table biru -->
                   <div class="schedule-item schedule-item-blue">
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
                       10.20 - 10.55
                     </div>
-                    <div class="schedule-topic-content table-topic">
+                    <div class="schedule-topic-content table-topic schedule-time-content-blue">
                       Cloud Smart Transformation Rebalanced Strategy : Optimize,
                       Repatriate, Innovate
                     </div>
 
-                    <div class="schedule-speaker-content table-speaker">
+                    <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                       <div class="partner-img-mobile">
                         <img src="/img/partner/stt.png" width="50" />
                       </div>
@@ -501,7 +503,7 @@ export default defineComponent({
                     </div>
                   </div>
 
-                  <div class="schedule-item">
+                  <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center">
                       10.55 - 11.30
                     </div>
@@ -526,14 +528,15 @@ export default defineComponent({
                       />
                     </div>
                   </div>
-                  <div class="schedule-item">
-                    <div class="schedule-time-content table-center">
+                  
+                  <div class="schedule-item schedule-item-blue">
+                    <div class="schedule-time-content table-center schedule-time-content-blue">
                       11.30 - 12.00
                     </div>
-                    <div class="schedule-topic-content table-topic">
+                    <div class="schedule-topic-content table-topic schedule-time-content-blue">
                       Dell AI Factory
                     </div>
-                    <div class="schedule-speaker-content table-speaker">
+                    <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                       <div class="partner-img-mobile">
                         <img src="/img/partner/dell.png" width="40" />
                       </div>
@@ -553,15 +556,15 @@ export default defineComponent({
 
                   <div class="schedule-item schedule-item-blue">
                     <div
-                      class="schedule-time-content schedule-time-content-blue table-center"
+                      class="schedule-time-content table-center"
                     >
                       12.00 - 13.30
                     </div>
 
                     <div
-                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic customer-testimonial"
                     >
-                      <strong>Networking Lunch</strong>
+                      <strong class="color-font-gray">Networking Lunch</strong>
                     </div>
                   </div>
                   <!-- Breakout Sessions Tab Container -->
@@ -593,7 +596,7 @@ export default defineComponent({
                         v-show="activeBreakoutTab === 'sessionA'"
                         class="tab-panel"
                       >
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             13.30 - 14.10
                           </div>
@@ -618,17 +621,18 @@ export default defineComponent({
                           </div>
                         </div>
 
+                        <!-- table biru -->
                         <div class="schedule-item schedule-item-blue">
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-topic">
+                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
                             Transform to Perform : Enterprise AI Synergy via
                             Seeing, Understanding and Acting in Action
                           </div>
-                          <div class="schedule-speaker-content table-speaker">
+                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
                               <img src="/img/partner/stt.png" width="50" />
                             </div>
@@ -646,26 +650,27 @@ export default defineComponent({
                           </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             14.50 - 15.10
                           </div>
 
-                          <div class="schedule-agenda-content table-topic">
-                            <strong>Coffee Break</strong>
+                          <div class="schedule-agenda-content table-topic customer-testimonial">
+                            <strong class="color-font-gray">Coffee Break</strong>
                           </div>
                         </div>
 
+                        <!-- table biru -->
                         <div class="schedule-item schedule-item-blue">
                           <div
                             class="schedule-time-content table-center schedule-time-content-blue"
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-topic">
+                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
                             NeuralMesh By WEKA, Accelerating AI
                           </div>
-                          <div class="schedule-speaker-content table-speaker">
+                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
                               <img src="/img/partner/weka.png" width="50" />
                             </div>
@@ -714,7 +719,7 @@ export default defineComponent({
                         v-show="activeBreakoutTab === 'sessionB'"
                         class="tab-panel"
                       >
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             13.30 - 14.10
                           </div>
@@ -740,17 +745,18 @@ export default defineComponent({
                           </div>
                         </div>
 
+                        <!-- table biru -->
                         <div class="schedule-item schedule-item-blue">
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-topic">
+                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
                             Harnessing AI for Next-Generation Threat Defense
                             with Cisco
                           </div>
-                          <div class="schedule-speaker-content table-speaker">
+                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
                               <img src="/img/partner/cisco.png" width="50" />
                             </div>
@@ -769,26 +775,27 @@ export default defineComponent({
                           </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             14.50 - 15.10
                           </div>
-                          <div class="schedule-agenda-content table-topic">
-                            <strong>Coffee Break</strong>
+                          <div class="schedule-agenda-content table-topic customer-testimonial">
+                            <strong class="color-font-gray">Coffee Break</strong>
                           </div>
                         </div>
 
+                        <!-- table -->
                         <div class="schedule-item schedule-item-blue">
                           <div
                             class="schedule-time-content schedule-time-content-blue table-center"
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-topic">
+                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
                             Supercharge SecOps Workflows with AI-Driven Security
                             Analytics
                           </div>
-                          <div class="schedule-speaker-content table-speaker">
+                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
                               <img src="/img/partner/elastic.png" width="50" />
                             </div>
@@ -806,7 +813,7 @@ export default defineComponent({
                           </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item schedule-item-blue">
                           <div class="schedule-time-content table-center">
                             15.50 - 16.30
                           </div>
@@ -849,9 +856,9 @@ export default defineComponent({
                     </div>
 
                     <div
-                      class="schedule-agenda-content schedule-agenda-content-blue table-topic"
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic schedule-time-content-blue customer-testimonial"
                     >
-                      <strong> Customer Testimonial</strong>
+                      <strong class="color-font-gray"> Customer Testimonial</strong>
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -862,7 +869,7 @@ export default defineComponent({
                       16.45 - 17.00
                     </div>
                     <div class="schedule-agenda-content table-topic">
-                      <strong> Grand Prize & Closing</strong>
+                      <strong class="color-font-gray"> Grand Prize & Closing</strong>
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
