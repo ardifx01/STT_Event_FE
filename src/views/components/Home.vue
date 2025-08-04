@@ -890,7 +890,7 @@ export default defineComponent({
                 <div class="prize-items">
                   <div class="prize-container">
                     <img
-                      src="/img/asset/doorprize.png"
+                      src="/img/asset/doorprize2.png"
                       alt="Prize Items"
                       class="prize-image"
                     />
