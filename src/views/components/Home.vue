@@ -228,7 +228,7 @@ export default defineComponent({
     <ion-content>
       <!-- Hero Section -->
       <div class="hero-section">
-        <img src="/img/asset/microsite.png" alt="Security Illustration" />
+        <img src="/img/asset/header.png" alt="Security Illustration" />
       </div>
 
       <ion-grid class="ion-container ion-margin-top">
