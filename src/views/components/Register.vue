@@ -1,7 +1,7 @@
 <script>
-import { defineComponent } from 'vue';
-import axios from 'axios';
-import Swal from 'sweetalert2'
+import { defineComponent } from "vue";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 import {
   IonPage,
@@ -24,12 +24,12 @@ import {
   IonButton,
   IonIcon,
   IonFab,
-  IonFabButton
-} from '@ionic/vue';
-import { locationOutline, calendarOutline, add } from 'ionicons/icons';
+  IonFabButton,
+} from "@ionic/vue";
+import { locationOutline, calendarOutline, add } from "ionicons/icons";
 
 export default defineComponent({
-  name: 'Register',
+  name: "Register",
   components: {
     IonPage,
     IonHeader,
@@ -51,83 +51,83 @@ export default defineComponent({
     IonButton,
     IonIcon,
     IonFab,
-    IonFabButton
+    IonFabButton,
   },
   data() {
     return {
       isLoading: false,
       errorMessage: null,
       formData: {
-        fullName: '',
-        company: '',
-        jobTitle: '',
-        email: '',
-        phone: ''
-      }
-    }
+        fullName: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+      },
+    };
   },
   methods: {
-    async submitForm()  {
+    async submitForm() {
       // console.log('Form submitted:', this.formData);
       // Handle form submission logic here
       this.isLoading = true; // Show loading overlay
-
 
       const data = {
         full_name: this.formData.fullName,
         job_title: this.formData.jobTitle,
         company_name: this.formData.company,
         email: this.formData.email,
-        mobile_number: this.formData.phone
-      }
+        mobile_number: this.formData.phone,
+      };
 
-      await axios.post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
-      .then((response) => {
-        // alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
-        // Optionally, handle success response
-        // console.log('Response:', response.data);
-        this.isLoading = false; // Hide loading overlay
-        Swal.fire({
-          title: "Registration Successfully!",
-          text: response.data.message || "Thank you for registering!",
-          icon: "success",
-          heightAuto: false, // ini bisa membantu
-          customClass: {
-            popup: 'my-fullscreen-modal'
-          },
+      await axios
+        .post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
+        .then((response) => {
+          // alert('Registration successful! wait for th admin to send a confirmation email and barcode ticket .');
+          // Optionally, handle success response
+          // console.log('Response:', response.data);
+          this.isLoading = false; // Hide loading overlay
+          Swal.fire({
+            title: "Registration Successfully!",
+            text: response.data.message || "Thank you for registering!",
+            icon: "success",
+            heightAuto: false, // ini bisa membantu
+            customClass: {
+              popup: "my-fullscreen-modal",
+            },
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          // Optionally, handle error response
+          // this.errorMessage = error.response.data.message || "Something went wrong!";
+          this.isLoading = false; // Hide loading overlay
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.response.data.message || "Something went wrong!",
+            heightAuto: false, // ini bisa membantu
+            customClass: {
+              popup: "my-fullscreen-modal",
+            },
+          });
+        })
+        .finally(() => {
+          this.clearForm(); // Clear the form after submission
+          this.isLoading = false; // Ensure loading overlay is hidden
         });
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Optionally, handle error response
-        // this.errorMessage = error.response.data.message || "Something went wrong!";
-        this.isLoading = false; // Hide loading overlay
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: error.response.data.message || "Something went wrong!",
-          heightAuto: false, // ini bisa membantu
-          customClass: {
-            popup: 'my-fullscreen-modal'
-          },
-        });
-      })
-      .finally(() => {
-        this.clearForm(); // Clear the form after submission
-        this.isLoading = false; // Ensure loading overlay is hidden
-      })
     },
 
     clearForm() {
       this.formData = {
-        fullName: '',
-        company: '',
-        jobTitle: '',
-        email: '',
-        phone: ''
+        fullName: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
       };
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -141,11 +141,10 @@ export default defineComponent({
     <!-- loading -->
 
     <ion-content class="registration-page-content">
-
       <div class="hero-section">
-        <img src="/img/prizes.png" alt="Win The Prize" />
+        <img src="/img/asset/win_prize.png" alt="Win The Prize" />
       </div>
-      
+
       <!-- Background Decorative Elements -->
       <div class="background-decoration">
         <div class="bg-circle bg-circle-1"></div>
@@ -154,7 +153,7 @@ export default defineComponent({
         <div class="bg-wave bg-wave-1"></div>
         <div class="bg-wave bg-wave-2"></div>
       </div>
-      
+
       <ion-grid class="ion-container registration-content">
         <ion-row class="ion-justify-content-center">
           <ion-col size="12" size-md="8" size-lg="6">
@@ -164,7 +163,7 @@ export default defineComponent({
                   Registration Form
                 </ion-card-title>
               </ion-card-header>
-              
+
               <ion-card-content class="registration-form">
                 <ion-list lines="none">
                   <ion-item class="form-item ion-margin-top">
@@ -179,7 +178,7 @@ export default defineComponent({
                       autocomplete="given-name"
                     ></ion-input>
                   </ion-item>
-                  
+
                   <ion-item class="form-item">
                     <ion-input
                       v-model="formData.company"
@@ -192,7 +191,7 @@ export default defineComponent({
                       autocomplete="organization"
                     ></ion-input>
                   </ion-item>
-                  
+
                   <ion-item class="form-item">
                     <ion-input
                       v-model="formData.jobTitle"
@@ -205,7 +204,7 @@ export default defineComponent({
                       autocomplete="organization-title"
                     ></ion-input>
                   </ion-item>
-                  
+
                   <ion-item class="form-item">
                     <ion-input
                       v-model="formData.email"
@@ -219,7 +218,7 @@ export default defineComponent({
                       autocomplete="email"
                     ></ion-input>
                   </ion-item>
-                  
+
                   <ion-item class="form-item">
                     <ion-input
                       v-model="formData.phone"
@@ -234,7 +233,7 @@ export default defineComponent({
                     ></ion-input>
                   </ion-item>
                 </ion-list>
-                
+
                 <ion-button
                   expand="block"
                   class="submit-button"
@@ -253,42 +252,46 @@ export default defineComponent({
 
 
 <style>
-   /* Overlay full screen */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(18, 18, 18, 0.8); /* putih transparan */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
+/* Overlay full screen */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 18, 18, 0.8); /* putih transparan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  flex-direction: column;
+}
 
-    /* Spinner */
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-    }
+/* Spinner */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
 
-    /* Text */
-    .loading-text {
-      margin-top: 16px;
-      font-family: sans-serif;
-      font-size: 16px;
-      color: #555;
-    }
+/* Text */
+.loading-text {
+  margin-top: 16px;
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #555;
+}
 
-    /* Animasi */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+/* Animasi */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
