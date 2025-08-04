@@ -478,7 +478,7 @@ export default defineComponent({
                       </div>
                       <img
                         class="partner-img"
-                        src="/img/partner/soca.png"
+                        src="/img/partner/stt.png"
                         width="40"
                       />
                     </div>
