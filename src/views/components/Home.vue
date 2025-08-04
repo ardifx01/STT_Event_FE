@@ -451,19 +451,30 @@ export default defineComponent({
 
                   <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center">
-                      09.45 - 10.20
+                      09.45 - 10.45
                     </div>
                     <div class="schedule-topic-content table-topic">
-                      The Tomorrow AI : Small, Sovereign, Specific
+                      <strong>Panel Discussion :</strong><br>
+                      Future-Proofing Your Business: How AI and Data Sovereignty Shape Tomorrow's IT Lanscape
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/soca.png" width="40" />
+                        <img src="/img/partner/stt.png" width="40" />
                       </div>
                       <div class="speaker-info">
-                        <strong>Jimmy Yogaswara</strong>
-                        <div style="font-size: 11px">CEO, Soca AI</div>
+                        <div class="">
+                          <strong>T. Bram</strong>
+                          <div style="font-size: 11px">Enterprise & AI Architect</div>
+                        </div>
+                        <div class="">
+                          <strong>Jimmy Y</strong>
+                          <div style="font-size: 11px">AI Expert</div>
+                        </div>
+                        <div class="">
+                          <strong>Victor G</strong>
+                          <div style="font-size: 11px">Data Strategy Expert</div>
+                        </div>
                       </div>
                       <img
                         class="partner-img"
@@ -478,11 +489,10 @@ export default defineComponent({
                     <div
                       class="schedule-time-content schedule-time-content-blue table-center"
                     >
-                      10.20 - 10.55
+                      10.45 - 11.15
                     </div>
                     <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                      Cloud Smart Transformation Rebalanced Strategy : Optimize,
-                      Repatriate, Innovate
+                      Dell AI Factory
                     </div>
 
                     <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
@@ -490,9 +500,9 @@ export default defineComponent({
                         <img src="/img/partner/stt.png" width="50" />
                       </div>
                       <div class="speaker-info">
-                        <strong>T. Bram</strong>
+                        <strong>Fardy Umar</strong>
                         <div style="font-size: 11px">
-                          Enteprise Architect, PT Sapta Tunas Teknologi
+                          Solution Architect, Dell Technologies
                         </div>
                       </div>
                       <img
@@ -505,7 +515,7 @@ export default defineComponent({
 
                   <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center">
-                      10.55 - 11.30
+                      11.15 - 12.00
                     </div>
                     <div class="schedule-topic-content table-topic">
                       Nutanix Enterprise AI : Private and Secure Centralized
@@ -529,12 +539,12 @@ export default defineComponent({
                     </div>
                   </div>
                   
-                  <div class="schedule-item schedule-item-blue">
+                  <!-- <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center schedule-time-content-blue">
-                      11.30 - 12.00
+                      12.00 - 13.30
                     </div>
                     <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                      Dell AI Factory
+                      Networking Lunch
                     </div>
                     <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                       <div class="partner-img-mobile">
@@ -552,7 +562,7 @@ export default defineComponent({
                         width="40"
                       />
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="schedule-item schedule-item-blue">
                     <div
@@ -567,6 +577,7 @@ export default defineComponent({
                       <strong class="color-font-gray">Networking Lunch</strong>
                     </div>
                   </div>
+
                   <!-- Breakout Sessions Tab Container -->
                   <div class="breakout-tabs-container">
                     <!-- Tab Navigation -->
@@ -629,8 +640,7 @@ export default defineComponent({
                             14.10 - 14.50
                           </div>
                           <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                            Transform to Perform : Enterprise AI Synergy via
-                            Seeing, Understanding and Acting in Action
+                            Transform to Perform : Enterprise AI Synergy via Seeing, Understanding and Acting in Action
                           </div>
                           <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
@@ -668,7 +678,7 @@ export default defineComponent({
                             15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                            NeuralMesh By WEKA, Accelerating AI
+                            NeuralMesh by WEKA, Accelerating AI
                           </div>
                           <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                             <div class="partner-img-mobile">
@@ -792,7 +802,7 @@ export default defineComponent({
                             15.10 - 15.50
                           </div>
                           <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                            Supercharge SecOps Workflows with AI-Driven Security
+                            Supercharge SecOps Workflows with AI Driven Security
                             Analytics
                           </div>
                           <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
