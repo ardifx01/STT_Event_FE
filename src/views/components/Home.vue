@@ -386,17 +386,21 @@ export default defineComponent({
                   <!-- Morning Sessions -->
                   <!-- table biru -->
                   <div class="schedule-item schedule-item-blue">
-                    <div class="schedule-time-content schedule-time-content-blue table-center">
+                    <div
+                      class="schedule-time-content schedule-time-content-blue table-center"
+                    >
                       08.45 - 09.30
                     </div>
 
-                    <div class="schedule-agenda-content schedule-agenda-content-blue table-topic schedule-time-content-blue customer-testimonial ">
+                    <div
+                      class="schedule-agenda-content schedule-agenda-content-blue table-topic schedule-time-content-blue customer-testimonial"
+                    >
                       <strong class="color-font-gray">Registration</strong>
                     </div>
                   </div>
 
                   <div class="schedule-item schedule-item-blue">
-                    <div class="schedule-time-content table-center ">
+                    <div class="schedule-time-content table-center">
                       09.30 - 09.35
                     </div>
                     <div class="schedule-topic-content table-topic">
@@ -404,7 +408,7 @@ export default defineComponent({
                     </div>
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/stt.png" width="50" />
+                        <img src="/img/partner/stt.png" width="60" />
                       </div>
                       <div class="speaker-info">
                         <strong>Arianto</strong>
@@ -415,7 +419,7 @@ export default defineComponent({
                       <img
                         class="partner-img"
                         src="/img/partner/stt.png"
-                        width="50"
+                        width="60"
                       />
                     </div>
                   </div>
@@ -427,13 +431,17 @@ export default defineComponent({
                     >
                       09.35 - 09.45
                     </div>
-                    <div class="schedule-agenda-content schedule-time-content-blue table-topic table-center">
+                    <div
+                      class="schedule-agenda-content schedule-time-content-blue table-topic table-center"
+                    >
                       Keynote Speech
                     </div>
 
-                    <div class="schedule-speaker-content schedule-time-content-blue table-speaker table-center">
+                    <div
+                      class="schedule-speaker-content schedule-time-content-blue table-speaker table-center"
+                    >
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/dell1.png" width="60" />
+                        <img src="/img/partner/dell1.png" width="90" />
                       </div>
                       <div class="speaker-info">
                         <strong>Erwin Yusran</strong>
@@ -444,7 +452,7 @@ export default defineComponent({
                       <img
                         class="partner-img"
                         src="/img/partner/dell1.png"
-                        width="60"
+                        width="70"
                       />
                     </div>
                   </div>
@@ -453,19 +461,28 @@ export default defineComponent({
                     <div class="schedule-time-content table-center">
                       09.45 - 10.45
                     </div>
-                    <div class="schedule-topic-content table-topic panel-discussion-title">
-                      <div class="panel-discussion-content"><strong>Panel Discussion :</strong></div>
-                      <div class="panel-discussion-content">Future-Proofing Your Business: How AI and Data Sovereignty Shape Tomorrow's IT Landscape</div>
+                    <div
+                      class="schedule-topic-content table-topic panel-discussion-title"
+                    >
+                      <div class="panel-discussion-content">
+                        <strong>Panel Discussion :</strong>
+                      </div>
+                      <div class="panel-discussion-content">
+                        Future-Proofing Your Business: How AI and Data
+                        Sovereignty Shape Tomorrow's IT Landscape
+                      </div>
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/stt.png" width="50" />
+                        <img src="/img/partner/stt.png" width="60" />
                       </div>
                       <div class="speaker-info">
                         <div class="">
                           <strong>T. Bram</strong>
-                          <div style="font-size: 11px">Enterprise & AI Architect</div>
+                          <div style="font-size: 11px">
+                            Enterprise & AI Architect
+                          </div>
                         </div>
                         <div class="">
                           <strong>Jimmy Y</strong>
@@ -473,13 +490,15 @@ export default defineComponent({
                         </div>
                         <div class="">
                           <strong>Victor G</strong>
-                          <div style="font-size: 11px">Data Strategy Expert</div>
+                          <div style="font-size: 11px">
+                            Data Strategy Expert
+                          </div>
                         </div>
                       </div>
                       <img
                         class="partner-img"
                         src="/img/partner/stt.png"
-                        width="50"
+                        width="60"
                       />
                     </div>
                   </div>
@@ -491,13 +510,17 @@ export default defineComponent({
                     >
                       10.45 - 11.15
                     </div>
-                    <div class="schedule-topic-content table-topic schedule-time-content-blue">
+                    <div
+                      class="schedule-topic-content table-topic schedule-time-content-blue"
+                    >
                       Dell AI Factory
                     </div>
 
-                    <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
+                    <div
+                      class="schedule-speaker-content table-speaker schedule-time-content-blue"
+                    >
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/dell1.png" width="60" />
+                        <img src="/img/partner/dell1.png" width="90" />
                       </div>
                       <div class="speaker-info">
                         <strong>Fardy Umar</strong>
@@ -508,7 +531,7 @@ export default defineComponent({
                       <img
                         class="partner-img"
                         src="/img/partner/dell1.png"
-                        width="60"
+                        width="70"
                       />
                     </div>
                   </div>
@@ -523,7 +546,7 @@ export default defineComponent({
                     </div>
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/nutanix1.png" width="40" />
+                        <img src="/img/partner/nutanix1.png" width="50" />
                       </div>
                       <div class="speaker-info">
                         <strong>Sahdam Husen</strong>
@@ -534,11 +557,11 @@ export default defineComponent({
                       <img
                         class="partner-img"
                         src="/img/partner/nutanix1.png"
-                        width="40"
+                        width="50"
                       />
                     </div>
                   </div>
-                  
+
                   <!-- <div class="schedule-item schedule-item-blue">
                     <div class="schedule-time-content table-center schedule-time-content-blue">
                       12.00 - 13.30
@@ -565,9 +588,7 @@ export default defineComponent({
                   </div> -->
 
                   <div class="schedule-item schedule-item-blue">
-                    <div
-                      class="schedule-time-content table-center"
-                    >
+                    <div class="schedule-time-content table-center">
                       12.00 - 13.30
                     </div>
 
@@ -616,7 +637,7 @@ export default defineComponent({
                           </div>
                           <div class="schedule-speaker-content table-speaker">
                             <div class="partner-img-mobile">
-                              <img src="/img/partner/dell1.png" width="60" />
+                              <img src="/img/partner/dell1.png" width="90" />
                             </div>
                             <div class="speaker-info">
                               <strong>Hendro Kusno</strong>
@@ -627,7 +648,7 @@ export default defineComponent({
                             <img
                               class="partner-img"
                               src="/img/partner/dell1.png"
-                              width="60"
+                              width="70"
                             />
                           </div>
                         </div>
@@ -639,12 +660,17 @@ export default defineComponent({
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
-                            Transform to Perform : Enterprise AI Synergy via Seeing, Understanding and Acting in Action
+                          <div
+                            class="schedule-topic-content table-topic schedule-time-content-blue"
+                          >
+                            Transform to Perform : Enterprise AI Synergy via
+                            Seeing, Understanding and Acting in Action
                           </div>
-                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
+                          <div
+                            class="schedule-speaker-content table-speaker schedule-time-content-blue"
+                          >
                             <div class="partner-img-mobile">
-                              <img src="/img/partner/stt.png" width="50" />
+                              <img src="/img/partner/stt.png" width="60" />
                             </div>
                             <div class="speaker-info">
                               <strong>Juan - Fernando</strong>
@@ -655,7 +681,7 @@ export default defineComponent({
                             <img
                               class="partner-img"
                               src="/img/partner/stt.png"
-                              width="50"
+                              width="60"
                             />
                           </div>
                         </div>
@@ -665,8 +691,12 @@ export default defineComponent({
                             14.50 - 15.10
                           </div>
 
-                          <div class="schedule-agenda-content table-topic customer-testimonial">
-                            <strong class="color-font-gray">Coffee Break</strong>
+                          <div
+                            class="schedule-agenda-content table-topic customer-testimonial"
+                          >
+                            <strong class="color-font-gray"
+                              >Coffee Break</strong
+                            >
                           </div>
                         </div>
 
@@ -677,10 +707,14 @@ export default defineComponent({
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
+                          <div
+                            class="schedule-topic-content table-topic schedule-time-content-blue"
+                          >
                             NeuralMesh by WEKA, Accelerating AI
                           </div>
-                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
+                          <div
+                            class="schedule-speaker-content table-speaker schedule-time-content-blue"
+                          >
                             <div class="partner-img-mobile">
                               <img src="/img/partner/weka.png" width="50" />
                             </div>
@@ -762,11 +796,15 @@ export default defineComponent({
                           >
                             14.10 - 14.50
                           </div>
-                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
+                          <div
+                            class="schedule-topic-content table-topic schedule-time-content-blue"
+                          >
                             Harnessing AI for Next-Generation Threat Defense
                             with Cisco
                           </div>
-                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
+                          <div
+                            class="schedule-speaker-content table-speaker schedule-time-content-blue"
+                          >
                             <div class="partner-img-mobile">
                               <img src="/img/partner/cisco.png" width="50" />
                             </div>
@@ -789,8 +827,12 @@ export default defineComponent({
                           <div class="schedule-time-content table-center">
                             14.50 - 15.10
                           </div>
-                          <div class="schedule-agenda-content table-topic customer-testimonial">
-                            <strong class="color-font-gray">Coffee Break</strong>
+                          <div
+                            class="schedule-agenda-content table-topic customer-testimonial"
+                          >
+                            <strong class="color-font-gray"
+                              >Coffee Break</strong
+                            >
                           </div>
                         </div>
 
@@ -801,11 +843,15 @@ export default defineComponent({
                           >
                             15.10 - 15.50
                           </div>
-                          <div class="schedule-topic-content table-topic schedule-time-content-blue">
+                          <div
+                            class="schedule-topic-content table-topic schedule-time-content-blue"
+                          >
                             Supercharge SecOps Workflows with AI Driven Security
                             Analytics
                           </div>
-                          <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
+                          <div
+                            class="schedule-speaker-content table-speaker schedule-time-content-blue"
+                          >
                             <div class="partner-img-mobile">
                               <img src="/img/partner/elastic.png" width="50" />
                             </div>
@@ -834,7 +880,7 @@ export default defineComponent({
 
                           <div class="schedule-speaker-content table-speaker">
                             <div class="partner-img-mobile">
-                              <img src="/img/partner/dell1.png" width="60" />
+                              <img src="/img/partner/dell1.png" width="90" />
                             </div>
                             <div class="speaker-info">
                               <strong>Martin Ruslan</strong>
@@ -845,7 +891,7 @@ export default defineComponent({
                             <img
                               class="partner-img"
                               src="/img/partner/dell1.png"
-                              width="60"
+                              width="70"
                             />
                           </div>
                         </div>
@@ -868,7 +914,9 @@ export default defineComponent({
                     <div
                       class="schedule-agenda-content schedule-agenda-content-blue table-topic schedule-time-content-blue customer-testimonial"
                     >
-                      <strong class="color-font-gray"> Customer Testimonial</strong>
+                      <strong class="color-font-gray">
+                        Customer Testimonial</strong
+                      >
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -878,8 +926,12 @@ export default defineComponent({
                     <div class="schedule-time-content table-center">
                       16.45 - 17.00
                     </div>
-                    <div class="schedule-agenda-content table-topic customer-testimonial">
-                      <strong class="color-font-gray"> Grand Prize & Closing</strong>
+                    <div
+                      class="schedule-agenda-content table-topic customer-testimonial"
+                    >
+                      <strong class="color-font-gray">
+                        Grand Prize & Closing</strong
+                      >
                     </div>
                     <!-- <div class="schedule-brand-content"></div>
                   <div class="schedule-solution-content"></div> -->
@@ -1010,10 +1062,14 @@ export default defineComponent({
                                   fill="outline"
                                   class="custom-select"
                                 >
-                                  <ion-select-option class="custom-option" value="1"
+                                  <ion-select-option
+                                    class="custom-option"
+                                    value="1"
                                     >AI/ML & Data Management</ion-select-option
                                   >
-                                  <ion-select-option class="custom-option" value="2"
+                                  <ion-select-option
+                                    class="custom-option"
+                                    value="2"
                                     >Cyber Security</ion-select-option
                                   >
                                 </ion-select>
