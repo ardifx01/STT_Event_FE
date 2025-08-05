@@ -453,14 +453,14 @@ export default defineComponent({
                     <div class="schedule-time-content table-center">
                       09.45 - 10.45
                     </div>
-                    <div class="schedule-topic-content table-topic">
-                      <strong>Panel Discussion :</strong><br>
-                      Future-Proofing Your Business: How AI and Data Sovereignty Shape Tomorrow's IT Lanscape
+                    <div class="schedule-topic-content table-topic panel-discussion-title">
+                      <div class="panel-discussion-content"><strong>Panel Discussion :</strong></div>
+                      <div class="panel-discussion-content">Future-Proofing Your Business: How AI and Data Sovereignty Shape Tomorrow's IT Landscape</div>
                     </div>
 
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/stt.png" width="40" />
+                        <img src="/img/partner/stt.png" width="50" />
                       </div>
                       <div class="speaker-info">
                         <div class="">
@@ -479,7 +479,7 @@ export default defineComponent({
                       <img
                         class="partner-img"
                         src="/img/partner/stt.png"
-                        width="40"
+                        width="50"
                       />
                     </div>
                   </div>
@@ -497,7 +497,7 @@ export default defineComponent({
 
                     <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/stt.png" width="50" />
+                        <img src="/img/partner/dell.png" width="50" />
                       </div>
                       <div class="speaker-info">
                         <strong>Fardy Umar</strong>
@@ -507,8 +507,8 @@ export default defineComponent({
                       </div>
                       <img
                         class="partner-img"
-                        src="/img/partner/stt.png"
-                        width="50"
+                        src="/img/partner/dell.png"
+                        width="40"
                       />
                     </div>
                   </div>
@@ -612,7 +612,7 @@ export default defineComponent({
                             13.30 - 14.10
                           </div>
                           <div class="schedule-topic-content table-topic">
-                            Dell Data Lakehouse - Modern Datta Infrastructure
+                            Dell Data Lakehouse - Modern Datalake Infrastructure
                           </div>
                           <div class="schedule-speaker-content table-speaker">
                             <div class="partner-img-mobile">

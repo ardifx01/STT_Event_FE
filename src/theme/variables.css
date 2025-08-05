@@ -1417,6 +1417,18 @@ ion-tab-button ion-label {
   height: 100%;
   border-radius: 8px;
 }
+
+.table-topic.panel-discussion-title {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.table-topic > div.panel-discussion-content {
+  display: block;
+  width: 100%;
+}
 .schedule-speaker-content {
     display: flex;
     align-items: center;
