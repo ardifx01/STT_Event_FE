@@ -433,7 +433,7 @@ export default defineComponent({
 
                     <div class="schedule-speaker-content schedule-time-content-blue table-speaker table-center">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/dell.png" width="40" />
+                        <img src="/img/partner/dell1.png" width="40" />
                       </div>
                       <div class="speaker-info">
                         <strong>Erwin Yusran</strong>
@@ -443,7 +443,7 @@ export default defineComponent({
                       </div>
                       <img
                         class="partner-img"
-                        src="/img/partner/dell.png"
+                        src="/img/partner/dell1.png"
                         width="40"
                       />
                     </div>
@@ -497,7 +497,7 @@ export default defineComponent({
 
                     <div class="schedule-speaker-content table-speaker schedule-time-content-blue">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/dell.png" width="50" />
+                        <img src="/img/partner/dell1.png" width="50" />
                       </div>
                       <div class="speaker-info">
                         <strong>Fardy Umar</strong>
@@ -507,7 +507,7 @@ export default defineComponent({
                       </div>
                       <img
                         class="partner-img"
-                        src="/img/partner/dell.png"
+                        src="/img/partner/dell1.png"
                         width="40"
                       />
                     </div>
@@ -523,7 +523,7 @@ export default defineComponent({
                     </div>
                     <div class="schedule-speaker-content table-speaker">
                       <div class="partner-img-mobile">
-                        <img src="/img/partner/nutanix.png" width="50" />
+                        <img src="/img/partner/nutanix1.png" width="50" />
                       </div>
                       <div class="speaker-info">
                         <strong>Sahdam Husen</strong>
@@ -533,7 +533,7 @@ export default defineComponent({
                       </div>
                       <img
                         class="partner-img"
-                        src="/img/partner/nutanix.png"
+                        src="/img/partner/nutanix1.png"
                         width="50"
                       />
                     </div>
@@ -616,7 +616,7 @@ export default defineComponent({
                           </div>
                           <div class="schedule-speaker-content table-speaker">
                             <div class="partner-img-mobile">
-                              <img src="/img/partner/dell.png" width="40" />
+                              <img src="/img/partner/dell1.png" width="40" />
                             </div>
                             <div class="speaker-info">
                               <strong>Hendro Kusno</strong>
@@ -626,7 +626,7 @@ export default defineComponent({
                             </div>
                             <img
                               class="partner-img"
-                              src="/img/partner/dell.png"
+                              src="/img/partner/dell1.png"
                               width="40"
                             />
                           </div>
@@ -834,7 +834,7 @@ export default defineComponent({
 
                           <div class="schedule-speaker-content table-speaker">
                             <div class="partner-img-mobile">
-                              <img src="/img/partner/dell.png" width="40" />
+                              <img src="/img/partner/dell1.png" width="40" />
                             </div>
                             <div class="speaker-info">
                               <strong>Martin Ruslan</strong>
@@ -844,7 +844,7 @@ export default defineComponent({
                             </div>
                             <img
                               class="partner-img"
-                              src="/img/partner/dell.png"
+                              src="/img/partner/dell1.png"
                               width="40"
                             />
                           </div>
