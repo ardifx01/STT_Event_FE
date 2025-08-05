@@ -1010,10 +1010,10 @@ export default defineComponent({
                                   fill="outline"
                                   class="custom-select"
                                 >
-                                  <ion-select-option value="1"
+                                  <ion-select-option class="custom-option" value="1"
                                     >AI/ML & Data Management</ion-select-option
                                   >
-                                  <ion-select-option value="2"
+                                  <ion-select-option class="custom-option" value="2"
                                     >Cyber Security</ion-select-option
                                   >
                                 </ion-select>

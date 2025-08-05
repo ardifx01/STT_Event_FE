@@ -825,6 +825,25 @@ ion-select.custom-select {
   text-align-last: left;
 }
 
+.custom-option {
+  --padding-start: 16px;
+  --padding-end: 40px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  font-size: 15px !important;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  transition: all 0.3s ease;
+  /* iOS Safari specific */
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  /* Better mobile touch target */
+  --min-height: 56px;
+  text-align: left;
+  text-align-last: left;
+}
+
+
 .custom-select::part(icon) {
   position: absolute;
   right: 16px;
