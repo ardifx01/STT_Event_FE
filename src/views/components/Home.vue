@@ -349,7 +349,7 @@ export default defineComponent({
                     <h2 class="ion-no-margin">
                       <strong>Thursday, 11 September 2025</strong>
                     </h2>
-                    <p class="ion-no-margin">09.30 - 17.00</p>
+                    <p class="ion-no-margin">08.45 - 17.00</p>
                   </ion-text>
                 </ion-col>
               </ion-row>
