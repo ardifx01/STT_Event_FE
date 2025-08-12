@@ -1140,6 +1140,7 @@ export default defineComponent({
 
               <!-- support by -->
               <div class="custom-container">
+                <h1 class="prize-title oxanium-bold letters-spacing" style="margin-bottom: 60px;">Supported by</h1>
                 <ion-grid>
                   <ion-row class="ion-justify-content-center ion-no-padding">
                     <ion-col size="12" size-md="4" size-lg="3" class="col-support">
@@ -1164,7 +1165,7 @@ export default defineComponent({
                       <ion-img src="/img/support/weka.png" class="support-icon"></ion-img>
                     </ion-col>
                     <ion-col size="12" size-md="4" size-lg="3" class="col-support">
-                      <ion-img src="/img/support/dell.png" class="support-icon"></ion-img>
+                      <ion-img src="/img/support/amd.png" class="support-icon"></ion-img>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
