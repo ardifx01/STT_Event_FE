@@ -1136,6 +1136,41 @@ export default defineComponent({
                   </form>
                 </ion-grid>
               </div>
+
+
+              <!-- support by -->
+              <div class="custom-container">
+                <ion-grid>
+                  <ion-row class="ion-justify-content-center ion-no-padding">
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/dell.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/cyble.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/elastic.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/cisco.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/nutanix.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/rafay.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/weka.png" class="support-icon"></ion-img>
+                    </ion-col>
+                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
+                      <ion-img src="/img/support/dell.png" class="support-icon"></ion-img>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+              <!-- support by -->
+
             </div>
           </div>
         </div>

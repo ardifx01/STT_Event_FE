@@ -290,4 +290,43 @@
 }
 
 
+/* style support by */
+.custom-container {
+  width: 100%;
+}
 
+@media (min-width: 992px) {
+  .custom-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+.support-icon {
+    width: 260px;           /* ukuran tetap untuk semua gambar */
+    height: 70px;          /* tinggi tetap untuk semua gambar */
+    object-fit: contain;    /* biar proporsional tanpa terpotong */
+    background-color: white;
+    border-radius: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+/* md ke bawah */
+@media (max-width: 768px) {
+  .support-icon {
+    width: 100%;
+  }
+}
+
+
+.col-support {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* style support by */
