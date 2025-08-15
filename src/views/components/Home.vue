@@ -4,9 +4,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonGrid,
   IonRow,
@@ -16,28 +13,18 @@ import {
   IonCardTitle,
   IonCardContent,
   IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
   IonInput,
   IonButton,
-  IonIcon,
-  IonFab,
-  IonFabButton,
   IonText,
   IonImg,
   IonSelect,
   IonSelectOption,
   IonCheckbox,
 } from "@ionic/vue";
-import { locationOutline, calendarOutline, add } from "ionicons/icons";
 export default defineComponent({
   name: "HomePage",
   components: {
     IonPage,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonGrid,
     IonRow,
@@ -47,14 +34,8 @@ export default defineComponent({
     IonCardTitle,
     IonCardContent,
     IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
     IonInput,
     IonButton,
-    IonIcon,
-    IonFab,
-    IonFabButton,
     IonText,
     IonImg,
     IonSelect,
@@ -203,12 +184,12 @@ export default defineComponent({
     handleEmail(data) {
       axios
         .post(`${import.meta.env.VITE_REGISTRATION_EVENT_EMAIL_STT_API}`, data)
-        .then((response) => {
-          console.log("success");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        // .then((response) => {
+        //   console.log("success");
+        // })
+        // .catch((error) => {
+        //   console.error("Error:", error);
+        // });
     },
     switchBreakoutTab(tab) {
       this.activeBreakoutTab = tab;
@@ -1163,9 +1144,6 @@ export default defineComponent({
                     </ion-col>
                     <ion-col size="12" size-md="4" size-lg="3" class="col-support">
                       <ion-img src="/img/support/weka.png" class="support-icon"></ion-img>
-                    </ion-col>
-                    <ion-col size="12" size-md="4" size-lg="3" class="col-support">
-                      <ion-img src="/img/support/amd.png" class="support-icon"></ion-img>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
