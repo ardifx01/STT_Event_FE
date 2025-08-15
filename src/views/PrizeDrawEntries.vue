@@ -35,6 +35,7 @@
                   :cursor-angle="cursorAngle"
                   :cursor-position="cursorPosition"
                   :cursor-distance="cursorDistance"
+                  :spin-duration="11000"
                   @spin-start="onSpinStart"
                   @spin-end="onSpinEnd"
                 >
@@ -523,7 +524,7 @@ export default defineComponent({
 .spinner {
   width: 300;
   height: 100;
-  transition: transform 4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 15s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .spin-button {
   width: 100px;
