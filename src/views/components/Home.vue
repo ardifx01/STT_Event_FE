@@ -135,7 +135,7 @@ export default defineComponent({
         mobile_number: this.formData.phone,
         session: this.formData.session,
       };
-      console.log(data);
+      // console.log(data);
       await axios
         .post(`${import.meta.env.VITE_REGISTRATION_EVENT_STT_API}`, data)
         .then((response) => {

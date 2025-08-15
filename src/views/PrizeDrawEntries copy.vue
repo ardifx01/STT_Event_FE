@@ -238,7 +238,7 @@ export default defineComponent({
         const response = await axios.get(
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
-        console.log("Participants fetched successfully:", response.data.data);
+        // console.log("Participants fetched successfully:", response.data.data);
         return response.data.data;
       } catch (error) {
         console.error("Error fetching participants:", error);
@@ -346,9 +346,9 @@ export default defineComponent({
 
       // Calculate segment angle
       const segmentAngle = parseInt(360 / this.participants.length);
-      console.log(finalDegree);
-      console.log(normalizedDegree);
-      console.log(segmentAngle);
+      // console.log(finalDegree);
+      // console.log(normalizedDegree);
+      // console.log(segmentAngle);
       // Arrow is at the top (270°), pointing downward into the wheel
       // Segments are arranged clockwise starting from 0° (right side)
       // We need to find which segment is currently under the arrow
@@ -362,17 +362,17 @@ export default defineComponent({
       const segmentUnderArrow = parseInt(
         (arrowPosition - normalizedDegree + 360) % 360
       );
-      console.log(segmentUnderArrow);
+      // console.log(segmentUnderArrow);
       // Find the segment index
       let winningSegmentIndex = parseInt(segmentUnderArrow / segmentAngle);
-      console.log(segmentUnderArrow);
-      console.log(winningSegmentIndex);
+      // console.log(segmentUnderArrow);
+      // console.log(winningSegmentIndex);
       // Ensure the index is within bounds
       winningSegmentIndex = winningSegmentIndex % this.participants.length;
-      console.log(winningSegmentIndex);
+      // console.log(winningSegmentIndex);
       // Get the winner
       this.winner = this.participants[winningSegmentIndex];
-      console.log(this.winner);
+      // console.log(this.winner);
       this.storeSesiSpin();
 
       // Optional: Send winner data to backend

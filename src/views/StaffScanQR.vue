@@ -198,7 +198,7 @@
       qrScanner.value = new QrScanner(
         videoElement.value,
         (result) => {
-          console.log('QR Code detected:', result.data);
+          // console.log('QR Code detected:', result.data);
           handleQRCodeDetected(result.data);
         },
         {

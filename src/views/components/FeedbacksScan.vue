@@ -196,7 +196,7 @@
     qrScanner.value = new QrScanner(
       videoElement.value,
       (result) => {
-        console.log('QR Code detected:', result.data);
+        // console.log('QR Code detected:', result.data);
         handleQRCodeDetected(result.data);
       },
       {
@@ -209,7 +209,7 @@
     );
     
     // Start the scanner
-    console.log('Starting QR Scanner...');
+    // console.log('Starting QR Scanner...');
     await qrScanner.value.start();
     
     // Set camera as active

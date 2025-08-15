@@ -268,10 +268,10 @@ export default defineComponent({
         const response = await axios.get(
           `${import.meta.env.VITE_SPIN_WHEEL_API}`
         );
-        console.log(
-          "Participants fetched successfully:",
-          response.data.image_prize
-        );
+        // console.log(
+        //   "Participants fetched successfully:",
+        //   response.data.image_prize
+        // );
         this.max_winner = response.data.max_winner;
         this.image_prize = response.data.image_prize;
         this.total_winner = response.data.total_winners;
@@ -291,7 +291,7 @@ export default defineComponent({
         this.winners = all_participants
           .filter((i) => i.winner)
           .sort((a, b) => a.prize_sesi - b.prize_sesi);
-        console.log("Winners:", this.winners);
+        // console.log("Winners:", this.winners);
         const total = participants.length;
 
         this.slices = participants.map((p, i) => {
@@ -349,18 +349,18 @@ export default defineComponent({
       if (this.max_winner - this.total_winner > 0) {
         this.winnerResult = null;
         this.isSpinning = true;
-        console.log("Spin started");
+        // console.log("Spin started");
       }
     },
 
     onSpinEnd(winnerIndex) {
       this.isSpinning = false;
-      console.log("Spin ended on index:", winnerIndex);
+      // console.log("Spin ended on index:", winnerIndex);
 
       if (winnerIndex >= 0 && winnerIndex < this.slices.length) {
         this.winnerResult = this.slices[winnerIndex];
         // this.storeSesiSpin();
-        console.log("Winner:", this.winnerResult);
+        // console.log("Winner:", this.winnerResult);
       } else {
         console.error("Invalid winner index:", winnerIndex);
       }

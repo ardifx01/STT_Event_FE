@@ -205,7 +205,7 @@
         try {
             const res = await axios.get(`${import.meta.env.VITE_API_GET_ALL_BOOTH}`);
 
-            console.log('Booth visit data:', res.data);
+            // console.log('Booth visit data:', res.data);
             allBoothVisit.value = res.data.data;
         } catch (error) {
             console.error('Error fetching booth visit data:', error);
@@ -213,7 +213,7 @@
     };
 
     const selectBooth = (bootID: number, boothNameArgu : string) => {
-        console.log('Selected Booth ID:', bootID);
+        // console.log('Selected Booth ID:', bootID);
         boothSelected.value = true;
         boothID.value = bootID;
         boothName.value = boothNameArgu;
@@ -295,7 +295,7 @@
       qrScanner.value = new QrScanner(
         videoElement.value,
         (result) => {
-          console.log('QR Code detected:', result.data);
+          // console.log('QR Code detected:', result.data);
           handleQRCodeDetected(result.data);
         },
         {
@@ -320,7 +320,7 @@
     
     // Initialize using MediaDevices (fallback method)
     const initializeMediaDevices = async () => {
-      console.log('Initializing MediaDevices camera...');
+      // console.log('Initializing MediaDevices camera...');
       
       // Request camera permission and start stream
       const constraints = {
@@ -341,7 +341,7 @@
         
         // Auto-start when camera is ready
         videoElement.value.onloadedmetadata = () => {
-          console.log('MediaDevices camera initialized successfully');
+          // console.log('MediaDevices camera initialized successfully');
         };
       }
     };
@@ -473,7 +473,7 @@
           await qrScanner.value.start();
           cameraStatusMessage.value = 'Scanning aktif - Arahkan ke QR Code';
         } catch (error) {
-          console.error('Error starting QR scanner:', error);
+          // console.error('Error starting QR scanner:', error);
         }
         return;
       }
@@ -506,7 +506,7 @@
             }, 2000);
           }
         } catch (error) {
-          console.error('Error during scanning:', error);
+          // console.error('Error during scanning:', error);
           isScanning.value = false;
           
           const alert = await alertController.create({
@@ -556,7 +556,7 @@
                 handler: () => {
                   // Copy to clipboard
                   navigator.clipboard.writeText(data).then(() => {
-                    console.log('QR code data copied to clipboard');
+                    // console.log('QR code data copied to clipboard');
                   }).catch(err => {
                     console.error('Failed to copy to clipboard:', err);
                   });
