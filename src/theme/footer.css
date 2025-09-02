@@ -311,21 +311,36 @@
     padding-top: 16px;
     padding-bottom: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;           /* biar logo diatur di tengah */
+    justify-content: center;
+    align-items: center;
   }
+  .support-icon img,
+    ion-img {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+/* khusus AMD */
+.amd-icon {
+  max-width: 70%;  /* lebih kecil dari yang lain */
+}
 
 /* md ke bawah */
 @media (max-width: 768px) {
-  .support-icon {
+  .support-icon,
+  .amd-icon {
     width: 100%;
   }
 }
-
 
 .col-support {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  
 }
 
 /* style support by */
