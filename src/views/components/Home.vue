@@ -1146,9 +1146,7 @@ export default defineComponent({
                       <ion-img src="/img/support/weka.png" class="support-icon"></ion-img>
                     </ion-col>
                     <ion-col size="12" size-md="4" size-lg="3" class="col-support">
-                        <div class="support-icon">
-                          <ion-img src="/img/support/amdnew.png" class="amd-icon"></ion-img>
-                        </div>
+                      <ion-img src="/img/support/amdnew.png" class="support-icon"></ion-img>
                     </ion-col>
                   </ion-row>
                 </ion-grid>

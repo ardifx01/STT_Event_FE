@@ -300,38 +300,34 @@
     margin: 0 auto;
   }
 }
-.support-icon {
-    width: 260px;           /* ukuran tetap untuk semua gambar */
-    height: 70px;          /* tinggi tetap untuk semua gambar */
-    object-fit: contain;    /* biar proporsional tanpa terpotong */
-    background-color: white;
-    border-radius: 12px;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-top: 16px;
-    padding-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    display: flex;           /* biar logo diatur di tengah */
-    justify-content: center;
-    align-items: center;
-  }
-  .support-icon img,
-    ion-img {
-      object-fit: contain;
-      max-width: 100%;
-      max-height: 100%;
-  }
 
-/* khusus AMD */
-.amd-icon {
-  max-width: 70%;  /* lebih kecil dari yang lain */
+/* Card logo */
+.support-icon {
+  width: 260px;            /* lebar seragam */
+  height: 70px;            /* tinggi seragam */
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px 20px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  display: flex;           /* isi rata tengah */
+  justify-content: center;
+  align-items: center;
 }
 
-/* md ke bawah */
+/* Logo di dalam card */
+.support-icon img,
+ion-img {
+  object-fit: contain;
+  width: 100%;             /* isi penuh card */
+  height: 100%;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .support-icon,
-  .amd-icon {
-    width: 100%;
+  .support-icon {
+    width: 100%;           /* full di HP */
+    height: 70px;          /* tetap tinggi seragam */
   }
 }
 
@@ -340,7 +336,4 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  
 }
-
-/* style support by */
