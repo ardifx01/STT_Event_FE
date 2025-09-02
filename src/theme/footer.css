@@ -346,6 +346,12 @@ ion-img {
     width: 100%;           /* full di HP */
     height: 70px;          /* tetap tinggi seragam */
   }
+
+  .support-amd {
+    width: 100%;           /* full di HP */
+    height: 70px;          /* tetap tinggi seragam */
+  }
+
 }
 
 .col-support {
