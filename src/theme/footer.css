@@ -302,6 +302,23 @@
 }
 
 /* Card logo */
+.support-amd {
+  width: 260px;            /* lebar seragam */
+  height: 70px;            /* tinggi seragam */
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px 20px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  display: flex;           /* isi rata tengah */
+  justify-content: center;
+  align-items: center;
+}
+.support-amd ion-img, img {
+  max-width: 100%;
+  max-height: 50%;
+}
+/* Card logo */
 .support-icon {
   width: 260px;            /* lebar seragam */
   height: 70px;            /* tinggi seragam */
