@@ -392,9 +392,9 @@ export default defineComponent({
                         <img src="/img/partner/stt.png" width="60" />
                       </div>
                       <div class="speaker-info">
-                        <strong>Arianto</strong>
+                        <strong>Charlie Tio</strong>
                         <div style="font-size: 11px">
-                          General Manager, PT Sapta Tunas Teknologi
+                          Managing Director, PT Sapta Tunas Teknologi
                         </div>
                       </div>
                       <img
@@ -460,9 +460,9 @@ export default defineComponent({
                       </div>
                       <div class="speaker-info">
                         <div class="">
-                          <strong>T. Bram</strong>
+                          <strong>Andre Sureja</strong>
                           <div style="font-size: 11px">
-                            Enterprise & AI Architect
+                            Infra Expert
                           </div>
                         </div>
                         <div class="">
@@ -470,9 +470,15 @@ export default defineComponent({
                           <div style="font-size: 11px">AI Expert</div>
                         </div>
                         <div class="">
-                          <strong>Victor G</strong>
+                          <strong>Victor</strong>
                           <div style="font-size: 11px">
                             Data Strategy Expert
+                          </div>
+                        </div>
+                        <div class="">
+                          <strong>Andi Subali</strong>
+                          <div style="font-size: 11px">
+                            CyberSecurity Expert
                           </div>
                         </div>
                       </div>
@@ -725,9 +731,9 @@ export default defineComponent({
                               <img src="/img/partner/rafay.png" width="50" />
                             </div>
                             <div class="speaker-info">
-                              <strong>Fitra Alim</strong>
+                              <strong>Gilbert Samudi</strong>
                               <div style="font-size: 11px">
-                                Technical Delivery Lead, Refay Systems
+                                Rafay Asia, Indonesia Enterprise Account Manager
                               </div>
                             </div>
                             <img
